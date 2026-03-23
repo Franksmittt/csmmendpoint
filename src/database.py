@@ -12,6 +12,9 @@ from typing import Any
 _ROOT = Path(__file__).resolve().parent.parent
 DB_PATH = _ROOT / "agency.db"
 
+# Prevents recursive seeding when add_client() calls init_db() during apply_seed_clients().
+_SEEDING_CLIENTS = False
+
 WORKFLOW_STATUSES: tuple[str, ...] = (
     "Draft",
     "Sent to Client",
@@ -158,6 +161,27 @@ def _migrate_schema() -> None:
         conn.commit()
 
 
+def _seed_default_clients_if_empty() -> None:
+    """First deploy / empty DB: insert Alberton Tyre Clinic, Battery Mart, Miwesu from code."""
+    global _SEEDING_CLIENTS
+    if _SEEDING_CLIENTS:
+        return
+    try:
+        with _conn() as conn:
+            n = conn.execute("SELECT COUNT(*) FROM clients").fetchone()[0]
+        if int(n) > 0:
+            return
+    except Exception:
+        return
+    _SEEDING_CLIENTS = True
+    try:
+        from seed_clients import apply_seed_clients
+
+        apply_seed_clients()
+    finally:
+        _SEEDING_CLIENTS = False
+
+
 def init_db() -> None:
     with _conn() as conn:
         conn.executescript(
@@ -191,6 +215,7 @@ def init_db() -> None:
         )
         conn.commit()
     _migrate_schema()
+    _seed_default_clients_if_empty()
 
 
 def add_client(
