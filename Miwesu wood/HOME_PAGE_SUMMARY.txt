@@ -1,0 +1,161 @@
+================================================================================
+MIWESU FIRE WOOD — HOME PAGE SUMMARY
+================================================================================
+Structure and content of the home page, from header to footer. All sections are inside the main layout; the home route renders HomePageContent (and passes optional initialProductId for deep-linking into the order modal).
+
+--------------------------------------------------------------------------------
+1. SITE HEADER (SiteHeader — fixed)
+--------------------------------------------------------------------------------
+- Position: fixed top-0, full width, z-50.
+- Style: bg-black/80, backdrop-blur-xl, border-b border-white/5.
+- Height: h-14. Max width 7xl, px-6.
+
+Contents:
+- Logo (left): Link to "/". Bronze gradient circle ("reactor core") with glow, then "MIWESU" in bold white, then optional "FIRE WOOD" in gray (uppercase, tracking-widest-tech, hidden on small screens). On policy variant, "FIRE WOOD" is hidden.
+- Nav (center, desktop): Products (#products), Performance (#performance), Policies (/policies), Visit Farm (external miwesu.com), Contact (mailto). Links are gray-400, hover white, text-xs font-medium tracking-wide.
+- CTA (right): "Get Allocation" — white pill (rounded-full, 11px bold uppercase). On home it opens OrderModal via onAllocationClick; otherwise links to /#products.
+- Mobile: Hamburger toggles a slide-down panel with same links and CTA. Panel: border-t border-white/5, bg-black/95 backdrop-blur-xl.
+
+--------------------------------------------------------------------------------
+2. HERO SECTION
+--------------------------------------------------------------------------------
+- Wrapper: min-h-screen flex column, pt-14 (to clear fixed header), contains header + hero + marquee.
+- Section: relative min-h-[90vh], centered content, bg-void, overflow hidden.
+
+Background layers (absolute, z-0):
+- Full-bleed image (hero firewood image) with night-gradient overlay and opacity.
+- Radial vignette (transparent center to black edges).
+- Bottom gradient (from-black to-transparent, h-64).
+
+Content (relative z-10, centered, max-w-5xl):
+- Badge: "Premium Fire Wood" — text-bronze-gradient, uppercase, tracking-widest-tech, rounded-full pill with border border-white/10, bg-black/30 backdrop-blur-sm.
+- H1 line 1: "Engineered" — white, very large (6xl to 8rem), tracking-tightest, opacity-90.
+- H1 line 2: "Heat." — gradient from white to gray-500, same size, bg-clip-text.
+- Subtitle: "High-performance thermal hardware." + "Precision-split. Gauteng delivery." (gray-400 / white).
+- CTAs: "View Pricing" (white pill, opens OrderModal) and "The Lineup" (outline pill, links to #products, bronze arrow).
+
+--------------------------------------------------------------------------------
+3. MARQUEE STRIP
+--------------------------------------------------------------------------------
+- Full width, py-3–4, border-y border-white/5, bg-black/30.
+- Horizontal scrolling text: "FREE DELIVERY IN GAUTENG" repeated (animate-marquee), text-bronze, tracking-widest-tech, uppercase.
+
+--------------------------------------------------------------------------------
+4. FEATURE STRIP (below the fold)
+--------------------------------------------------------------------------------
+- Max width 1320px, centered, py-8–10, border-b border-white/5.
+- Four items in a flex wrap (centered, gap 6–12):
+  - Moisture guarantee (icon ◇) — Verified < 12% moisture.
+  - Eco-positive (icon ♻) — Sustainably sourced, invasive species removal.
+  - Free Gauteng delivery (icon 🚚) — We deliver, you inspect, COD.
+  - No surprises (icon ✓) — Clear MOQ and pricing.
+- Each: small icon box (glass-style, text-bronze), title (uppercase tracking-widest-tech bronze), short description (gray-400).
+
+--------------------------------------------------------------------------------
+5. BENTO GRID — "THE LINEUP" (id="products")
+--------------------------------------------------------------------------------
+- Section: py-20–32, bg-void, relative. Decorative glow: large radial bronze glow (bg-glow-radial) centered behind content.
+- Max width 1400px, px-6.
+
+Section header:
+- Left: "The Lineup." (large white heading), "Choose your calibration." (gray-500).
+- Right (desktop): "Gauteng delivery" and "Precision split" in small uppercase tracking-widest-tech gray-600.
+
+Grid: 4 columns on desktop, gap-5, fixed height 800px on md+.
+- Cell 1 (2x2, hero): Braai Mix 12kg — product image (hover scale), overlay with "Braai Mix." + "The Master Blend.", bottom pills with price and MOQ. Links to /products/braai-mix-12.
+- Cell 2 (1x2, tall): Sekelbos 30kg — image, "Sekelbos." + "High Velocity" (cyan), short description. Links to /products/sekelbos-30.
+- Cell 3 (1x1): Geelhaak — image, "Geelhaak." + "Balanced Burn" at bottom. Links to /products/geelhak-12.
+- Cell 4 (1x1): Tactical Delivery — white card, "Tactical Delivery.", placeholder area "Next day · Gauteng", "Delivery areas" + arrow. Links to /delivery-areas.
+
+All product cells: squircle, glass-panel, image scale on hover.
+
+--------------------------------------------------------------------------------
+6. ALL PRODUCTS GRID
+--------------------------------------------------------------------------------
+- Section: py-12–20, border-t border-white/5, max-w-1320px.
+- Heading: "All products" (centered).
+- Grid: 1 col mobile, 2 sm, 4 lg. Each card: squircle glass-panel, aspect-square image (link to product page), then tier (bronze uppercase), product name (link), "Best for" + short description snippet, price and MOQ, "Order Now" button (opens OrderModal with that product). All four products from lib/products are listed.
+
+--------------------------------------------------------------------------------
+7. FIND YOUR FIRE (id="wood-finder")
+--------------------------------------------------------------------------------
+- Section: py-12–20, max-w-1320px.
+- Heading: "Find your fire". Subtitle: "What are you after? Pick your use and we'll point you to the right wood."
+- Three cards (1 col mobile, 3 md), each a link with squircle glass-panel:
+  - Braai & flavor (🔥) → /products/braai-mix-12. Bronze accent.
+  - High heat, clean burn (⚡) → /products/sekelbos-30. Cyan accent.
+  - Bulk & value (📦) → /products/braai-mix-30. Bronze accent.
+- Each: icon box, title, short blurb, "View … →" link text.
+
+--------------------------------------------------------------------------------
+8. PERFORMANCE — TECH SPECS (id="performance")
+--------------------------------------------------------------------------------
+- Section: py-20–32, bg-void, border-t border-white/5.
+- Max width 4xl, centered.
+
+Header:
+- Label: "Performance Benchmarks" (text-bronze-gradient, uppercase).
+- Heading: "Physics. Not Fiction."
+- Subtitle: "We treat wood as a fuel cell. Here is how our hardware performs under controlled thermal conditions."
+
+BenchmarkBars component:
+- Three horizontal bars that animate width on scroll-into-view (IntersectionObserver):
+  1. Thermal Output (Calorific Value) — "High Performance" (ember), bar 92%, label "BRAAI MIX", orange-to-ember gradient.
+  2. Ignition Latency (Time to Flame) — "Ultra-Low Latency" (cyan), bar 88%, "SEKELBOS", cyan gradient.
+  3. Thermal Mass (Coal Life) — "Extended Duration" (gray), bar 96%, "GEELHAAK", gray-to-white gradient.
+- Bars sit in tungsten track with subtle scale markers.
+
+Two stat cards below (glass-panel squircle, 2 cols):
+- "< 12%" — Moisture (Verified).
+- "100%" — Eco-Positive Sourcing.
+
+--------------------------------------------------------------------------------
+9. TESTIMONIALS (id="testimonials")
+--------------------------------------------------------------------------------
+- Section: py-12–20, max-w-1320px.
+- Heading: "What our customers say". Subtitle: "Real feedback from Gauteng braai and firewood customers."
+- Three cards (1 col mobile, 3 md): squircle glass-panel, quote in gray-400 italic, author (white) and location (gray-500). Quotes from J. M. (Alberton), T. K. (Johannesburg), R. S. (Pretoria).
+
+--------------------------------------------------------------------------------
+10. GALLERY GRID
+--------------------------------------------------------------------------------
+- Section: py-12–20, max-w-1320px.
+- 3x3 grid, gap 2–3. Five image cells (firewood/braai photos from /public), four placeholder cells. Each cell: aspect-square, squircle, border border-white/10, bg-tungsten; images use object-cover.
+
+--------------------------------------------------------------------------------
+11. CONTACT (id="contact")
+--------------------------------------------------------------------------------
+- Section: py-12–20, max-w-1320px.
+- Heading: "Contact us". Subtitle: "Have a question or enquiry? Send us a message — we'll get back to you."
+- Form: Name*, Email*, Phone, Message* (grid 1 col mobile, 3 cols md for first three). Labels: uppercase tracking-widest-tech gray-500. Inputs: transparent, border-b border-white/20, focus border-bronze. Submit: "Send message" — white rounded-full button. On submit: opens mailto (guardians@miwesu.com) with subject and body.
+
+--------------------------------------------------------------------------------
+12. SITE FOOTER (SiteFooter)
+--------------------------------------------------------------------------------
+- Full width: py-20, border-t border-white/10, bg-black. Max width 7xl, px-6.
+
+Layout: flex column on mobile, row on md, justify-between.
+- Left block: Bronze gradient dot + "MIWESU" (text-sm bold). Tagline: "Premium firewood and braai wood. Precision-split, verified moisture, Gauteng delivery." + "© 2026 Miwesu. Designed in South Africa." (text-xs gray-500).
+- Right block: Two columns (Hardware, Support).
+  - Hardware (default variant only): The Lineup (#products), Find your fire (#wood-finder), Tech Specs (#performance). Links hover to bronze.
+  - Support: Policies (/policies), Delivery areas (/delivery-areas), Contact (mailto), Home (/). Links hover to white.
+
+--------------------------------------------------------------------------------
+13. GLOBAL OVERLAYS (on home only)
+--------------------------------------------------------------------------------
+- OrderModal: Opens from "View Pricing", "Get Allocation", or "Order Now" on product cards. Preselected product can be set via URL ?product=id. Modal shows product options and order flow.
+- WhatsAppFloat: Floating WhatsApp link/button (position and behavior defined in WhatsAppFloat component).
+
+--------------------------------------------------------------------------------
+14. COMPONENT FILES REFERENCE
+--------------------------------------------------------------------------------
+- Layout: app/layout.tsx (html, body, Inter font, scroll-smooth, LocalBusinessSchema).
+- Home: app/page.tsx → HomePageContent (initialProductId from searchParams.product).
+- Header: components/SiteHeader.tsx.
+- Main content: components/HomePageContent.tsx (all sections above).
+- Benchmark bars: components/BenchmarkBars.tsx.
+- Footer: components/SiteFooter.tsx.
+- Modals / float: components/OrderModal.tsx, components/WhatsAppFloat.tsx.
+- Data: lib/products.ts (PRODUCTS array).
+
+================================================================================

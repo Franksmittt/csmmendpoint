@@ -1,0 +1,298 @@
+﻿Strategic Digital Roadmap for Miwesu Premium Fire Wood: E-commerce Architecture, UX Design, and Market Penetration in Gauteng
+1. Executive Market Analysis and Strategic Positioning
+The South African firewood market, traditionally characterized by informal roadside vending and utilitarian hardware store transactions, is undergoing a profound transformation. This shift is driven by the premiumization of the "braai" culture, the increasing reliance on solid fuel due to national power grid instability (load shedding), and a growing consumer demand for convenience and proven provenance. For "Miwesu Premium Fire Wood," entering the Gauteng market requires a digital strategy that transcends simple transactional commerce. The platform must function as a comprehensive lifestyle enabler, mitigating the specific anxieties of the South African consumer—namely the fear of wet wood, the inconvenience of bulk handling, and the opacity of delivery logistics.
+1.1 The Evolution from Commodity to Experiential Retail
+Historically, firewood in South Africa has been treated as a distress purchase or a basic utility. However, market analysis of competitors such as Stompies and Joburg Firewood reveals a bifurcation in the sector. While legacy players like Firewood Farm focus on volume and basic utility 1, emerging leaders like Stompies have successfully reframed firewood as an artisanal product essential to culinary excellence and social cohesion.2 This mirrors trends seen in international markets, such as the United States, where companies like Cutting Edge Firewood have introduced "white-glove" delivery services and luxury packaging.3
+For Miwesu, this necessitates a digital presence that communicates "Rustic Luxury." The user experience (UX) must replicate the sensory anticipation of a fire—warmth, aroma, and social connection—while the backend architecture ensures the rigorous efficiency of a logistics company. The website cannot merely list 18kg bags of wood; it must sell the promise of a smoke-free, high-heat evening that enhances the flavor of a ribeye steak or keeps a family warm during a Stage 6 power outage.2
+1.2 Competitive Landscape and Gap Analysis
+A granular analysis of the Gauteng competitive landscape highlights distinct opportunities for Miwesu to capture market share through superior digital execution.
+The Incumbents: Utilitarian and Volume-Focused
+Competitors like Joburg Firewood Company and Firewood Farm dominate the functional end of the market. Their digital value propositions are centered on speed ("Next Day Delivery") and volume discounts.1 However, their user interfaces often lack modern responsiveness, and their product presentation is frequently industrial, treating wood as a bulk commodity rather than a curated product. The "gap" here is the lack of emotional engagement and the absence of a "premium" unboxing experience.
+The Lifestyle Leaders: Stompies
+Stompies represents the current benchmark for content-led commerce in the sector. They utilize extensive educational guides—such as "The Ultimate South African Braai Guide" and comparisons of charcoal vs. briquettes—to build domain authority.2 Their strength lies in education. However, their navigation can be complex, and the sheer volume of options (fireplaces, pellets, gas, multiple wood types) can induce decision paralysis in a user who simply wants "the best wood for a Saturday braai."
+Miwesu’s Strategic Opportunity
+Miwesu can position itself in the "Goldilocks" zone: more premium and service-oriented than the utilitarians, but more streamlined and specialized than the lifestyle giants.
+* The Service Gap: While competitors offer delivery, few offer a true "stacking service" as a standard, digitized upsell within the cart flow. Stompies mentions stacking 2, but it is often an operational afterthought rather than a core digital product feature.
+* The Trust Gap: The fear of wet wood is pervasive. Competitors claim "dry wood," but few offer a "Moisture Guarantee" backed by visible transparency (e.g., displaying the current moisture reading of the batch on the homepage).4
+* The UX Gap: Most competitor sites require users to calculate their own volume needs. Miwesu can introduce interactive "Volume Visualizers" that translate "50 bags" into relatable spatial dimensions (e.g., "Fills half a standard garage wall").
+1.3 The Gauteng Context: Local Drivers of Digital Demand
+Designing for the Gauteng user requires acknowledging specific environmental and infrastructural realities. The province's high altitude and distinct winter season create a compressed, high-demand period where stock reliability is paramount. Furthermore, the reality of "load shedding" has transformed firewood from a leisure product into an essential energy source for cooking and heating.2
+
+
+Contextual Driver
+	Digital Implication for Miwesu
+	Gated Communities (Security)
+	Checkout forms must handle complex access codes and complex delivery instructions for estates in Sandton, Midrand, or Alberton.
+	Load Shedding
+	Real-time "Stock Status" and "Emergency Delivery" slots must be highlighted during high grid instability stages.
+	Water Scarcity & Ecology
+	Marketing invasive species (Blue Gum, Black Wattle) as "Eco-Friendly Water Savers" appeals to environmentally conscious suburbanites.6
+	High Crime Rates
+	Trust signals (SSL, recognized payment gateways like PayFast) and "Driver Tracking" are essential to reassure users about allowing delivery personnel onto their property.
+	________________
+2. Product Architecture and Taxonomy
+To effectively merchandise firewood online, one must move beyond simple species classification. The digital catalog must act as a virtual sommelier, guiding the user based on application rather than just botany. The complexity of wood characteristics (density, moisture, aroma) must be abstracted into intuitive UI elements.
+2.1 The Core Wood Portfolio
+Miwesu’s inventory should be structured around the "Big Five" of South African firewood, each mapped to a specific user intent.
+* Kameeldoring (Camel Thorn): The undisputed premium heavyweight. With a density of ~1200kg/m³ and moisture often as low as 1-3%, it is the "King of Braai Woods".2 It demands a premium price point and should be marketed for "The Long Social Braai" due to its ability to hold coals for hours.
+* Sekelbos (Sickle Bush): Characterized by its yellow hue and natural oils, this wood offers a distinct "bushveld" aroma. It should be positioned as the "Flavor Enhancer" for culinary use, specifically for red meat.2
+* Black Wattle: An invasive species that burns steadily and cleanly. It is the "Eco-Conscious Choice" and ideal for pizza ovens due to its consistent flame and moderate heat.2
+* Blue Gum (Eucalyptus): The workhorse of home heating. It is cost-effective and burns long, making it the "Winter Staple" for closed combustion fireplaces.6
+* Mopane: Known for its termite resistance and gnarled aesthetic. It burns extremely slowly and is often used for decorative open fires or overnight heating.2
+2.2 Merchandising Strategy: Bundles and Experiences
+A critical insight from global best practices is that users often struggle to start fires with dense hardwoods like Kameeldoring. A pure "Kameeldoring" order often leads to user frustration. Miwesu’s digital platform should algorithmically suggest "Ignition Bundles."
+* The "Braai Master" Bundle: 5 Bags Kameeldoring (Main fuel) + 1 Bag Black Wattle (Starter fuel) + 1 Box Eco-Firelighters.
+* The "Winter Warmer" Load: 50 Bags Blue Gum + 5 Bags Kindling + Moisture Meter (Value Add).
+2.3 The "Guaranteed Dry" Value Proposition
+To address the market's primary pain point—wet wood—Miwesu must operationalize transparency. The website should feature a dynamic "Batch Monitor" on product pages.
+* Implementation: "Current Batch Status: Kiln Dried. Average Moisture: 12%. Last Tested:."
+* Psychology: This specific data point acts as a massive trust signal, differentiating Miwesu from roadside vendors who cannot verify the seasoning of their wood.4
+________________
+3. High-Conversion Homepage Architecture
+The homepage serves as the primary storefront and brand ambassador. For a bulk delivery service, it must balance high-level inspiration with ruthless logistical efficiency. The user journey must accommodate two distinct personas: the "Replenisher" (who knows exactly what they want and wants to reorder quickly) and the "Novice" (who needs education and guidance).
+3.1 The Hero Section: Visceral Engagement
+The "Hero" area (above the fold) must immediately establish the brand's premium positioning.
+* Visual Strategy: Instead of a static image, utilize a high-definition, slow-motion video background (compressed WebP/WebM to ensure performance) featuring a roaring fire in a high-end South African patio setting. This triggers the "warmth" response.
+* Copywriting: "Gauteng’s Premium Firewood. Certified Dry. Delivered & Stacked." This headline addresses the product (Premium Firewood), the trust factor (Certified Dry), and the service convenience (Delivered & Stacked) in six words.
+* Primary Call to Action (CTA): "Shop Firewood" (Directs to the Product Listing Page).
+* Secondary CTA: "Check Delivery Zone" (Triggers the Postal Code Modal).
+3.2 The Logistics Gatekeeper: Postal Code Validation
+Given that firewood delivery is strictly bound by geography (weight-to-value ratio limits transport radius), filtering unqualified traffic early is a crucial UX best practice.7
+* Mechanism: A sticky bar or prominent input field: "Enter your Postal Code to view delivery days in Alberton, Sandton, or Pretoria."
+* UX Feedback Loop:
+   * Scenario A (Serviceable Area): "Success! We deliver to [Area Name] every Tuesday and Thursday."
+   * Scenario B (Non-Serviceable): "We don't deliver there yet. Sign up to be notified when we expand."
+* Strategic Value: This prevents cart abandonment later in the funnel when a user realizes shipping is unavailable or prohibitively expensive.
+3.3 The Trust Bar: Visualizing Reliability
+Immediately following the Hero section, a horizontal "Trust Bar" should display icons representing the core promises, leveraging the "Authority" bias.
+* Icon 1: "Moisture Guarantee (<15%)."
+* Icon 2: "Sustainably Sourced (Invasive Removal)."
+* Icon 3: "White Glove Stacking Service." 3
+* Icon 4: "Next-Day Gauteng Delivery."
+3.4 Educational Navigation: The "Wood Finder"
+To mitigate decision paralysis, the homepage should feature an interactive "Wood Finder" component.2
+* Design: A 3-step visual quiz.
+   * Step 1: "What are you doing?" (Icons: Braai Grid, Pizza Oven, Fireplace).
+   * Step 2: "How long do you need it to burn?" (Icons: Quick Dinner, Long Social, Overnight).
+   * Step 3: "Result." (e.g., "You need Sekelbos. It adds flavor and burns hot. [Add to Cart]").
+3.5 Dynamic Social Proof
+Integrating a live feed of Google Reviews is essential for local SEO and trust.8 However, the presentation should be filtered to highlight service aspects.
+* Curated Reviews: Highlight testimonials that mention specific delivery experiences. "Driver Thomas stacked the wood neatly in my garage in Bedforview – no mess left behind." This addresses the specific anxiety of having a messy delivery.
+________________
+4. Technical Architecture: Next.js Implementation Strategy
+To deliver a premium experience that is fast, SEO-friendly, and capable of handling complex logic (like bulk tier pricing and delivery zones), the Next.js 15 App Router is the optimal framework. This choice is driven by the need for strong Core Web Vitals (critical for mobile-first markets like South Africa) and dynamic server-side rendering.
+4.1 The Technology Stack
+A modern, headless commerce stack ensures scalability and separates the frontend "experience" from the backend "logic."
+
+
+Component
+	Technology Selection
+	Justification
+	Framework
+	Next.js 15 (App Router)
+	Provides Server Components for fast initial load, SEO optimization, and API routes for backend logic.9
+	Language
+	TypeScript
+	Ensures type safety, critical for handling complex product schemas and cart logic.11
+	CMS
+	Sanity.io
+	A structured content platform. Allows for defining custom schemas (e.g., "Density," "Moisture") that generic e-commerce platforms struggle with.12
+	Styling
+	Tailwind CSS
+	Utility-first CSS for rapid development and consistent design tokens. Low bundle size.13
+	UI Library
+	Shadcn/UI
+	Accessible, customizable components (based on Radix UI) that provide a professional look without the "generic Bootstrap" feel.14
+	State
+	Zustand
+	Lightweight state management for the complex Cart (handling bulk discounts, stacking fees).15
+	Maps
+	Mapbox GL JS
+	Superior customization for visualizing delivery zones (polygons) compared to Google Maps.16
+	Payments
+	PayFast API
+	The standard for South African e-commerce, supporting Instant EFT and Credit Cards.17
+	4.2 Content Management Schema (Sanity.io)
+The database structure must reflect the nuances of firewood. A standard "Product" schema is insufficient. The Sanity schema must include specific fields for technical specifications to power the frontend filters.
+* Schema Definition:
+   * woodType: Reference (e.g., Kameeldoring).
+   * moistureContent: Number (Dynamic field updated by warehouse staff).
+   * density: String ("High", "Medium", "Low").
+   * burnProfile: Object (Heat Output: 1-10, Coal Duration: 1-10, Flame liveliness: 1-10).
+   * pricingTiers: Array (MinQty: 10, Price: 110).
+* Why this matters: This structured data allows the frontend to automatically generate comparison charts ("Kameeldoring vs Sekelbos") and allows users to filter by "High Heat" or "Low Smoke."
+4.3 Interactive Delivery Map Component
+Visualizing the delivery radius is a powerful UX tool. Using Mapbox GL JS, Miwesu can implement a "Zone Visualizer".18
+* Implementation: A React component that renders a map of Gauteng.
+* Data Layers: GeoJSON polygons overlay the map.
+   * Zone A (Green): Alberton & Immediate surrounds (Free Delivery).
+   * Zone B (Yellow): Johannesburg South & East (Standard Fee).
+   * Zone C (Red): Sandton/Pretoria (Surcharge Zone).
+* Interactivity: As the user types their address in the checkout, the map automatically pans and zooms to their location, highlighting which zone they fall into. This provides instant, visual confirmation of shipping costs, reducing "shipping shock" cart abandonment.
+4.4 Performance Optimization for SA Networks
+Mobile data in South Africa can be expensive and inconsistent. The site must be optimized for performance.
+* Image Optimization: Use next/image to automatically serve WebP formats and resize images based on the user's viewport.
+* Server Components: Heavy logic (like fetching product data) happens on the server. The client only receives the HTML, keeping the JavaScript bundle small and the site fast.
+* Offline Support: Implementing a Service Worker (PWA) to allow the site to load even during intermittent connectivity issues caused by load shedding.
+________________
+5. User Experience (UX) Design Best Practices
+Designing for bulk delivery introduces friction points that standard e-commerce does not face. The UX must solve for volume visualization, bulk pricing transparency, and delivery coordination.
+5.1 The "Volume Visualizer" Problem
+A major barrier to bulk purchase is the inability to visualize quantity. "100 bags" is an abstract concept.
+* Solution: A custom React component on the product page.
+* Interaction: As the user adjusts the quantity slider (e.g., from 10 to 50 bags), the visual changes.
+   * 10 Bags: Shows a small pile next to a braai stand.
+   * 50 Bags: Shows a stack filling a standard "bakkie" (pickup truck) bed.
+   * 100 Bags: Shows a stack filling a single garage wall.
+* Benefit: This manages expectations and prevents customers from ordering more than they can store.
+5.2 Dynamic Pricing and Bulk Tiers
+The pricing model must encourage bulk purchases (increasing Average Order Value).
+* UI Pattern: Instead of a hidden discount code, use a "Tiered Pricing Card" on the product page.
+   * Buy 1-9: R120/bag.
+   * Buy 10-49: R110/bag (Save 8%).
+   * Buy 50+: R100/bag (Save 16% + Free Stacking).
+* Cart Feedback: If a user has 8 bags in their cart, a dynamic progress bar or notification should appear: "Add 2 more bags to unlock the 8% discount!" This gamification drives volume.20
+5.3 The "Stacking Service" Upsell
+The "White Glove" experience is the key differentiator. This should not be hidden.
+* Placement: A prominent toggle in the Cart or Checkout flow.
+* Label: "Include Premium Stacking Service?"
+* Description: "Our team will carry the wood to your storage area (ground floor) and stack it neatly. We clean up all bark debris."
+* Pricing: Calculated dynamically (e.g., R5 per bag or a flat R200 fee). This transforms a logistics cost into a value-added service.21
+5.4 Mobile-First Interface
+Given the high mobile penetration in SA, the interface must be "Thumb-Driven."
+* Navigation: A bottom navigation bar for key actions (Shop, Cart, Account) rather than a top hamburger menu on mobile.
+* Checkout: Input fields for addresses should use appropriate HTML tags (type="tel", autocomplete="postal-code") to trigger the correct mobile keyboards and autofill capabilities, speeding up the checkout process.
+________________
+6. Logistics Integration and Fulfillment Strategy
+The digital promise must be matched by physical execution. The logistics strategy focuses on defining clear boundaries and integrating the "Last Mile" tracking.
+6.1 Logistics Software Integration
+To manage drivers and routes efficiently, Miwesu requires a connection between the Next.js frontend and a logistics backend.
+* Tools: Integration with local delivery management software like Loop or Track-POD.22
+* Workflow:
+   1. Customer places order on Next.js site.
+   2. Order details (including "Stacking Service" flag and Gate Codes) are pushed via API to the logistics platform.
+   3. Route optimization software batches orders for Alberton on Tuesdays.
+   4. Customer receives an SMS on the morning of delivery with a 2-hour window and a tracking link.
+6.2 Packaging and Unboxing
+Packaging is the only physical touchpoint before the wood is burned. It must reinforce the brand.
+* Material: Move away from generic orange citrus bags. Use branded, UV-resistant woven polypropylene bags (breathable to maintain dryness) or hessian sacks for premium bundles.24
+* Branding: Each bag should have a tag with a QR code. Scanning the code leads to a "Wood Care Guide" or a Spotify playlist for "Braai Vibes," deepening the lifestyle connection.
+6.3 Handling "Gated Community" Logistics
+* Checkout Fields: The address form must have specific, mandatory fields for:
+   * "Complex Name."
+   * "Gate/Access Code."
+   * "Vehicle Height Restriction" (Crucial, as some delivery trucks cannot fit under estate booms).
+* Driver App: This information must be prominently displayed on the driver's mobile app to prevent delays at security gates.
+________________
+7. Local SEO and Content Marketing Strategy
+To dominate the Gauteng market, Miwesu must own the search results for "Firewood" in specific localities.
+7.1 Schema Markup Strategy
+Search engines need to understand that Miwesu is a local business with physical inventory. We will use JSON-LD Structured Data injected into the layout.tsx file.25
+* LocalBusiness Schema:
+JSON
+{
+ "@context": "https://schema.org",
+ "@type": "HomeGoodsStore",
+ "name": "Miwesu Premium Fire Wood",
+ "image": "https://miwesu.co.za/logo.png",
+ "address": {
+   "@type": "PostalAddress",
+   "streetAddress": "123 Main Reef Road",
+   "addressLocality": "Alberton",
+   "addressRegion": "Gauteng",
+   "postalCode": "1449",
+   "addressCountry": "ZA"
+ },
+ "geo": {
+   "@type": "GeoCoordinates",
+   "latitude": "-26.26",
+   "longitude": "28.12"
+ },
+ "areaServed":,
+ "priceRange": "$$"
+}
+
+* Product Schema: To display price and availability directly in Google Search results.
+JSON
+{
+ "@type": "Product",
+ "name": "Namibian Kameeldoring Firewood - 18kg",
+ "brand": { "@type": "Brand", "name": "Miwesu" },
+ "offers": {
+   "@type": "Offer",
+   "priceCurrency": "ZAR",
+   "price": "120.00",
+   "availability": "https://schema.org/InStock"
+ }
+}
+
+7.2 Content Clusters and Keyword Strategy
+Content must be hyper-local and problem-solving.
+   * Cluster 1: The Braai Guide: "How to braai the perfect steak with Sekelbos," "Kameeldoring vs. Charcoal: The Taste Test".2
+   * Cluster 2: Load Shedding Support: "Best firewood for indoor heating during power outages," "How to store wood to keep it dry in a Highveld thunderstorm."
+   * Cluster 3: Local Landing Pages: Create programmatic SEO pages for each suburb (e.g., /delivery/firewood-alberton, /delivery/firewood-sandton) with specific delivery day information for those areas.
+________________
+8. Trust and Payment Security
+South African consumers are security-conscious. The checkout flow must mitigate fears of fraud.
+8.1 Payment Gateway Selection
+   * PayFast: The recommended primary gateway. It is widely trusted and supports Instant EFT (Ozow), which is critical for customers who prefer direct bank transfers over credit card usage.17
+   * Payflex (BNPL): Integrating "Buy Now, Pay Later" is a strategic move for bulk orders. A winter stockpile might cost R3,000+. Allowing a customer to pay R750 over 4 months interest-free significantly lowers the barrier to entry and increases basket size.28
+8.2 WhatsApp Integration
+The "WhatsApp Float Button" is a non-negotiable trust signal in South Africa. It provides a direct line to a human.
+   * Tech: Use react-floating-whatsapp.29
+   * Configuration: Set the status to "Replies within 1 hour." The ability to ask "Is the wood really dry?" and get a quick "Yes, tested this morning" closes sales faster than any website copy.
+________________
+9. Brand Aesthetic and Visual Identity
+The brand identity must convey "Rustic Luxury." It should feel earthy and authentic, not sterile or corporate.
+9.1 Color Palette
+Drawing from the South African landscape and the nature of the product:
+   * Charcoal (#1a1a1a): Primary text and footer background. Represents the coals and longevity.
+   * Ember Orange (#ffb612): Accent color for CTAs (Buttons). Represents the heat and energy of the fire.30
+   * Veld Green (#556b2f): Secondary accent for eco-friendly messaging (e.g., Black Wattle sustainability). Represents the natural sourcing.
+   * Kraft Paper (#f4f1ea): Background color. A warm, textured off-white is better than clinical white (#ffffff) for this niche.
+9.2 Typography
+   * Headings: A strong Slab Serif font (e.g., Roboto Slab or Bitter) to convey solidity and reliability.
+   * Body Text: A clean Sans Serif (e.g., Inter) for readability, especially on mobile devices where users are reading technical specs about wood density.
+________________
+10. Conclusion and Roadmap
+The launch of the Miwesu Premium Fire Wood platform represents a strategic opportunity to capture the high-value segment of the Gauteng firewood market. By leveraging the technical capabilities of Next.js 15, the platform will offer superior speed and SEO performance compared to legacy WordPress competitors. However, the true competitive advantage lies in the UX and Service Design:
+   1. Transparency: Through moisture guarantees and delivery zone visualizations.
+   2. Convenience: Through volume visualizers, stacking services, and mobile-optimized checkout.
+   3. Authority: Through deep educational content that positions Miwesu not just as a vendor, but as a partner in the South African lifestyle ritual of the braai.
+Implementation Roadmap:
+   * Phase 1 (Weeks 1-4): Technical Setup (Next.js, Sanity, Tailwind). Definition of Wood Schemas.
+   * Phase 2 (Weeks 5-8): Content Production (Video Hero, Product Photography, Braai Guides).
+   * Phase 3 (Weeks 9-12): Logistics Integration (Mapbox Zones, Loop delivery setup).
+   * Phase 4 (Launch): Local SEO push, Google Ads targeting "Kameeldoring Alberton," and influencer seeding (sending bundles to local Braai influencers).
+This holistic approach ensures that Miwesu does not just enter the market, but redefines the standard for what a firewood delivery service should be.
+Works cited
+   1. Firewood Farm - Best Value Firewood Delivered to You Across Gauteng, accessed February 12, 2026, https://www.firewoodfarm.co.za/
+   2. Premium Dry Braai & Firewood Local Delivery | Stompies, accessed February 12, 2026, https://www.stompieswood.com/
+   3. Ordering Firewood: The Complete Guide to Buying Firewood Online, accessed February 12, 2026, https://www.cuttingedgefirewood.com/blogs/blog/guide-to-ordering-firewood
+   4. Firewood Alberton - FREE Delivery (Braai + Fireplace Wood Suppliers), accessed February 12, 2026, https://firewoodjohannesburg.co.za/alberton
+   5. Firewood Johannesburg 2026, accessed February 12, 2026, https://www.firewood.joburg/
+   6. FireLogs – Warm Up & Chill Out, accessed February 12, 2026, https://firelogs.co.za/
+   7. Maximizing Accuracy: The Ultimate Guide to ZOX Zipcode Validation - MageComp, accessed February 12, 2026, https://magecomp.com/blog/ultimate-guide-to-zox-zipcode-validation/
+   8. 10 Elements Every Small Business Website Design Needs. Our Website Requirement Checklist. - New Perspective Design, accessed February 12, 2026, https://www.newperspectivestudio.co.za/wp/10-elements-every-small-business-website-design-needs/
+   9. Build an E-commerce Website with Next.js, Tailwind CSS, Zustand & Stripe - YouTube, accessed February 12, 2026, https://www.youtube.com/watch?v=O_M_b-EX8g0
+   10. Next Ecommerce Shopco - Free React Nextjs Template - shadcn.io, accessed February 12, 2026, https://www.shadcn.io/template/mohammadoftadeh-next-ecommerce-shopco
+   11. Build an E-Commerce App with Next.js 15 | Full-Stack Tutorial: Sanity, Clerk, Zustand & Stripe - YouTube, accessed February 12, 2026, https://www.youtube.com/watch?v=AiVwuH_uMME
+   12. Schema UI - Next.js Sanity Starter | Sanity.io templates, accessed February 12, 2026, https://www.sanity.io/templates/schema-ui
+   13. Build & Deploy a Website with Next.js, Framer Motion, Shadcn, and Tailwind CSS - YouTube, accessed February 12, 2026, https://www.youtube.com/watch?v=noRLgTm2zgQ
+   14. 2-fly-4-ai/awesome-shadcnui: The largest list online of awesome things related to shadcn/ui - GitHub, accessed February 12, 2026, https://github.com/2-fly-4-ai/awesome-shadcnui
+   15. Building a Modern E-commerce App with Next.js 15, Zustand, and TypeScript, accessed February 12, 2026, https://dev.to/blamsa0mine/building-a-modern-e-commerce-app-with-nextjs-15-zustand-and-typescript-18i5
+   16. On-Demand Logistics solutions with Mapbox, accessed February 12, 2026, https://www.mapbox.com/on-demand-logistics
+   17. The 6 Best Payment Gateways in South Africa: A Practical Guide to Choosing and Integrating the Right Solution (2026) - DEV Community, accessed February 12, 2026, https://dev.to/digitalhumanity_eb83ef7e1/the-6-best-payment-gateways-in-south-africa-a-practical-guide-to-choosing-and-integrating-the-20a8
+   18. Using Mapbox GL in a Next.js App: Large Scale Data Visualization with Clustering and Bounds Loading | by Pulok Chowdhury | Medium, accessed February 12, 2026, https://medium.com/@riopulok/using-mapbox-gl-in-a-next-js-app-large-scale-data-visualization-with-clustering-and-bounds-loading-3bc61735608b
+   19. How to use Mapbox in Next.js - DEV Community, accessed February 12, 2026, https://dev.to/sakshamgurung/how-to-use-mapbox-in-nextjs-j7k
+   20. 9 E-Commerce UX Best Practices [2026] - Luigi's Box, accessed February 12, 2026, https://www.luigisbox.com/blog/ecommerce-ux-best-practices/
+   21. Braai Wood (Braai Hout) for Sale | Cape Town - Mother City Firewood, accessed February 12, 2026, https://www.mothercityfirewood.co.za/collections/braai-wood-hout-cape-town
+   22. Track-POD: Delivery Management Software, Proof of Delivery App, accessed February 12, 2026, https://www.track-pod.com/
+   23. On Demand Delivery Management Software | Gain The Edge - Loop, accessed February 12, 2026, https://www.loop.co.za/on-demand-delivery-management-software-optimisation/
+   24. Firewood packaging | NNZ South-Africa, accessed February 12, 2026, https://www.nnz.co.za/contents/firewood-packaging/
+   25. garmeeh/next-seo: Next SEO is a plug in that makes managing your SEO easier in Next.js projects. - GitHub, accessed February 12, 2026, https://github.com/garmeeh/next-seo
+   26. Local Business (LocalBusiness) Structured Data | Google Search Central | Documentation, accessed February 12, 2026, https://developers.google.com/search/docs/appearance/structured-data/local-business
+   27. Boost Your Website's SEO with Structured Data and Schema in Next.js - DEV Community, accessed February 12, 2026, https://dev.to/khalisspasha/boost-your-websites-seo-with-structured-data-and-schema-in-nextjs-34pl
+   28. Best 6 Payment Gateways In South Africa (2026) - Digital Humanity, accessed February 12, 2026, https://digitalhumanity.co.za/resources/payment-gateways-south-africa/
+   29. digicroz/react-floating-whatsapp - NPM, accessed February 12, 2026, https://www.npmjs.com/package/@digicroz/react-floating-whatsapp
+   30. South Africa Color Palette, accessed February 12, 2026, https://www.color-hex.com/color-palette/54054

@@ -1,0 +1,405 @@
+﻿Click on create this is what you see
+
+
+Create new campaign New ad set or ad
+Choose a buying type Auction
+Choose a campaign objective Awareness Traffic Engagement Leads App promotion Sales
+
+
+
+
+Click on awesereness this is what you see
+Awareness
+
+Show your ads to people who are most likely to remember them.Good for:
+Reach
+Brand awareness
+Video views
+
+
+
+CLick on traffic this is what you see
+
+Traffic
+
+Send people to a destination, like your website, app, Instagram profile or Facebook event. About trafficGood for:
+Link clicks
+Landing page views
+Instagram profile visits
+Messenger, Instagram and WhatsApp
+Calls
+
+
+
+
+
+CLick on engadgemet this is what you see
+
+EngagementGet more messages, purchases through messaging, video views, post engagement, Page likes or event responses.Good for:
+Messenger, Instagram and WhatsApp
+Video views
+Post engagement
+Conversions
+Calls
+
+
+
+Click on Leads this is what you see
+
+LeadsCollect leads for your business or brand.Good for:
+Website and instant forms
+Instant forms
+Messenger, Instagram and WhatsApp
+Conversions
+Calls
+
+
+
+Click on app promotion this is what you see
+
+App promotionFind new people to install your app and continue using it. About app promotionGood for:
+App installs
+App events
+
+
+
+Click on sales this is what you see
+
+
+SalesFind people likely to purchase your product or service.Good for:
+Conversions
+Catalog sales
+Messenger, Instagram and WhatsApp
+Calls
+
+
+
+
+If you select awareness and continue this is what you see on the next page
+
+
+
+Campaign name
+Campaign details
+Buying type
+Auction
+Edit
+Edit
+Campaign objective
+Awareness
+Edit
+Edit
+Show more options
+Advantage+ campaign budget
+Off
+Distribute your budget across ad sets to get more results. You can control spending for each ad set. About Advantage+ campaign budget
+A/B test
+Off
+Help improve ad performance by comparing versions to see what works best. For accuracy, each one will be shown to separate groups of your audience. About A/B tests
+Special Ad Categories
+Declare if your ads are related to financial products and services, employment, housing, social issues, elections or politics to help prevent ad rejections. Requirements differ by country. About Special Ad Categories
+Categories
+Select the categories that best describe what this campaign will advertise.
+Declare category if applicable
+
+
+
+
+If you click next this is what you see on the next page
+
+
+
+Placements
+Choose where your ad appears across Meta technologies. Learn more
+Account controls
+​
+Excluded placements: None
+Advantage+ placements
+Your budget will be allocated by Meta's delivery system across multiple placements based on where it's likely to perform best.
+Edit
+Edit
+________________
+
+
+Hide options
+Brand safety and suitability
+​
+Brand safety: Meta applies brand safety to all ads through our Community Standards and Monetization Policies, keeping your ads away from objectionable content.
+Brand suitability: In some cases, brands want more control over where ads can appear. Brand suitability filters or excludes specific topics or publishers. Keep in mind that using these controls can lower your reach and increase costs.
+Inventory filters
+​
+We apply the default inventory filter unless you change it. Content that's excessively controversial or offensive is always excluded, regardless of what filter you choose.
+In-content ads
+* Expanded (ad set)
+Edit
+Edit
+Audience Network ads
+* Expanded (ad set)
+Edit
+Edit
+Publisher block lists
+​
+None selected
+Edit
+Edit
+Content type exclusions
+​
+None selected
+Edit
+Edit
+
+
+
+
+Then if you click next this is what you see
+
+
+
+Ad setup
+Ad creative
+Select and optimize your ad text, media and enhancements.
+Creative testing
+​
+Compare up to 5 different versions of your creative in a test that helps ensure delivery to new test ads. About creative testing
+Chat builder
+Choose a template for beginning the chat after people tap on your ad. Learn more
+Suggested chat template
+Welcome message
+Hi! Please let us know how we can help you.
+Add a call to action
+Pre-filled message
+Hello! Can I get more info on this?
+Tracking
+Choose conversion events to track. This ad account's selected conversion dataset will be tracked by default.
+Website events
+App events
+Offline events
+URL parameters
+Build a URL parameter
+Now if you go back to the ads manager and click on create and now select 
+
+Traffic
+
+
+THis is what you see
+
+
+
+Campaign details
+Buying type
+Auction
+Edit
+Edit
+Campaign objective
+Traffic
+Edit
+Edit
+Show more options
+Budget
+Budget strategy
+​
+Budget strategy
+Campaign budget
+Automatically distribute your budget to the best opportunities across your campaign. Also known as Advantage+ campaign budget. About campaign budget
+Ad set budget
+Set different bid strategies or budget schedules for each ad set.
+Share some of your budget with other ad sets
+​
+We'll share up to 20% of your ad set budget with other ad sets within this campaign when it's likely to improve performance. About ad set budget sharing
+Campaign bid strategy
+​
+Highest volume
+A/B test
+Off
+Help improve ad performance by comparing versions to see what works best. For accuracy, each one will be shown to separate groups of your audience. About A/B tests
+Special Ad Categories
+Declare if your ads are related to financial products and services, employment, housing, social issues, elections or politics to help prevent ad rejections. Requirements differ by country. About Special Ad Categories
+Categories
+Select the categories that best describe what this campaign will advertise.
+Declare category if applicable
+
+
+
+
+If you click next this is what you see
+
+
+
+Advantage+ audience 
+We’ll automatically show ads to people most likely to respond. We’ll show ads to people matching your suggestion, and other audiences when it’s likely to improve performance.
+About audiences
+________________
+
+
+Switch to original audience options
+Ad transparency
+Let your audience know who benefits from and pays for ads in this ad set. This information may be displayed publicly on ads and in Meta's Ad Library when the ads are running or longer in some cases. About transparency
+​
+Build trust with your audience by completing verification
+By completing verification, you can build trust with your audience by showcasing your verified information alongside all your ads.
+Placements
+Choose where your ad appears across Meta technologies. Learn more
+Account controls
+​
+Excluded placements: None
+Advantage+ placements
+Your budget will be allocated by Meta's delivery system across multiple placements based on where it's likely to perform best.
+Edit
+Edit
+________________
+
+
+Show more options
+
+
+
+
+
+If you click next this is what you see
+
+
+
+Ad setup
+Destination
+Tell us where to send people immediately after they tap or click on your ad.
+Call phone number
+Phone number
+Country code
+​
+Provide a valid phone number.
+Enable callback requests
+​
+Off
+Callback radio list
+Receive callback requests in a spreadsheet
+Receive callback requests on Messenger
+Call on WhatsApp
+​
+Ad creative
+Select and optimize your ad text, media and enhancements.
+​
+Please specify an image to run with this ad.
+Creative testing
+​
+Compare up to 5 different versions of your creative in a test that helps ensure delivery to new test ads. About creative testing
+Tracking
+Choose conversion events to track. This ad account's selected conversion dataset will be tracked by default.
+Website events
+App events
+Offline events
+Now if you go back to the ads manager and click on create and now select 
+
+Engadgement
+
+THis is what you see
+
+
+Campaign details
+Buying type
+Auction
+Edit
+Edit
+Campaign objective
+Engagement
+Edit
+Edit
+Show more options
+Budget
+Budget strategy
+​
+Budget strategy
+Campaign budget
+Automatically distribute your budget to the best opportunities across your campaign. Also known as Advantage+ campaign budget. About campaign budget
+Ad set budget
+Set different bid strategies or budget schedules for each ad set.
+Share some of your budget with other ad sets
+​
+We'll share up to 20% of your ad set budget with other ad sets within this campaign when it's likely to improve performance. About ad set budget sharing
+Campaign bid strategy
+​
+Highest volume
+A/B test
+Off
+Help improve ad performance by comparing versions to see what works best. For accuracy, each one will be shown to separate groups of your audience. About A/B tests
+Special Ad Categories
+Declare if your ads are related to financial products and services, employment, housing, social issues, elections or politics to help prevent ad rejections. Requirements differ by country. About Special Ad Categories
+Categories
+Select the categories that best describe what this campaign will advertise.
+Declare category if applicable
+
+
+
+
+If you click next this is what you see
+
+
+Conversion
+Conversion location
+Conversion location
+Calls
+​
+Performance goal
+How you measure success for your ads. About performance goals
+Maximize number of calls
+​
+We'll try to deliver your ads to try to get you the most possible calls.
+Facebook Page
+Choose the Page you want to promote.
+Select Page
+Select Page
+​
+Value rules
+Tell us how much more certain audiences, conversion locations and placements are worth to your business. Our system will optimize for outcomes based on these rules. About value rules
+Show more options
+Delivery type
+Standard
+Edit
+Edit
+Advantage+ audience 
+We’ll automatically show ads to people most likely to respond. We’ll show ads to people matching your suggestion, and other audiences when it’s likely to improve performance.
+About audiences
+________________
+
+
+Switch to original audience options
+Ad transparency
+Let your audience know who benefits from and pays for ads in this ad set. This information may be displayed publicly on ads and in Meta's Ad Library when the ads are running or longer in some cases. About transparency
+​
+Build trust with your audience by completing verification
+By completing verification, you can build trust with your audience by showcasing your verified information alongside all your ads.
+Placements
+Choose where your ad appears across Meta technologies. Learn more
+Account controls
+​
+Excluded placements: None
+Advantage+ placements
+Your budget will be allocated by Meta's delivery system across multiple placements based on where it's likely to perform best.
+Edit
+Edit
+________________
+
+
+Show more options
+
+
+
+If you click next this is what you see
+
+
+
+Ad setup
+Multi-advertiser ads
+Your ad can appear with others in the same ad unit to help promote discoverability. Your ad creative may be resized or cropped. About multi-advertiser ads
+Ad creative
+Select and optimize your ad text, media and enhancements.
+​
+A post is required. Select or create a post to publish.
+Enter post ID
+Creative testing
+​
+Compare up to 5 different versions of your creative in a test that helps ensure delivery to new test ads. About creative testing
+Tracking
+Choose conversion events to track. This ad account's selected conversion dataset will be tracked by default.
+Website events
+App events
+Offline events

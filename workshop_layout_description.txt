@@ -1,0 +1,99 @@
+================================================================================
+  ALBERTON TYRE CLINIC — WORKSHOP & PREMISES LAYOUT (visual reference)
+  Based on site photos (March 2026). Use for image prompts, briefs, and brand docs.
+================================================================================
+
+OVERVIEW
+--------
+The facility mixes three main zones: (1) a large open service / tyre bay with built-in
+lifts, (2) secondary bays with heavy tyre machinery against painted walls, and (3) a
+customer-facing reception / rim showroom with face-brick and a feature rim wall. The
+overall look is industrial-professional: working garage, not a glossy studio—dust on
+mats, tools, real wear, fluorescent light plus daylight from roll-up doors.
+
+
+FLOORING (throughout workshop areas)
+-------------------------------------
+• Black interlocking industrial rubber tiles covering the whole work floor.
+• Raised “coin” or circular stud texture (anti-slip, heavy-duty).
+• Visible seams between tiles; light dust, debris, and traffic wear—authentic busy shop.
+• Integrated into the floor: large rectangular BRIGHT ORANGE metal lift platforms /
+  ramps (flush or low-profile)—strong brand-colour anchor against the black floor.
+• In some bays: small metal floor hatches or drainage-style plates; black positioning
+  blocks / sensors near alignment areas.
+
+
+WALLS — PAINTED WORKSHOP BAYS
+------------------------------
+• Three-band scheme on many internal walls:
+  – Lower third (~waist height): dark charcoal / blue-grey.
+  – Middle: thin horizontal SAFETY ORANGE stripe (brand line).
+  – Upper: light cool grey or off-white.
+• Matte paint; visible conduits, sockets, switch plates, hose hooks—typical workshop.
+• Optional accent: section of wall painted solid black (rim display) with band of blue
+  below on one run.
+• Posters / signage: Hankook (white panel, orange/black logo), Maxxis (banner with 4x4
+  and tread imagery), tyre-tread close-up poster, Pirelli sign (yellow/red) in customer
+  areas; Goodyear visible from some angles toward exterior.
+
+
+WALLS — BRICK BAYS & RECEPTION
+------------------------------
+• Exposed red / brown FACE BRICK in reception and at least one service bay that opens
+  toward an outdoor courtyard.
+• Waist-high brick partition with smooth grey concrete capping—acts as counter between
+  workshop and office / reception.
+• Behind reception: feature wall often split matte BLACK (upper) and deep BLUE (lower),
+  used to mount many alloy rims (silver and black finishes) in rows.
+
+
+CEILING & LIGHTING
+------------------
+• Flat light grey or white ceiling panels (commercial / drop-ceiling style in places).
+• Long rectangular fluorescent tube fixtures in parallel rows—bright, even, “clinical”
+  workshop light.
+• Large open roll-up / garage doorways: strong natural daylight from one side, high
+  contrast between bright exterior and slightly darker interior.
+
+
+LAYOUT — MAIN WORKSHOP
+----------------------
+• Open plan: machines and storage along walls; centre kept clear for vehicles over lifts.
+• Back and side walls: line of red-and-black tyre changers / balancers (e.g. Corghi-style
+  red bases, M.B. Engineering TC 525 PG, Hunter DSP9600 wheel balancer with red front,
+  digital head, black hood, spindle, tray of stick-on weights on floor).
+• Tyre storage: stacks of tyres on the floor; metal rack on wall with tyres; loose
+  groupings near machines.
+• Rim display: many alloys mounted on black wall section (left side in wide shots).
+• Fire extinguisher (red) on wall; brooms, buckets, small tools, drink cans—lived-in.
+• Staff: black work uniforms (dark tees and trousers) in active work shots.
+
+
+LAYOUT — BAY OPENING TO OUTSIDE
+--------------------------------
+• Wide opening to paved courtyard; exterior building visible with light walls and
+  horizontal orange stripe (matches interior branding).
+• Vehicles may be parked outside (e.g. pickup, SUV)—context for “real dealership /
+  fitment centre” environment.
+
+
+LAYOUT — RECEPTION / SHOWROOM
+------------------------------
+• L-shaped reception counter: face-brick base, thick polished grey CONCRETE countertop.
+• High wooden bar stools with woven seats along part of the counter.
+• Large vertical Maxxis stand; tyres set into recessed niches in brick counter front;
+  BFGoodrich rack visible through openings; restroom signage on brick.
+• Computers and POS materials on counter; rim wall as main visual backdrop.
+
+
+COLOUR & MOOD (for prompts)
+---------------------------
+• Dominant: black rubber floor, charcoal lower walls, light grey upper walls.
+• Accent: orange (stripe + floor lifts) and safety red (machinery).
+• Materials: matte metal, rubber, brick, concrete—not CGI gloss.
+• Atmosphere: functional, high-traffic, South African tyre fitment centre—real light,
+  real texture, documentary feel.
+
+================================================================================
+  End of reference — update if the physical shop is renovated.
+================================================================================

@@ -1,0 +1,111 @@
+================================================================================
+MIWESU FIRE WOOD — LOOK AND FEEL SUMMARY
+================================================================================
+Styles, layouts, typography, and color system used across the project.
+
+--------------------------------------------------------------------------------
+1. DESIGN PHILOSOPHY: "HARDWARE NOIR"
+--------------------------------------------------------------------------------
+- Dark, cinematic, product-reveal aesthetic (not generic e-commerce).
+- Wood is presented as high-performance "thermal hardware," not rustic commodity.
+- OLED black backgrounds with "rim light" accents (bronze, teal, orange).
+
+--------------------------------------------------------------------------------
+2. TYPOGRAPHY
+--------------------------------------------------------------------------------
+- Font: Inter (weights 300, 400, 500, 600, 700, 800) via next/font/google.
+- CSS variable: --font-inter. Body uses var(--font) which resolves to Inter.
+- Font feature settings: "cv11", "ss01" for cleaner Inter glyphs.
+- Antialiasing: -webkit-font-smoothing: antialiased.
+
+Two modes:
+- Hero / monolith headings: tracking-tightest (letter-spacing: -0.05em). Dense, authoritative.
+- Specs / labels / data: tracking-widest-tech (0.2em). Wide spacing for a technical, precision feel.
+
+--------------------------------------------------------------------------------
+3. COLOR PALETTE
+--------------------------------------------------------------------------------
+Backgrounds (the void):
+- void:        #000000  — Pure black, main page background.
+- titanium:   #1C1C1E  — Dark warm gray for cards/panels (Apple Pro gray).
+- tungsten:   #2C2C2E  — Lighter gray for secondary UI (e.g. benchmark tracks).
+
+Brand / metal:
+- bronze:     #BF953F  — Primary accent. Often used as gradient (see below).
+- copper:     #B87333  — Legacy accent (e.g. policy links).
+- copper-deep:#8E4000  — Darker copper.
+
+Functional accents (Samsung-inspired):
+- ember:      #FF7F50  — Warm orange (e.g. "Heat" / thermal metrics).
+- cyan:       #00A8A8  — Electric teal (e.g. "Speed" / ignition metrics).
+
+UI / text:
+- text:       #F5F5F7  — Primary text (off-white).
+- titanium:   #86868b  — Muted text (e.g. policy body, secondary copy).
+- rim:        rgba(255,255,255,0.1) — Subtle borders and dividers.
+
+--------------------------------------------------------------------------------
+4. GRADIENTS
+--------------------------------------------------------------------------------
+- bronze-gradient (Tailwind): linear-gradient(135deg, #BF953F 0%, #FCF6BA 40%, #B38728 60%, #AA771C 100%) — Brushed metal effect for buttons, logo dot.
+- bronze-text (Tailwind): linear-gradient(135deg, #E6CFA0 0%, #BF953F 50%, #8C6A28 100%).
+- night-gradient: linear-gradient(to bottom, #000000 0%, #050505 100%) — Hero background base.
+- glow-radial: radial-gradient(circle at center, rgba(191,149,63,0.1) 0%, transparent 60%) — Soft bronze glow behind sections.
+
+CSS class .text-bronze-gradient: Animated "shine" (8s linear infinite) over a multi-stop gold gradient for headings/badges.
+
+--------------------------------------------------------------------------------
+5. UI MATERIALS
+--------------------------------------------------------------------------------
+- Glass (.glass-panel):
+  - background: rgba(28, 28, 30, 0.65)
+  - backdrop-filter: blur(25px) saturate(180%)
+  - border: 1px solid rgba(255,255,255,0.1)
+  - Hover: border-color rgba(191,149,63,0.3) — bronze tint.
+
+- Squircle (.squircle):
+  - border-radius: 28px (--squircle in CSS).
+  - box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5).
+  - Used for cards, buttons, and panels to feel like hardware chassis.
+
+--------------------------------------------------------------------------------
+6. LAYOUT PRINCIPLES
+--------------------------------------------------------------------------------
+- Max widths: 7xl (1280px) for nav/footer; 1320px–1400px for main content.
+- Sections: Full-width bg-void; content centered with horizontal padding (e.g. px-6).
+- Bento grid: 4-column grid on desktop (md:grid-cols-4), with 2x2 hero, 1x2 tall, 1x1 cells. Gap 5, fixed height on desktop (e.g. h-[800px]).
+- Spacing: Generous vertical padding (py-12 to py-32) and consistent gaps.
+
+--------------------------------------------------------------------------------
+7. INTERACTION & MOTION
+--------------------------------------------------------------------------------
+- Hover: Glass panels get bronze border; images scale slowly (duration-1000, scale-105).
+- Buttons: White pill CTAs (rounded-full), bronze gradient used for brand elements.
+- Selection: selection:bg-bronze selection:text-black (in layout).
+- Scroll: html has scroll-smooth for in-page anchor links.
+- Benchmark bars: Animated width on scroll-into-view (BenchmarkBars component, ~2s ease-out).
+
+--------------------------------------------------------------------------------
+8. TAILWIND CONFIG (theme.extend)
+--------------------------------------------------------------------------------
+- fontFamily.sans: var(--font-inter), Inter, sans-serif
+- colors: void, titanium, tungsten, ember, cyan, bronze
+- backgroundImage: bronze-gradient, bronze-text, night-gradient, glow-radial
+- letterSpacing: tightest (-0.05em), widest-tech (0.2em)
+
+--------------------------------------------------------------------------------
+9. GLOBAL CSS VARIABLES (:root)
+--------------------------------------------------------------------------------
+--void, --glass, --glass-blur, --copper, --copper-deep, --titanium, --titanium-bg,
+--tungsten, --ember, --cyan, --bronze, --text, --rim, --font, --squircle (28px), --ease
+
+Policy pages use .policy-hero and .policy-body with --titanium for muted text and --copper for back links; structure unchanged from this design system.
+
+--------------------------------------------------------------------------------
+10. OTHER GLOBAL STYLES
+--------------------------------------------------------------------------------
+- Marquee: .animate-marquee (40s linear infinite) for horizontal ticker.
+- Burn text: .burn-text with @keyframes burn-flicker (optional; header can show "FIRE WOOD" with gradient instead).
+- Scrollbar (if custom): Thin, dark track, gray thumb (reference only; not always overridden in this project).
+
+================================================================================

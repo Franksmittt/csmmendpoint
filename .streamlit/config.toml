@@ -1,0 +1,11 @@
+# Classical light theme (matches app.py editorial CSS)
+
+[theme]
+base = "light"
+primaryColor = "#1e3a5f"
+backgroundColor = "#f5f0e8"
+secondaryBackgroundColor = "#fffcf7"
+textColor = "#2c2416"
+
+[client]
+toolbarMode = "minimal"

@@ -1,0 +1,268 @@
+﻿Visual Taxonomy and Xylotomy of Southern African Pyrophytic Hardwoods: A Technical Specification for Digital Synthesis
+1. Introduction: The Biophysical Aesthetics of the Bushveld
+The synthesis of hyper-realistic digital imagery for the ecommerce sector requires more than a superficial application of texture maps; it demands a forensic understanding of the material subject. In the context of South African braai (barbecue) woods, the subject is a collection of hyper-dense, drought-adapted hardwoods that have evolved under the selective pressures of semi-arid savannas, intense fire regimes, and mega-herbivore browsing. These evolutionary forces have sculpted specific anatomical traits—thickened rhytidomes (outer barks), high-density heartwoods saturated with polyphenols, and distinct sapwood-heartwood demarcations—that define their visual identity.
+For the digital artist or AI prompt engineer, the challenge lies in distinguishing between species that, to the untrained eye, appear merely as "logs." The visual signature of Senegalia nigrescens (Knoppiesdoring) is fundamentally structural, defined by its defensive knobs. The signature of Vachellia erubescens (Geelhaak) is textural, defined by its exfoliating papery bark. The signature of Dichrostachys cinerea (Sekelbos) is chromatic, defined by the interplay of violet and yellow in its cross-section.
+This report serves as a definitive dendrological and xylotomic guide to six commercially critical species: Geelhaak, Knoppiesdoring, Sekelbos, Snuifpeul, Mopanie, and Rooibos. It integrates botanical data, wood anatomy, and surface morphology to provide the parameters necessary for generating images that are not only photorealistic but botanically accurate. By dissecting the external morphology (bark, spines, form) and internal anatomy (heartwood/sapwood ratios, grain, colorimetry), we establish a "ground truth" for digital reproduction.
+1.1. The Anatomy of Firewood: A Visual Primer
+To accurately prompt for these woods, one must understand the three visual zones exposed in a split log:
+1. The Rhytidome (Outer Bark): This is the tree's shield. In arid-zone species, it is often deeply fissured (to accommodate radial growth without exposing the cambium) or layered (to reflect heat). The "specularity" and "displacement" maps in 3D rendering correspond to the depth of these fissures and the texture of the cork cells.
+2. The Sapwood (Alburnum): The living, conductive tissue. In these species, it typically forms a pale, distinct halo around the darker core. It is susceptible to Lyctid beetles, meaning realistic textures often include minute "pinholes" or bore-dust in this layer, unlike the impervious heartwood.
+3. The Heartwood (Duramen): The dead, central column where the tree sequesters metabolic by-products (gums, resins, tannins). These "extractives" provide the deep reds, purples, and chocolates characteristic of braai wood. They also confer the density and luster that must be captured in the "roughness" and "subsurface scattering" parameters of a render.
+________________
+2. Geelhaak (Vachellia erubescens)
+2.1. Taxonomic and Nomenclatural Precision
+The vernacular "Geelhaak" (Yellow Hook) is linguistically descriptive but taxonomically slippery. While occasionally conflated with other yellow-barked acacias, in the context of specific firewood distinct from Kameeldoring (V. erioloba), it refers to Vachellia erubescens (formerly Acacia erubescens), the Blue Thorn. The confusion often arises because V. erioloba is the "Camel Thorn," a protected species often sold under strict permit, whereas V. erubescens is a common bush-encroacher harvested more freely. For visual generation, we treat "Geelhaak" as V. erubescens, characterized by its peeling, papery bark which gives it the "yellow" moniker.
+2.2. External Morphology: The Exfoliating Rhytidome
+The defining visual feature of Geelhaak—and its primary differentiator from the other five species—is the texture of exfoliation. Unlike the static, deeply fissured bark of Snuifpeul, Geelhaak bark is dynamic; it peels.
+* Bark Texture and Lamination: The bark is membranous and papery, flaking off in distinctive, curling sheets or strips. This is not the thick cork of an Oak; it is thin, parchment-like layers that reveal a smooth, often photosynthetically active green or yellow under-bark. In a pile of firewood, Geelhaak logs will look "scruffy" or "ragged" due to these peeling layers.
+* Colorimetry of the Bark: The outer peeling layers are a dirty white to silvery-grey, but as they lift, they reveal a pale yellowish-khaki or greyish-yellow substrate. This interplay of silver, grey, and yellow ochre is critical. The "Geel" (yellow) in the name refers to this underlying hue.
+* Thorns: The "Haak" (hook) refers to the armature. The thorns are stout, strongly recurved (hooked backwards like a cat's claw), and typically pigmented dark brown to black. They appear in pairs below the nodes. Even on processed logs, the bases of these paired hooks often remain as dark, paired scars or nubs.
+2.3. Internal Anatomy: Xylotomy and Color
+When the log is split, V. erubescens reveals a wood of high density but a lighter tonal range than the "Ironwoods" like Mopane.
+* Heartwood Characteristics: The heartwood is a warm, golden-brown to russet. It lacks the purple of Sekelbos or the black streaks of Mopane. It is a uniform, earthy tone, often described as "biscuit" or "honey-gold" in younger cuts, deepening to a medium reddish-brown upon oxidation.
+* Sapwood Characteristics: The sapwood is a distinct, creamy-white to pale yellow band. It is relatively wide compared to the ultra-hardwoods, creating a softer transition.
+* Grain and Texture: The grain is moderately fine and interlocked. The split surface is fibrous but generally cleaner than the splintery Mopane. It has a matte to satin finish.
+2.4. Quantitative Visual Specifications: Geelhaak
+Parameter
+	Specification for AI/Rendering
+	Bark Texture
+	Exfoliating/Papery. Thin layers curling away from the stem. Not deeply fissured.
+	Bark Color
+	Hex #CDCDB4 (Light Grey/Silver) peeling to #E3CF57 (Banana Yellow/Khaki).
+	Heartwood Color
+	Hex #B8860B (Dark Goldenrod) to #8B4513 (Saddle Brown).
+	Sapwood Color
+	Hex #FFFACD (Lemon Chiffon) to #F5F5DC (Beige).
+	Sapwood Width
+	20% – 25% of the radius (approx. 10-20mm on average logs).
+	Heartwood Width
+	75% – 80% of the radius.
+	Key Identifier
+	The combination of peeling paper bark and hooked thorns.
+	________________
+3. Knoppiesdoring (Senegalia nigrescens)
+3.1. Taxonomic Context
+Senegalia nigrescens (formerly Acacia nigrescens), known as the Knob Thorn, possesses the most architecturally distinct trunk of the South African savanna. Its specific epithet, nigrescens ("becoming black"), refers to the darkening of the pods or potentially the bark, but its common name is the true visual key.
+3.2. External Morphology: Structural Defenses
+The "Knob Thorn" identity is physical, not just textural. The AI must understand that the log's silhouette is not a smooth cylinder.
+* The Knobs (Bosses): The trunk and larger branches are studded with raised, conical woody projections known as bosses or knobs. These can be substantial, measuring 10mm to 30mm in height and 20mm to 50mm in diameter at the base.
+* Armature: In living trees, these knobs are tipped with a small, recurved, black thorn. In firewood logs, which are often weathered or tumbled, the sharp thorn tip may be broken off, leaving a blunt, nipple-like protrusion. This "studded" texture is non-negotiable for authenticity.
+* Bark Texture: Between the knobs, the bark is relatively smooth but tough and fibrous, varying from yellowish-grey to dark grey-brown. It does not peel like Geelhaak.
+* Colorimetry: The knobs themselves often darken to a deep charcoal or black at the tips, contrasting with the lighter grey-brown of the trunk surface.
+3.3. Internal Anatomy: The Iron Core
+Knoppiesdoring wood is renowned for its resistance to termites and impact toughness (used for mine props and flooring), implying a wood of exceptional density.
+* Heartwood Characteristics: The heartwood is profound. It ranges from dark chocolate brown to almost black (nigrescens). It often features even darker, blackish streaks, giving it a heavy, antique appearance similar to Wenge or Panga-Panga.
+* Sapwood Characteristics: The sapwood provides a stark, high-contrast "bullseye" effect. It is a thin but very distinct band of pale cream or distinct off-white. This contrast between the near-black heart and white sapwood is a primary visual cue.
+* Grain and Texture: Due to its extreme density, the split face is often smooth to the touch, almost polished. It does not splinter easily; fractures are clean, hard, and dense. The pores (vessels) are visible as tiny pale dots in the dark heartwood if rendered at macro scale.
+3.4. Quantitative Visual Specifications: Knoppiesdoring
+Parameter
+	Specification for AI/Rendering
+	Bark Texture
+	Studded/Knobby. Conical protrusions 2cm high. Inter-knob bark is leathery.
+	Bark Color
+	Hex #696969 (Dim Grey) with #000000 (Black) tips on knobs.
+	Heartwood Color
+	Hex #3E2723 (Dark Brown/Black Bean) to #212121 (Very Dark Grey).
+	Sapwood Color
+	Hex #FFF8DC (Cornsilk) to #FAF0E6 (Linen). Very pale.
+	Sapwood Width
+	10% – 15% of the radius (Thin halo).
+	Heartwood Width
+	85% – 90% of the radius.
+	Key Identifier
+	Conical knobs on the bark and high-contrast internal colors.
+	________________
+4. Sekelbos (Dichrostachys cinerea)
+4.1. Taxonomic Context
+Dichrostachys cinerea (Sickle Bush) is technically a legume but sits in a different genus from the Vachellia and Senegalia species. It is a shrub or small tree, notorious for bush encroachment. This ecological trait dictates the physical form of the firewood: logs are typically smaller in diameter than the massive trunks of Camel Thorn or Leadwood.
+4.2. External Morphology: The Fibrous Shrub
+* Log Geometries: Sekelbos is often sold as "round wood" (whole branches/stems) or small split logs, typically ranging from 50mm to 120mm in diameter. The logs are often crooked or twisted, reflecting the shrub's tortuous growth habit.
+* Bark Texture: The bark is rough and longitudinally fissured (vertical cracks). It has a fibrous, stringy quality, often peeling in narrow vertical strips. It is distinct from the flaky Geelhaak or the knobbed Knoppiesdoring.
+* Armature: The spines are unique. They are not stipular (paired at the leaf base) but are modified branchlets. This means they are solitary, straight, sharp, and protrude at right angles to the stem, often bearing leaves themselves in the living plant. In firewood, they appear as singular, hardy spikes.
+4.3. Internal Anatomy: The Chromatic Anomaly
+Sekelbos is prized by woodturners and braai masters alike for its unique internal coloration.
+* Heartwood Characteristics: The heartwood is the most vibrant of the group. It ranges from a reddish-brown to a deep, vibrant violet or purple. In fresh cuts, this purple hue (amaranthine) is unmistakable. As it oxidizes, it settles into a dark reddish-brown, but the purple undertone remains a key identifier.
+* Sapwood Characteristics: The sapwood is a yellowish-brown or buff color, less starkly white than Knoppiesdoring.
+* Ratio: Despite the small stem diameter, Sekelbos puts down heartwood very early. A 70mm log might have a 50mm heartwood core. The sapwood acts as a thin protective rind.
+* Texture: The wood is exceedingly dense and fine-grained. Split surfaces often exhibit a waxy luster or sheen, distinct from the matte finish of coarser woods.
+4.4. Quantitative Visual Specifications: Sekelbos
+Parameter
+	Specification for AI/Rendering
+	Bark Texture
+	Fibrous/Striped. Deep vertical grooves.
+	Bark Color
+	Hex #4B3621 (Cafe Noir) to #808080 (Grey).
+	Heartwood Color
+	Hex #4A232E (Violet/Purple-Brown) to #800020 (Burgundy).
+	Sapwood Color
+	Hex #EEDC82 (Flax/Buff Yellow).
+	Sapwood Width
+	15% – 20% of the radius.
+	Heartwood Width
+	80% – 85% of the radius.
+	Key Identifier
+	Small diameter logs with purple-hued heartwood and solitary spines.
+	________________
+5. Snuifpeul (Vachellia nilotica)
+5.1. Taxonomic Context
+Vachellia nilotica (formerly Acacia nilotica), commonly known as Scented Pod or Black Thorn (Swart-peuldoring), is a widespread species with several subspecies. In Southern Africa, subsp. kraussiana is the dominant form. Ideally, the name "Snuifpeul" refers to the pulverizing of the pods for snuff, but the wood is the focus here.
+5.2. External Morphology: The Blackened Fissure
+* Bark Characteristics: The bark is a primary diagnostic feature. It is deeply fissured and non-peeling. The fissures are longitudinal, creating a "cracked mud" appearance.
+* Colorimetry: The exterior is exceptionally dark, often appearing black or blackish-grey. In the depths of the fissures, a reddish-brown under-bark may be visible, creating a subtle two-tone effect in high-resolution renders.
+* Exudates: V. nilotica is a source of commercial gum (similar to Gum Arabic). Authentic visuals might include amber or crystalline gum nodules oozing from the bark cracks, a detail that adds significant realism.
+* Thorns: The thorns are paired, straight, and white to greyish. They are often deflexed (pointing slightly backward), distinguishing them from the curved hooks of Geelhaak.
+5.3. Internal Anatomy: The Red Oxide Core
+* Heartwood Characteristics: The heartwood is a rich brick-red to reddish-brown. It is distinct from the purple of Sekelbos or the chocolate of Knoppiesdoring. Upon exposure to air, it oxidizes to a deep maroon-brown.
+* Sapwood Characteristics: The sapwood is a wide, distinct band of yellowish-white or ivory. The boundary between the red heart and white sapwood is sharp.
+* Texture: The wood is coarse-grained compared to Sekelbos. It is hard, heavy, and durable.
+5.4. Quantitative Visual Specifications: Snuifpeul
+Parameter
+	Specification for AI/Rendering
+	Bark Texture
+	Deeply Fissured/Cracked. Non-peeling. Rugged.
+	Bark Color
+	Hex #1C1C1C (Near Black) with #A52A2A (Brown) in fissures.
+	Heartwood Color
+	Hex #800000 (Maroon) to #A52A2A (Red-Brown).
+	Sapwood Color
+	Hex #FFFFF0 (Ivory).
+	Sapwood Width
+	25% – 30% of the radius (Wider than others).
+	Heartwood Width
+	70% – 75% of the radius.
+	Key Identifier
+	Black fissured bark contrasting with red heartwood and straight white spines.
+	________________
+6. Mopanie (Colophospermum mopane)
+6.1. Taxonomic Context
+Colophospermum mopane, the Mopane or Ironwood, is a legume of the Detarioideae subfamily. It dominates the hot, low-lying river valleys of Limpopo, Namibia, and Zimbabwe. It is structurally and visually distinct from the Acacias (Vachellia/Senegalia).
+6.2. External Morphology: The Ropey Giant
+* Bark Texture: Mopane bark is unmistakable. It is deeply vertically fissured, forming long, continuous ridges that resemble coarse ropes or cables running up the trunk. This "ropey" texture is a critical visual prompt.
+* Form: Mopane stems are rarely perfectly round. They are often fluted, lobed, or kidney-shaped in cross-section. This irregularity is a key realism factor; a perfectly round Mopane log looks artificial.
+* Armature: NONE. Mopane is an unarmed species. It has no thorns. Any AI generation including thorns on Mopane wood is botanically incorrect.
+* Colorimetry: The bark is dark grey to charcoal, often with a weathered, dusty appearance.
+6.3. Internal Anatomy: The Two-Tone Figuring
+* Heartwood Characteristics: Mopane heartwood is among the most beautiful and dense woods. It is dark reddish-brown but is characteristically marked with darker brown or black streaks (growth rings/mineral deposits). This gives it a "figured" appearance (similar to Rosewood) that is visually distinct from the uniform brown of other species.
+* Sapwood Characteristics: The sapwood is a very sharply defined, narrow band of pale yellow to off-white.
+* Texture and Luster: Mopane is an oily wood. A freshly split log will exhibit a slight greasy luster or sheen. It is notoriously difficult to split; the fracture surface is often jagged and splintery rather than a clean plane. The density is so high that it sinks in water.
+6.4. Quantitative Visual Specifications: Mopanie
+Parameter
+	Specification for AI/Rendering
+	Bark Texture
+	Ropey/Ridged. Deep vertical furrows.
+	Bark Color
+	Hex #36454F (Charcoal) to #696969 (Dim Grey).
+	Heartwood Color
+	Hex #5D4037 (Brown) with #000000 streaks.
+	Sapwood Color
+	Hex #FFFACD (Lemon Chiffon).
+	Sapwood Width
+	15% – 20% of the radius (Thin band).
+	Heartwood Width
+	80% – 85% of the radius.
+	Key Identifier
+	NO THORNS, ropey bark, and black-streaked heartwood.
+	________________
+7. Rooibos (Combretum apiculatum)
+7.1. Taxonomic Context
+Rooibos in the context of firewood refers to Combretum apiculatum, the Red Bushwillow. It is distinct from the Rooibos tea plant (Aspalathus linearis). It is a dominant tree in the bushveld and a favorite for "coaling" wood (wood that produces long-lasting coals).
+7.2. External Morphology: The Tessellated Scale
+* Bark Texture: Unlike the peeling Geelhaak or ropey Mopane, Rooibos bark is scaly or tessellated. In mature stems, the bark breaks into distinct square or rectangular blocks/scales, creating a grid-like or reticulated pattern.
+* Colorimetry: The bark is grey to brownish-grey, often lighter than the black Snuifpeul or Mopane. The "Red" in the name refers to the autumn foliage and the reddish tinge of the inner bark/sapwood interface, not necessarily the outer bark.
+* Armature: NONE. Like Mopane, Rooibos is unarmed (thornless).
+7.3. Internal Anatomy: The Dark Dense Core
+* Heartwood Characteristics: The heartwood is dark brown to blackish. It is very dense, fine-grained, and heavy. While some literature notes a reddish tinge, dried firewood logs typically present as a very dark, somber brown-black core.
+* Sapwood Characteristics: The sapwood is yellowish-white and contrasts sharply with the dark heart.
+* Texture: The wood splits relatively cleanly compared to the fibrous Mopane. The split face is matte, lacking the oily sheen of Mopane or Sekelbos.
+7.4. Quantitative Visual Specifications: Rooibos
+Parameter
+	Specification for AI/Rendering
+	Bark Texture
+	Scaly/Tessellated. Square block pattern.
+	Bark Color
+	Hex #808080 (Grey) to #A9A9A9 (Dark Grey).
+	Heartwood Color
+	Hex #2F4F4F (Dark Slate Grey) to #000000 (Blackish).
+	Sapwood Color
+	Hex #FFFFE0 (Light Yellow).
+	Sapwood Width
+	20% – 30% of the radius.
+	Heartwood Width
+	70% – 80% of the radius.
+	Key Identifier
+	NO THORNS, scaly bark, and blackish heartwood.
+	________________
+8. Comparative Visual Synthesis and AI Prompting Strategy
+To generate distinct images, the AI must be fed contrasting data points. The following analysis synthesizes the subtle differences into binary "Positive/Negative" prompts.
+8.1. The Bark Texture Matrix
+* Peeling: Only Geelhaak. Use prompts like "exfoliating," "papery," "curling layers."
+* Knobby: Only Knoppiesdoring. Use prompts like "studded," "conical bosses," "warty."
+* Ropey: Only Mopane. Use prompts like "cable-knit," "long vertical ridges," "furrowed."
+* Scaly: Only Rooibos. Use prompts like "tessellated," "square scales," "grid pattern."
+* Fissured: Snuifpeul (Deep/Black) and Sekelbos (Fibrous/Stringy).
+8.2. The Chromatic Gradient (Heartwood)
+* Violet/Purple: Sekelbos.
+* Brick Red: Snuifpeul.
+* Brown with Black Streaks: Mopane.
+* Dark Chocolate/Black: Knoppiesdoring & Rooibos.
+* Golden/Russet: Geelhaak.
+8.3. The Armature Constraint (Thorns)
+* Thorns Present: Geelhaak (Hooked), Knoppiesdoring (Hooked on knobs), Sekelbos (Straight, solitary), Snuifpeul (Straight, paired).
+* Thorns Absent: Mopane, Rooibos. (Negative Prompt: "No thorns," "smooth branches").
+8.4. Visual "Cheat Sheet" for Image Generation
+This table consolidates the data into a format ready for prompt engineering.
+Species
+	Bark Prompt
+	Heartwood Color
+	Sapwood Width (Est)
+	Thorns?
+	Texture Note
+	Geelhaak
+	Yellowish, papery, peeling, exfoliating
+	Golden/Russet
+	20% (Wide)
+	Yes (Hooked)
+	Ragged, flaky exterior
+	Knoppiesdoring
+	Studded, conical knobs, dark grey
+	Dark Chocolate
+	10% (Thin)
+	Yes (On knobs)
+	Undulating silhouette
+	Sekelbos
+	Fibrous, vertical fissures, grey-brown
+	Purple/Violet
+	15% (Thin)
+	Yes (Straight)
+	Small diameter logs
+	Snuifpeul
+	Deeply fissured, blackish, cracked
+	Brick Red
+	25% (Wide)
+	Yes (Straight)
+	Gum nodules on bark
+	Mopane
+	Ropey, vertical ridges, dark grey
+	Brown + Black Streaks
+	15% (Thin)
+	NO
+	Fluted/Lobed shape
+	Rooibos
+	Scaly, tessellated squares, grey
+	Blackish-Brown
+	25% (Moderate)
+	NO
+	Matte, dense grain
+	________________
+9. Technical Implementation for Hyper-Realism
+To achieve a "real wood" look, specific rendering techniques must be applied based on the anatomical data:
+1. Subsurface Scattering (SSS): The sapwood of these species is living tissue (parenchyma) and is less dense than the heartwood. In renders, applying a slight SSS to the sapwood ring will give it a translucent "glow" under light, contrasting with the opaque, light-absorbing heartwood. This is critical for Mopane and Sekelbos.
+2. Displacement Mapping: For Mopane and Snuifpeul, standard bump maps are insufficient. The fissures are deep (cm scale). Use displacement mapping to create actual geometric depth in the bark cracks.
+3. Specular Highlights:
+   * Mopane: High specularity on the split face (oily).
+   * Knoppiesdoring: Low specularity (matte/dense).
+   * Geelhaak: Varying roughness on the bark (peeling layers cast shadows).
+4. Contextual Aging: Braai wood is seasoned (dried). The end-grain must show checking (radial cracks radiating from the pith). Mopane and Knoppiesdoring check significantly due to their density. Green, uncracked wood looks artificial.
+10. Conclusion
+The visual differentiation of South African braai woods is a function of specific evolutionary adaptations. The peeling paper of Geelhaak reflects sunlight; the knobs of Knoppiesdoring deter browsers; the ropey bark of Mopane channels water; the purple heart of Sekelbos signals chemical density. By adhering to the specific hex codes, textural descriptors, and anatomical ratios provided in this report, digital synthesis can move beyond generic representations to create images that are botanically accurate and commercially compelling for the South African market.
+Note: All estimates of heartwood/sapwood ratios are based on mature, harvestable log diameters typical of the firewood trade (10cm–30cm), excluding Sekelbos which is typically smaller (5cm–10cm).

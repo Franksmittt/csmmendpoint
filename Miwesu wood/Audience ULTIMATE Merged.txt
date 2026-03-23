@@ -1,0 +1,214 @@
+================================================================================
+                    ULTIMATE AUDIENCE - ALL 12 ZONES MERGED
+================================================================================
+Use this for one saved audience combining every zone: locations, interests,
+behaviors, and age. Language and minimum age kept consistent.
+
+--------------------------------------------------------------------------------
+AUDIENCE SUMMARY
+--------------------------------------------------------------------------------
+Audience Name:
+Ultimate: Gauteng Premium Firewood (All 12 Zones)
+
+Minimum age: 25
+Suggested age range: 25 - 65+
+Language: English (UK), Afrikaans or English (US)
+
+--------------------------------------------------------------------------------
+FACEBOOK BULK UPLOAD LOCATIONS (COPY-PASTE)
+--------------------------------------------------------------------------------
+Paste the lines below into Meta Ads Manager > Audience > Create > Saved audience
+> Location > "Add locations in bulk". One location per line.
+
+South Africa: Illovo Rd, Randburg (+2 mi)
+South Africa: 77 Westcliff Dr, Randburg (+3 mi)
+South Africa: Dunkeld, Gauteng
+South Africa: Houghton Estate, Gauteng
+South Africa: Hyde Park, Gauteng
+South Africa: Parktown, Gauteng
+South Africa: Sandhurst, Gauteng
+South Africa: Illovo Ext 9, Gauteng
+South Africa: Illovo Ext 3, Gauteng
+South Africa: Illovo Ext 1, Gauteng
+South Africa: Illovo Ext 7, Gauteng
+South Africa: Illovo Ext 10, Gauteng
+South Africa: Atholl, Gauteng
+South Africa: Inanda Outlying, Gauteng
+South Africa: Sandton (+5 mi)
+South Africa: Bryanston, Gauteng
+South Africa: Craighall Park, Gauteng
+South Africa: Linden, Gauteng
+South Africa: Northcliff, Gauteng
+South Africa: Parkhurst, Gauteng
+South Africa: Rivonia, Gauteng
+South Africa: Greenside, Gauteng
+South Africa: Aspen Hills Lifestyle Estate (+1 mi)
+South Africa: Bassonia Estate (+1 mi)
+South Africa: Glenvista, Gauteng
+South Africa: Mulbarton, Gauteng
+South Africa: New Redruth, Gauteng
+South Africa: Meyersdal, Gauteng
+South Africa: Brackenhurst, Gauteng
+South Africa: Randhart, Gauteng
+South Africa: Verwoerdpark, Gauteng
+South Africa: Brooklyn, Gauteng
+South Africa: Lynnwood, Gauteng
+South Africa: Menlo Park, Gauteng
+South Africa: Waterkloof, Gauteng
+South Africa: Waterkloof Ridge, Gauteng
+South Africa: Groenkloof, Gauteng
+South Africa: Centurion (+5 mi)
+South Africa: The Hills Game Reserve Lifestyle Estate (+1 mi)
+South Africa: Lombardy Estate Pta East (+1 mi)
+South Africa: Woodhill Residential Estate & Country Club (+1 mi)
+South Africa: Silver Lakes Country Golf Estate (+1 mi)
+South Africa: Mooikloof Ridge Estate (+1 mi), Gauteng
+South Africa: Southdowns Estate (+1 mi)
+South Africa: Irene Farm Villages (+1 mi)
+South Africa: Zwartkop Golf Estate (+1 mi)
+South Africa: Midstream Estate, Gauteng
+South Africa: Centurion (+5 mi)
+South Africa: Blue Valley Golf and Country Estate (+1 mi), Gauteng
+South Africa: Copperleaf Golf Country Estate, Gauteng
+South Africa: Cornwall Hill, Gauteng
+South Africa: Bedfordview (+5 mi)
+South Africa: Linksfield, Gauteng
+South Africa: Bedfordview Extensions, Gauteng
+South Africa: Senderwood, Gauteng
+South Africa: Bedfordview Ext 219, Gauteng
+South Africa: Bedfordview Ext 325, Gauteng
+South Africa: Bedfordview Ext 328, Gauteng
+South Africa: Bedfordview Ext 422, Gauteng
+South Africa: Bedfordview Ext 148, Gauteng
+South Africa: Bedfordview Ext 163, Gauteng
+South Africa: Bedfordview Ext 53, Gauteng
+South Africa: Bedfordview Ext 299, Gauteng
+South Africa: Ebotse Golf Estate (+1 mi)
+South Africa: Dunblane Lifestyle Estate (+1 mi)
+South Africa: Benoni (+5 mi)
+South Africa: Boksburg (+5 mi)
+South Africa: Serengeti Golf and Wildlife Estate (+1 mi), Gauteng
+South Africa: Libradene Ext 1, Gauteng
+South Africa: Sunward Park, Gauteng
+South Africa: Steyn City, Gauteng
+South Africa: Midrand (+3 mi)
+South Africa: Randburg (+3 mi)
+South Africa: Sandton (+3 mi)
+South Africa: Blair Atholl Golf Estate (+1 mi)
+South Africa: Dainfern Golf Estate (+1 mi), Gauteng
+South Africa: Fourways, Gauteng
+South Africa: Featherbrooke Estate Krugersdorp (+1 mi)
+South Africa: Krugersdorp (+5 mi)
+South Africa: Roodepoort (+5 mi)
+South Africa: Ruimsig, Gauteng
+South Africa: Poortview, Gauteng
+South Africa: Waterfall Equestrian Estate, Sunninghill, Sandton (+1 mi)
+South Africa: Waterfall Country Estate (+3 mi)
+South Africa: Kyalami Estates (+3 mi)
+South Africa: Blue Hills Equestrian Estate (+3 mi)
+South Africa: Beaulieu, Gauteng
+South Africa: Henley-On-Klip (+1 mi)
+South Africa: Johannesburg (+3 mi)
+South Africa: Meyerton, Vaal (+1 mi)
+South Africa: Meyerton (+5 mi)
+South Africa: Vereeniging (+5 mi)
+South Africa: Vereeniging (+3 mi)
+South Africa: Henley on Klip, Gauteng
+
+--------------------------------------------------------------------------------
+SAVED AUDIENCE DETAILS (SAME FORMAT AS ORIGINAL)
+--------------------------------------------------------------------------------
+
+Audience Name
+Ultimate: Gauteng Premium Firewood (All 12 Zones)
+
+Type
+Saved audience
+
+Saved Audience Details
+
+Controls
+
+Location:
+[Use bulk upload list above, or add manually. All 12 zones: Apex Wealth Arc, Northern Greenbelt, Southern Estates, Pretoria Old East, Pretoria Far East Mega-Estates, Centurion Lifestyle Estates, Ekurhuleni Premium Nodes, Aerotropolis Outer Estates, The New North, West Rand Luxury Enclaves, Waterfall & Kyalami, Vaal River Exurbs.]
+
+Minimum age:
+25
+
+Language:
+English (UK), Afrikaans or English (US)
+
+Suggestions
+
+Age:
+25 - 65+
+
+People who match (Interests – all unique from 12 zones):
+Interests: Vacations, Food, Camping, Barbecue, Cooking, Travel, Woolworths (South Africa), Landscaping, Woolworths (supermarket), Rugby league, Interior design, Garden design, Barbecue grill, Landscape design, Rugby union, Home improvement, Grilling, Recipes, Meat, Gardening, Rugby sevens, Rugby World Cup, Garden, Outdoors, Outdoor recreation, Super Rugby, rugby, National Rugby League, Landscape architecture, Home
+
+People who match (Behaviors – all unique from 12 zones):
+Behaviors: Owns: iPhone SE, Owns: Galaxy S9, Facebook access (mobile): iPhone XS Max, Facebook access (mobile): iPhone XR, Frequent Travelers, Frequent international travelers
+
+--------------------------------------------------------------------------------
+INTERESTS LIST (DEDUPLICATED - FOR MANUAL ADD IF NEEDED)
+--------------------------------------------------------------------------------
+Vacations
+Food
+Camping
+Barbecue
+Cooking
+Travel
+Woolworths (South Africa)
+Landscaping
+Woolworths (supermarket)
+Rugby league
+Interior design
+Garden design
+Barbecue grill
+Landscape design
+Rugby union
+Home improvement
+Grilling
+Recipes
+Meat
+Gardening
+Rugby sevens
+Rugby World Cup
+Garden
+Outdoors
+Outdoor recreation
+Super Rugby
+rugby
+National Rugby League
+Landscape architecture
+Home
+
+--------------------------------------------------------------------------------
+BEHAVIORS LIST (DEDUPLICATED)
+--------------------------------------------------------------------------------
+Owns: iPhone SE
+Owns: Galaxy S9
+Facebook access (mobile): iPhone XS Max
+Facebook access (mobile): iPhone XR
+Frequent Travelers
+Frequent international travelers
+
+--------------------------------------------------------------------------------
+ZONES INCLUDED (REFERENCE)
+--------------------------------------------------------------------------------
+Zone 01: Apex Wealth Arc
+Zone 02: Established Northern Greenbelt
+Zone 03: (Southern Estates – Aspen Hills, Bassonia, Meyersdal, etc.)
+Zone 04: Pretoria Old East
+Zone 05: Pretoria Far East Mega-Estates
+Zone 06: Centurion Lifestyle Estates
+Zone 07: Ekurhuleni Premium Nodes
+Zone 08: Aerotropolis Outer Estates
+Zone 09: The New North
+Zone 10: West Rand Luxury Enclaves
+Zone 11: Waterfall & Kyalami (Equestrian/Country Estates)
+Zone 12: Vaal River Exurbs
+
+================================================================================
+                              END
+================================================================================

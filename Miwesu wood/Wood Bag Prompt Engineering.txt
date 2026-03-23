@@ -1,0 +1,262 @@
+﻿I completely understand the frustration. AI models have a stubborn bias—when they hear "bag of wood," they default to the standard gas-station style of logs standing straight up and down. To break this, simply saying "horizontal" isn't enough; we have to explicitly describe the physics of how the wood is resting and aggressively ban vertical words.
+I have completely re-engineered the wood_visuals.form and the negative_prompt.
+1. The Positive Lock: I commanded: "LYING FLAT ON THEIR SIDES. The wood is stacked strictly HORIZONTALLY inside the bag, parallel to the ground."
+2. The Negative Lock: I added a massive block to the negative prompt: "VERTICAL WOOD, standing logs, upright logs, logs pointing up, vertical stacking".
+This will force the AI to lay the medium-sized pieces flat across the width of the bag.
+Here are the 9 aggressively locked JSON prompts:
+1. Geelhaak Hardwood Series
+
+
+JSON
+
+
+
+
+{
+ "product": "Geelhaak 10kg",
+ "prompt_parameters": {
+   "aspect_ratio": "1:1",
+   "style": "Hyper-realistic e-commerce product photography ISOLATED IN A STRICTLY PITCH-BLACK VOID (#000000). IDENTICAL CAMERA SETUP: Mid-shot, perfectly centered, showing the ENTIRE bag from top to bottom with equal black negative space on all sides. DO NOT ZOOM IN. NO CROP.",
+   "lighting": "Low-key rim lighting, 160-degree acute angle edge lights, pitch-black void (#000000). The light softly catches the criss-cross texture of the woven sack.",
+   "composition": "A SINGLE compact, heavy-duty moderately translucent milky-white woven polypropylene sack standing upright dead-center in a pitch-black void. THE TOP IS CUT WIDE OPEN. HANGING FROM THE BAG IS A STANDARDIZED PHYSICAL PRICE TAG."
+ },
+ "subject": {
+   "label_text": "The text on the hanging tag must say EXACTLY: 'GEELHAAK | 10kg | R25 | MOQ 50'",
+   "label_design": "A STANDARDIZED, IDENTICAL physical hanging tag. Thick, matte-black cardboard vertical rectangle with slightly rounded corners, tied with dark twine. Stark white, clean, bold sans-serif typography.",
+   "packaging": "A moderately translucent, milky-white woven polypropylene sack with a distinct criss-cross woven grid texture. It is more see-through than a standard sack, allowing the distinct colors and medium shapes of the wood to be clearly visible through the fabric. Rigid upright structure. The top edge is visibly cut open.",
+   "wood_visuals": {
+     "form": "Strictly MEDIUM-SIZED split wedges LYING FLAT ON THEIR SIDES. The wood is stacked strictly HORIZONTALLY inside the bag, parallel to the ground. ABSOLUTELY NO VERTICAL WOOD. At the wide-open top, several horizontally-laid pieces stick out messily.",
+     "colors": "Solid, dense core of dark purple-brown wood surrounded by a distinct ring of hard yellow sapwood.",
+     "textures": "Split face is smooth and stone-like. Deep radial cracks in the center show extreme dryness. The bark is thick, deeply fissured, grey-black, and rugged."
+   }
+ },
+ "negative_prompt": "VERTICAL WOOD, standing logs, upright logs, logs pointing up, vertical stacking, WHITE BACKGROUND, grey background, outdoor setting, natural light, studio white, bright environment, clear plastic, completely transparent bags, black mesh, smooth plastic, Zoomed in, cropped bag, massive logs, oversized wedges, huge chunks, small wood pieces, kindling, perfectly aligned wood, changing tag shapes, stickers, flat labels, VFX, SOLID LOGS, ROUND LOGS."
+}
+
+
+
+JSON
+
+
+
+
+{
+ "product": "Geelhaak 20kg",
+ "prompt_parameters": {
+   "aspect_ratio": "1:1",
+   "style": "Hyper-realistic e-commerce product photography ISOLATED IN A STRICTLY PITCH-BLACK VOID (#000000). IDENTICAL CAMERA SETUP: Mid-shot, perfectly centered, showing the ENTIRE bag from top to bottom with equal black negative space on all sides. DO NOT ZOOM IN. NO CROP.",
+   "lighting": "Low-key rim lighting, 160-degree acute angle edge lights, pitch-black void (#000000). The light softly catches the criss-cross texture of the woven sack.",
+   "composition": "A SINGLE medium-width, heavy-duty moderately translucent milky-white woven polypropylene sack standing upright dead-center in a pitch-black void. THE TOP IS CUT WIDE OPEN. HANGING FROM THE BAG IS A STANDARDIZED PHYSICAL PRICE TAG."
+ },
+ "subject": {
+   "label_text": "The text on the hanging tag must say EXACTLY: 'GEELHAAK | 20kg | R50 | MOQ 40'",
+   "label_design": "A STANDARDIZED, IDENTICAL physical hanging tag. Thick, matte-black cardboard vertical rectangle with slightly rounded corners, tied with dark twine. Stark white, clean, bold sans-serif typography.",
+   "packaging": "A moderately translucent, milky-white woven polypropylene sack with a distinct criss-cross woven grid texture. It is more see-through than a standard sack, allowing the distinct colors and medium shapes of the wood to be clearly visible through the fabric. Rigid upright structure. The top edge is visibly cut open.",
+   "wood_visuals": {
+     "form": "Strictly MEDIUM-SIZED split wedges LYING FLAT ON THEIR SIDES. The wood is stacked strictly HORIZONTALLY inside the bag, parallel to the ground, in a wider arrangement. ABSOLUTELY NO VERTICAL WOOD. At the wide-open top, a chaotic spill of horizontally-resting pieces sticks out messily.",
+     "colors": "Solid, dense core of dark purple-brown wood surrounded by a distinct ring of hard yellow sapwood.",
+     "textures": "Split face is smooth and stone-like. Deep radial cracks in the center show extreme dryness. The bark is thick, deeply fissured, grey-black, and rugged."
+   }
+ },
+ "negative_prompt": "VERTICAL WOOD, standing logs, upright logs, logs pointing up, vertical stacking, WHITE BACKGROUND, grey background, outdoor setting, natural light, studio white, bright environment, clear plastic, completely transparent bags, black mesh, smooth plastic, Zoomed in, cropped bag, massive logs, oversized wedges, huge chunks, small wood pieces, kindling, perfectly aligned wood, changing tag shapes, stickers, flat labels, VFX, SOLID LOGS, ROUND LOGS."
+}
+
+
+
+JSON
+
+
+
+
+{
+ "product": "Geelhaak 30kg",
+ "prompt_parameters": {
+   "aspect_ratio": "1:1",
+   "style": "Hyper-realistic e-commerce product photography ISOLATED IN A STRICTLY PITCH-BLACK VOID (#000000). IDENTICAL CAMERA SETUP: Mid-shot, perfectly centered, showing the ENTIRE bag from top to bottom with equal black negative space on all sides. DO NOT ZOOM IN. NO CROP.",
+   "lighting": "Low-key rim lighting, 160-degree acute angle edge lights, pitch-black void (#000000). The light softly catches the criss-cross texture of the woven sack.",
+   "composition": "A SINGLE massive, wide heavy-duty moderately translucent milky-white woven polypropylene sack standing upright dead-center in a pitch-black void. THE TOP IS CUT WIDE OPEN. HANGING FROM THE BAG IS A STANDARDIZED PHYSICAL PRICE TAG."
+ },
+ "subject": {
+   "label_text": "The text on the hanging tag must say EXACTLY: 'GEELHAAK | 30kg | R70 | MOQ 20'",
+   "label_design": "A STANDARDIZED, IDENTICAL physical hanging tag. Thick, matte-black cardboard vertical rectangle with slightly rounded corners, tied with dark twine. Stark white, clean, bold sans-serif typography.",
+   "packaging": "A moderately translucent, milky-white woven polypropylene sack with a distinct criss-cross woven grid texture. It is more see-through than a standard sack, allowing the distinct colors and medium shapes of the wood to be clearly visible through the fabric. Rigid upright structure. The top edge is visibly cut open.",
+   "wood_visuals": {
+     "form": "Strictly MEDIUM-SIZED split wedges LYING FLAT ON THEIR SIDES. The wood is stacked strictly HORIZONTALLY inside the bag, parallel to the ground, creating an immense pile. ABSOLUTELY NO VERTICAL WOOD. The top is wide open with a messy cluster of horizontally-oriented split wood bursting out.",
+     "colors": "Solid, dense core of dark purple-brown wood surrounded by a distinct ring of hard yellow sapwood.",
+     "textures": "Split face is smooth and stone-like. Deep radial cracks in the center show extreme dryness. The bark is thick, deeply fissured, grey-black, and rugged."
+   }
+ },
+ "negative_prompt": "VERTICAL WOOD, standing logs, upright logs, logs pointing up, vertical stacking, WHITE BACKGROUND, grey background, outdoor setting, natural light, studio white, bright environment, clear plastic, completely transparent bags, black mesh, smooth plastic, Zoomed in, cropped bag, massive logs, oversized wedges, huge chunks, small wood pieces, kindling, perfectly aligned wood, changing tag shapes, stickers, flat labels, VFX, SOLID LOGS, ROUND LOGS."
+}
+
+________________
+2. Premium Sekelbos Series
+
+
+JSON
+
+
+
+
+{
+ "product": "Sekelbos 10kg",
+ "prompt_parameters": {
+   "aspect_ratio": "1:1",
+   "style": "Hyper-realistic e-commerce product photography ISOLATED IN A STRICTLY PITCH-BLACK VOID (#000000). IDENTICAL CAMERA SETUP: Mid-shot, perfectly centered, showing the ENTIRE bag from top to bottom with equal black negative space on all sides. DO NOT ZOOM IN. NO CROP.",
+   "lighting": "Low-key rim lighting, 160-degree acute angle edge lights, pitch-black void (#000000). The light softly catches the criss-cross texture of the woven sack.",
+   "composition": "A SINGLE compact, heavy-duty moderately translucent milky-white woven polypropylene sack standing upright dead-center in a pitch-black void. THE TOP IS CUT WIDE OPEN. HANGING FROM THE BAG IS A STANDARDIZED PHYSICAL PRICE TAG."
+ },
+ "subject": {
+   "label_text": "The text on the hanging tag must say EXACTLY: 'PREMIUM SEKELBOS | 10kg | R25 | MOQ 50'",
+   "label_design": "A STANDARDIZED, IDENTICAL physical hanging tag. Thick, matte-black cardboard vertical rectangle with slightly rounded corners, tied with dark twine. Stark white, clean, bold sans-serif typography.",
+   "packaging": "A moderately translucent, milky-white woven polypropylene sack with a distinct criss-cross woven grid texture. It is more see-through than a standard sack, allowing the distinct colors and medium shapes of the wood to be clearly visible through the fabric. Rigid upright structure. The top edge is visibly cut open.",
+   "wood_visuals": {
+     "form": "Medium-sized branches, slightly twisted, LYING FLAT ON THEIR SIDES. The wood is stacked strictly HORIZONTALLY inside the bag, parallel to the ground. ABSOLUTELY NO VERTICAL WOOD. At the wide-open top, several horizontally-laid pieces stick out messily.",
+     "colors": "Striking two-tone pattern: a bright mustard-yellow outer ring and a russet reddish-brown inner core.",
+     "textures": "Wood surface has a slight oily satin sheen. The bark is fibrous and grey-brown."
+   }
+ },
+ "negative_prompt": "VERTICAL WOOD, standing logs, upright logs, logs pointing up, vertical stacking, WHITE BACKGROUND, grey background, outdoor setting, natural light, studio white, bright environment, clear plastic, completely transparent bags, black mesh, smooth plastic, Zoomed in, cropped bag, massive logs, oversized wedges, huge chunks, small wood pieces, kindling, perfectly aligned wood, changing tag shapes, stickers, flat labels, VFX, SOLID LOGS, ROUND LOGS."
+}
+
+
+
+JSON
+
+
+
+
+{
+ "product": "Sekelbos 20kg",
+ "prompt_parameters": {
+   "aspect_ratio": "1:1",
+   "style": "Hyper-realistic e-commerce product photography ISOLATED IN A STRICTLY PITCH-BLACK VOID (#000000). IDENTICAL CAMERA SETUP: Mid-shot, perfectly centered, showing the ENTIRE bag from top to bottom with equal black negative space on all sides. DO NOT ZOOM IN. NO CROP.",
+   "lighting": "Low-key rim lighting, 160-degree acute angle edge lights, pitch-black void (#000000). The light softly catches the criss-cross texture of the woven sack.",
+   "composition": "A SINGLE medium-width, heavy-duty moderately translucent milky-white woven polypropylene sack standing upright dead-center in a pitch-black void. THE TOP IS CUT WIDE OPEN. HANGING FROM THE BAG IS A STANDARDIZED PHYSICAL PRICE TAG."
+ },
+ "subject": {
+   "label_text": "The text on the hanging tag must say EXACTLY: 'PREMIUM SEKELBOS | 20kg | R50 | MOQ 40'",
+   "label_design": "A STANDARDIZED, IDENTICAL physical hanging tag. Thick, matte-black cardboard vertical rectangle with slightly rounded corners, tied with dark twine. Stark white, clean, bold sans-serif typography.",
+   "packaging": "A moderately translucent, milky-white woven polypropylene sack with a distinct criss-cross woven grid texture. It is more see-through than a standard sack, allowing the distinct colors and medium shapes of the wood to be clearly visible through the fabric. Rigid upright structure. The top edge is visibly cut open.",
+   "wood_visuals": {
+     "form": "Medium-sized branches, slightly twisted, LYING FLAT ON THEIR SIDES. The wood is stacked strictly HORIZONTALLY inside the bag, parallel to the ground, in a wider arrangement. ABSOLUTELY NO VERTICAL WOOD. The top is open with a messy spill of horizontally-resting pieces.",
+     "colors": "Striking two-tone pattern: a bright mustard-yellow outer ring and a russet reddish-brown inner core.",
+     "textures": "Wood surface has a slight oily satin sheen. The bark is fibrous and grey-brown."
+   }
+ },
+ "negative_prompt": "VERTICAL WOOD, standing logs, upright logs, logs pointing up, vertical stacking, WHITE BACKGROUND, grey background, outdoor setting, natural light, studio white, bright environment, clear plastic, completely transparent bags, black mesh, smooth plastic, Zoomed in, cropped bag, massive logs, oversized wedges, huge chunks, small wood pieces, kindling, perfectly aligned wood, changing tag shapes, stickers, flat labels, VFX, SOLID LOGS, ROUND LOGS."
+}
+
+
+
+JSON
+
+
+
+
+{
+ "product": "Sekelbos 30kg",
+ "prompt_parameters": {
+   "aspect_ratio": "1:1",
+   "style": "Hyper-realistic e-commerce product photography ISOLATED IN A STRICTLY PITCH-BLACK VOID (#000000). IDENTICAL CAMERA SETUP: Mid-shot, perfectly centered, showing the ENTIRE bag from top to bottom with equal black negative space on all sides. DO NOT ZOOM IN. NO CROP.",
+   "lighting": "Low-key rim lighting, 160-degree acute angle edge lights, pitch-black void (#000000). The light softly catches the criss-cross texture of the woven sack.",
+   "composition": "A SINGLE massive, wide heavy-duty moderately translucent milky-white woven polypropylene sack standing upright dead-center in a pitch-black void. THE TOP IS CUT WIDE OPEN. HANGING FROM THE BAG IS A STANDARDIZED PHYSICAL PRICE TAG."
+ },
+ "subject": {
+   "label_text": "The text on the hanging tag must say EXACTLY: 'PREMIUM SEKELBOS | 30kg | R70 | MOQ 20'",
+   "label_design": "A STANDARDIZED, IDENTICAL physical hanging tag. Thick, matte-black cardboard vertical rectangle with slightly rounded corners, tied with dark twine. Stark white, clean, bold sans-serif typography.",
+   "packaging": "A moderately translucent, milky-white woven polypropylene sack with a distinct criss-cross woven grid texture. It is more see-through than a standard sack, allowing the distinct colors and medium shapes of the wood to be clearly visible through the fabric. Rigid upright structure. The top edge is visibly cut open.",
+   "wood_visuals": {
+     "form": "An immense pile of medium-sized branches, slightly twisted, LYING FLAT ON THEIR SIDES. The wood is stacked strictly HORIZONTALLY inside the bag, parallel to the ground. ABSOLUTELY NO VERTICAL WOOD. The top is wide open with a large, messy cluster of horizontally-oriented branches bursting out.",
+     "colors": "Striking two-tone pattern: a bright mustard-yellow outer ring and a russet reddish-brown inner core.",
+     "textures": "Wood surface has a slight oily satin sheen. The bark is fibrous and grey-brown."
+   }
+ },
+ "negative_prompt": "VERTICAL WOOD, standing logs, upright logs, logs pointing up, vertical stacking, WHITE BACKGROUND, grey background, outdoor setting, natural light, studio white, bright environment, clear plastic, completely transparent bags, black mesh, smooth plastic, Zoomed in, cropped bag, massive logs, oversized wedges, huge chunks, small wood pieces, kindling, perfectly aligned wood, changing tag shapes, stickers, flat labels, VFX, SOLID LOGS, ROUND LOGS."
+}
+
+________________
+3. The Ultimate Braai Mix Series
+
+
+JSON
+
+
+
+
+{
+ "product": "Braai Mix 10kg",
+ "prompt_parameters": {
+   "aspect_ratio": "1:1",
+   "style": "Hyper-realistic e-commerce product photography ISOLATED IN A STRICTLY PITCH-BLACK VOID (#000000). IDENTICAL CAMERA SETUP: Mid-shot, perfectly centered, showing the ENTIRE bag from top to bottom with equal black negative space on all sides. DO NOT ZOOM IN. NO CROP.",
+   "lighting": "Low-key rim lighting, 160-degree acute angle edge lights, pitch-black void (#000000). The light softly catches the criss-cross texture of the woven sack.",
+   "composition": "A SINGLE compact, heavy-duty moderately translucent milky-white woven polypropylene sack standing upright dead-center in a pitch-black void. THE TOP IS CUT WIDE OPEN. HANGING FROM THE BAG IS A STANDARDIZED PHYSICAL PRICE TAG."
+ },
+ "subject": {
+   "label_text": "The text on the hanging tag must say EXACTLY: 'THE ULTIMATE BRAAI MIX | 10kg | R25 | MOQ 50'",
+   "label_design": "A STANDARDIZED, IDENTICAL physical hanging tag. Thick, matte-black cardboard vertical rectangle with slightly rounded corners, tied with dark twine. Stark white, clean, bold sans-serif typography.",
+   "packaging": "A moderately translucent, milky-white woven polypropylene sack with a distinct criss-cross woven grid texture. It is more see-through than a standard sack, allowing the distinct colors and medium shapes of the wood to be clearly visible through the fabric. Rigid upright structure. The top edge is visibly cut open.",
+   "wood_visuals": {
+     "form": "Strictly MEDIUM-SIZED split firewood wedges LYING FLAT ON THEIR SIDES. The wood is stacked strictly HORIZONTALLY inside the bag, parallel to the ground. ABSOLUTELY NO VERTICAL WOOD. At the wide-open top, several horizontally-laid pieces stick out messily.",
+     "colors": "A dynamic mix of profound espresso-black cores with pale cream sapwood, mixed with pieces showing warm, brick-red cores.",
+     "textures": "A mix of ragged, torn looks on the split face and dense, matte finishes. Bark features a mix of conical woody knobs and lattice-like braided tessellation."
+   }
+ },
+ "negative_prompt": "VERTICAL WOOD, standing logs, upright logs, logs pointing up, vertical stacking, WHITE BACKGROUND, grey background, outdoor setting, natural light, studio white, bright environment, clear plastic, completely transparent bags, black mesh, smooth plastic, Zoomed in, cropped bag, massive logs, oversized wedges, huge chunks, small wood pieces, kindling, perfectly aligned wood, changing tag shapes, stickers, flat labels, VFX, SOLID LOGS, ROUND LOGS."
+}
+
+
+
+JSON
+
+
+
+
+{
+ "product": "Braai Mix 20kg",
+ "prompt_parameters": {
+   "aspect_ratio": "1:1",
+   "style": "Hyper-realistic e-commerce product photography ISOLATED IN A STRICTLY PITCH-BLACK VOID (#000000). IDENTICAL CAMERA SETUP: Mid-shot, perfectly centered, showing the ENTIRE bag from top to bottom with equal black negative space on all sides. DO NOT ZOOM IN. NO CROP.",
+   "lighting": "Low-key rim lighting, 160-degree acute angle edge lights, pitch-black void (#000000). The light softly catches the criss-cross texture of the woven sack.",
+   "composition": "A SINGLE medium-width, heavy-duty moderately translucent milky-white woven polypropylene sack standing upright dead-center in a pitch-black void. THE TOP IS CUT WIDE OPEN. HANGING FROM THE BAG IS A STANDARDIZED PHYSICAL PRICE TAG."
+ },
+ "subject": {
+   "label_text": "The text on the hanging tag must say EXACTLY: 'THE ULTIMATE BRAAI MIX | 20kg | R50 | MOQ 40'",
+   "label_design": "A STANDARDIZED, IDENTICAL physical hanging tag. Thick, matte-black cardboard vertical rectangle with slightly rounded corners, tied with dark twine. Stark white, clean, bold sans-serif typography.",
+   "packaging": "A moderately translucent, milky-white woven polypropylene sack with a distinct criss-cross woven grid texture. It is more see-through than a standard sack, allowing the distinct colors and medium shapes of the wood to be clearly visible through the fabric. Rigid upright structure. The top edge is visibly cut open.",
+   "wood_visuals": {
+     "form": "Strictly MEDIUM-SIZED split firewood wedges LYING FLAT ON THEIR SIDES. The wood is stacked strictly HORIZONTALLY inside the bag, parallel to the ground. ABSOLUTELY NO VERTICAL WOOD. At the wide-open top, a chaotic spill of horizontally-resting pieces sticks out messily.",
+     "colors": "A dynamic mix of profound espresso-black cores with pale cream sapwood, mixed with pieces showing warm, brick-red cores.",
+     "textures": "A mix of ragged, torn looks on the split face and dense, matte finishes. Bark features a mix of conical woody knobs and lattice-like braided tessellation."
+   }
+ },
+ "negative_prompt": "VERTICAL WOOD, standing logs, upright logs, logs pointing up, vertical stacking, WHITE BACKGROUND, grey background, outdoor setting, natural light, studio white, bright environment, clear plastic, completely transparent bags, black mesh, smooth plastic, Zoomed in, cropped bag, massive logs, oversized wedges, huge chunks, small wood pieces, kindling, perfectly aligned wood, changing tag shapes, stickers, flat labels, VFX, SOLID LOGS, ROUND LOGS."
+}
+
+
+
+JSON
+
+
+
+
+{
+ "product": "Braai Mix 30kg",
+ "prompt_parameters": {
+   "aspect_ratio": "1:1",
+   "style": "Hyper-realistic e-commerce product photography ISOLATED IN A STRICTLY PITCH-BLACK VOID (#000000). IDENTICAL CAMERA SETUP: Mid-shot, perfectly centered, showing the ENTIRE bag from top to bottom with equal black negative space on all sides. DO NOT ZOOM IN. NO CROP.",
+   "lighting": "Low-key rim lighting, 160-degree acute angle edge lights, pitch-black void (#000000). The light softly catches the criss-cross texture of the woven sack.",
+   "composition": "A SINGLE massive, wide heavy-duty moderately translucent milky-white woven polypropylene sack standing upright dead-center in a pitch-black void. THE TOP IS CUT WIDE OPEN. HANGING FROM THE BAG IS A STANDARDIZED PHYSICAL PRICE TAG."
+ },
+ "subject": {
+   "label_text": "The text on the hanging tag must say EXACTLY: 'THE ULTIMATE BRAAI MIX | 30kg | R70 | MOQ 20'",
+   "label_design": "A STANDARDIZED, IDENTICAL physical hanging tag. Thick, matte-black cardboard vertical rectangle with slightly rounded corners, tied with dark twine. Stark white, clean, bold sans-serif typography.",
+   "packaging": "A moderately translucent, milky-white woven polypropylene sack with a distinct criss-cross woven grid texture. It is more see-through than a standard sack, allowing the distinct colors and medium shapes of the wood to be clearly visible through the fabric. Rigid upright structure. The top edge is visibly cut open.",
+   "wood_visuals": {
+     "form": "Strictly MEDIUM-SIZED split firewood wedges LYING FLAT ON THEIR SIDES. The wood is stacked strictly HORIZONTALLY inside the bag, parallel to the ground, creating an immense pile. ABSOLUTELY NO VERTICAL WOOD. At the top opening, a massive cluster of horizontally-oriented split wood juts out messily.",
+     "colors": "A dynamic mix of profound espresso-black cores with pale cream sapwood, mixed with pieces showing warm, brick-red cores.",
+     "textures": "A mix of ragged, torn looks on the split face and dense, matte finishes. Bark features a mix of conical woody knobs and lattice-like braided tessellation."
+   }
+ },
+ "negative_prompt": "VERTICAL WOOD, standing logs, upright logs, logs pointing up, vertical stacking, WHITE BACKGROUND, grey background, outdoor setting, natural light, studio white, bright environment, clear plastic, completely transparent bags, black mesh, smooth plastic, Zoomed in, cropped bag, massive logs, oversized wedges, huge chunks, small wood pieces, kindling, perfectly aligned wood, changing tag shapes, stickers, flat labels, VFX, SOLID LOGS, ROUND LOGS."
+}

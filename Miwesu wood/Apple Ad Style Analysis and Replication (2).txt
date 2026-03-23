@@ -1,0 +1,195 @@
+﻿The Architecture of Desire: A Comprehensive Technical Deconstruction of the Apple Visual Design System
+1. Executive Summary: The Monolith of Visual Consistency
+The visual language of Apple Inc. represents one of the most disciplined, cohesive, and commercially successful design systems in the history of modern marketing. It is not merely a "style" in the ephemeral sense, but a rigorous architectural framework that governs every pixel, physical millimeter, and micro-interaction associated with the brand. This report serves as an exhaustive deconstruction of that system, specifically engineered for creative professionals, art directors, and brand strategists seeking to replicate the "Apple Look" with high-fidelity precision.
+Our analysis, derived from a granular examination of campaign imagery spanning the "Jet Black" era of the iPhone 7 to the "Ceramic Shield" architecture of the iPhone 14 Pro, reveals a design philosophy defined by a paradoxical combination of hyper-realism and idealized abstraction. In product photography, this manifests as lighting that highlights physical materials—aerospace-grade titanium, surgical stainless steel, and textured matte glass—while simultaneously eliminating the imperfections of reality, such as dust, erratic reflections, and chaotic environments. The resulting imagery is not a documentation of the product as it exists in the real world, but rather a representation of the product as it exists in the platonic ideal of the designer's mind.
+To replicate this style is to master the physics of light, the mathematics of the grid, and the psychology of negative space. It requires a transition from standard commercial photography to what can best be described as "photographic engineering," where light is treated as a construction material used to carve volume out of darkness. Similarly, the typographic and layout systems are not decorative but functional, utilizing the proprietary San Francisco typeface and the modular "Bento" grid to organize complex technical specifications into digestible, hierarchically balanced narratives. This document dissects these components into actionable methodologies, spanning lighting diagrams, retouching workflows, typographic hierarchies, and motion physics, providing a complete blueprint for the replication of the Apple aesthetic.
+________________
+2. The Physics of Light: Engineering the "Halo"
+The fundamental visual signature of Apple product photography, particularly for its flagship "Pro" lineage, is the Rim Light or Edge Light. This technique is not simply about illumination; it is about separation, definition, and the celebration of manufacturing tolerances. Apple products—often composed of dark, glossy materials like midnight aluminum or space black titanium—risk disappearing against the brand's signature black or dark gray backgrounds. Lighting serves as the chisel that carves the product out of the void, translating the tactile quality of the device into a visual signal.
+2.1 The Rim Lighting Technique: Sculpture Through Photons
+Rim lighting, or edge lighting, involves placing light sources behind or to the side of the subject to illuminate the outline of the form. This creates a high-contrast line that delineates the object from the background, a technique critical for "low-key" photography where the environment is deliberately underexposed.1 However, the Apple application of this technique distinguishes itself through specific geometric and intensity parameters.
+2.1.1 The Geometric Setup and Angular Precision
+To replicate the Apple rim light, one must move beyond standard three-point lighting setups. The setup requires precision placement where lights are positioned directly behind or at acute angles—typically between 135° to 170°—relative to the camera axis.1 The angle is dictated by the geometry of the product itself. For devices with rounded edges, like the iPhone 7 seen in Image 3, the light must wrap around the curvature to create a "liquid" highlight. For devices with flat, squared-off edges, like the iPhone 12 Pro in Image 2, the light must be positioned to catch the specific plane of the stainless steel band without spilling onto the ceramic shield face.
+If the light is placed directly behind the subject (180°), it creates a thin, uniform perimeter glow that outlines the silhouette but flattens the internal volume. If placed slightly to the side (135°), it illuminates the texture of the side rails—the brushed metal of an iPhone band or the polished curve of a Watch casing—revealing the material quality.2 This creates a "glancing" light that emphasizes the manufacturing precision. The goal is to create a highlight that is not merely a white line, but a gradient that reveals the specularity of the material.
+2.1.2 Modifier Selection: The Strip Box and the Grid
+Standard softboxes often spill too much light, reducing the dramatic contrast required for the Apple aesthetic. The Apple look requires Strip Boxes—narrow, rectangular softboxes (e.g., 1x3 or 1x4 foot ratios)—equipped with grids or "egg crates".3 These modifiers restrict the beam angle of the light, ensuring it travels in a directional, parallel column.
+The grid is essential for "low key" shots (Image 1, Image 2). Without a grid, light from the strip box would spill forward, hitting the camera lens (causing flare) or hitting the black background (turning it gray). With the grid, the light hits only the edge of the product. The resulting image features a pitch-black background (#000000) and a product that appears to float, defined only by the luminance of its edges. This isolation focuses the viewer's attention entirely on the silhouette and the quality of the edge finish, whether it be the high-gloss surgical steel of the Pro models or the matte aluminum of the standard models.4
+2.1.3 The "Gradient" Edge: Liquid Light
+A defining characteristic of Apple's rim light, particularly noticeable in the "Jet Black" era (Image 3) and the stainless steel bands of the iPhone 12 Pro (Image 2), is that the highlight is rarely a solid, hard white line. It is a gradient. A hard light source (like a bare bulb) creates a hard, jagged specular highlight that looks "cheap" and exposes surface micro-imperfections.
+To achieve the "liquid" chrome look, photographers use a strip box with a diffusion panel positioned close to the subject. The strobe head is centered in the strip box, creating a "hot spot" of intense light that fades to gray at the top and bottom edges of the box. The product reflects this transition, creating a highlight on the metal that fades smoothly from pure white to deep gray.4 This gradient is what communicates "gloss" to the human brain. It simulates the reflection of a high-end studio environment, suggesting that the product is surrounded by soft, infinite light.
+2.2 Low-Key Photography: The Art of the Void
+Apple's "Pro" line marketing utilizes a "black-on-black" aesthetic (Images 1, 2, 5, 6, 8). This is classic Low-Key Photography, where the majority of the image data sits in the shadows of the histogram. The challenge in this style is preventing the black product from merging with the black background—a phenomenon known as "black crush"—while maintaining the deep, inky blacks of the void.
+2.2.1 Application of the Inverse Square Law
+To keep the background pitch black while effectively lighting the product, the distance between the product and the background must be maximized. Light intensity drops off inversely proportional to the square of the distance. By placing the product 4-6 feet away from the black backdrop, any spill light from the rim lights will lose significant intensity before it hits the background.5 Even if the background material is not perfectly black (e.g., a dark gray seamless paper), the lack of light reaching it will render it as absolute black (RGB 0,0,0) in the camera.
+2.2.2 Negative Fill: The Anti-Light
+In standard photography, "fill light" is added to open up shadows and reveal detail. In the Apple aesthetic, shadows must be pure and noiseless. Photographers use Negative Fill—black flags, velvet panels, or black foam core—placed immediately next to the product, just outside the camera's frame.5 These panels absorb any ambient light that might bounce around the studio.
+For a product like the iPhone 12 Pro (Image 2), which has highly reflective steel sides, negative fill is crucial. Without it, the steel would reflect the gray walls of the studio, making the metal look dull. With black flags placed next to the phone, the steel reflects the black velvet, appearing deep, dark, and contrasty. This creates the "Piano Black" or "Space Black" look where the metal appears to drink the light, reflecting only the specific highlights the photographer intends.5
+2.3 Managing Reflective Surfaces: The Family of Angles
+Apple products are essentially mirrors—glass screens, polished steel bands, and glossy logos. Lighting these requires adhering to the Law of Reflection: "The angle of incidence equals the angle of reflection".6 This law dictates that the camera will see whatever is positioned at the equal and opposite angle to the lens.
+2.3.1 The Continuous Highlight
+A common error in amateur product photography is seeing the shape of the light source (a square softbox or the distinct bulbs of an LED panel) reflected in the product. The Apple style demands continuous, seamless highlights. To achieve this, a large diffusion panel (scrim) is placed between the light and the product. The light shines through the scrim, effectively turning the entire panel into a massive, uniform light source.7
+When the iPhone screen reflects this panel, it reflects a smooth, white sheet of light rather than a harsh bulb. This technique is visible in Image 4 (iPhone XR) and Image 8, where the glass backs of the phones show long, unbroken highlights. These highlights define the surface curvature. A flat light makes an object look flat; a gradient light across the surface tells the eye the object is curved.9
+2.3.2 Separation via Specularity
+For black products (e.g., Image 3, Image 5), the separation comes from the specular edge. The rim light creates a specular highlight that traces the physical boundary of the device. Additionally, Apple sometimes breaks the pure black rule by introducing a subtle, colored glow directly behind the product. This is achieved by aiming a snooted light with a colored gel (e.g., deep blue for iPhone 12 Pro, purple for iPhone 14 Pro) at the background, creating a radial gradient that silhouettes the dark product.1 This separation light is usually very subtle, registering only in the low mids, just enough to lift the product off the background.
+________________
+3. The Digital Darkroom: Computational Perfection
+While lighting provides the foundation, the "Apple Look" is finalized in post-production. The raw camera capture is merely data; the final image is a constructed reality. The research identifies a workflow heavily reliant on Focus Stacking and Frequency Separation to achieve a level of perfection that transcends optical limitations.
+3.1 Focus Stacking: The Infinite Depth of Field
+Apple product shots are characterized by an unnatural depth of field—the product is sharp from the front element of the lens to the back corner of the chassis. In macro photography (required for small objects like AirPods, Apple Watch, or the camera bump details in Image 5 and Image 7), physics dictates a shallow depth of field. If the camera focuses on the Apple logo, the corners of the device will naturally blur.11
+3.1.1 The Stacking Workflow
+To circumvent this optical limitation, Apple photographers utilize Focus Stacking:
+1. Capture Sequence: The camera is locked on a heavy-duty tripod to prevent any micro-movement. The photographer captures a sequence of 10 to 50 images, shifting the focal plane by millimeters between each shot. This is often done using automated macro rails that step the camera forward in precise increments.11
+2. Computational Compositing: These images are ingested into specialized software (e.g., Helicon Focus or Photoshop). The software analyzes the contrast in each pixel to determine which layer contains the sharpest data for that specific coordinate. It then blends the sharpest pixels from each layer into a single "master" image.
+3. Result: The final image possesses "infinite" focus. The camera lenses, the bezel, the buttons, and the rear casing are all rendered with critical sharpness.14 This hyper-clarity reinforces the brand attribute of precision engineering; the viewer can inspect the product as if holding it right up to their eye, yet seeing it all in focus at once.
+3.2 Frequency Separation: Material Purity
+Frequency Separation is a technique often associated with high-end beauty retouching for skin, but it is equally vital for product photography to maintain texture while removing defects.15
+3.2.1 Deconstructing the Image
+The technique involves decomposing the image into two distinct spatial frequency layers:
+* Low Frequency (Tone/Color): This layer contains the lighting gradients, shadows, and general colors of the device. It lacks fine detail.
+* High Frequency (Texture/Detail): This layer contains the fine details—the grain of the anodized aluminum, the weave of a speaker mesh, or the brush strokes on stainless steel.
+3.2.2 Application to Apple Materials
+Apple's anodized aluminum (seen in Image 6 and Image 8) has a specific, consistent grain. If a retoucher simply used the "Healing Brush" or "Clone Stamp" to remove a speck of dust or a fingerprint, they might smudge this grain, creating a digital artifact that looks like a smudge. By using Frequency Separation, the retoucher can work on the Low Frequency layer to smooth out uneven lighting or blotchiness without touching the High Frequency layer, preserving the material grain.15
+Conversely, if there are micro-scratches on the glass or metal band, the retoucher can smooth the High Frequency layer while leaving the lighting gradients on the Low Frequency layer intact. This results in surfaces that look physically impossible: perfectly smooth, uniform lighting, yet clearly retaining the authentic texture of the raw material.16
+3.3 Multi-Pass Compositing
+Complex product shots, such as the triple-camera array seen in Image 5 and Image 7, are rarely single exposures. They are "Frankenstein" images, composites of several different lighting setups masked together.14
+* The Main Body Pass: A broad, soft light is used to illuminate the overall shape and color of the back glass.
+* The Specular Pass: A separate exposure is taken specifically to catch the highlights on the chrome Apple logo or the stainless steel camera rings. This might involve moving the lights to a position that would look bad for the rest of the phone but is perfect for the chrome.
+* The Lens Reflection Pass: To avoid dead black camera lenses (which look like empty holes), photographers often use small white cards to create specific, aesthetic reflections in the camera glass, simulating the look of high-end optics.7
+* The Screen Pass: The device screen is often photographed separately or composited from a digital screenshot to ensure perfect color accuracy and brightness, free from moiré patterns or external reflections.
+These layers are meticulously masked together in Photoshop. This explains why the lighting in Apple ads looks "perfect"—it is a collection of the best lighting for each specific part of the phone, assembled into one cohesive image.
+________________
+4. Typographic Architecture: The Engineering of Legibility
+Typography is the voice of the Apple brand. It is not decorative; it is functional, systematic, and engineered. The visual identity relies on the proprietary San Francisco (SF) typeface, which replaced Helvetica Neue and Myriad Set to solve the legibility challenges of digital displays.18
+4.1 The San Francisco (SF) Superfamily
+The SF typeface is a neo-grotesque sans-serif. It shares the neutral, objective qualities of Helvetica but features critical modifications for legibility at small sizes and distinctiveness at large sizes. It is a variable font system designed to adapt to the context of the display.19
+4.1.1 Optical Sizing & Variants
+The system is divided into optical sizes, a feature traditionally found in print typography but adapted by Apple for digital interfaces:
+* SF Pro Display: Used for sizes 20pt and larger. It features tighter letter spacing (tracking) and more refined apertures. This variant is used for the "Hero" headlines seen in Image 1 ("The most powerful iPhone ever") and Image 4 ("Brilliant. In every way.").18
+* SF Pro Text: Used for sizes 19pt and smaller. It features looser spacing and larger apertures (the openings in letters like 'e' and 'a') to prevent letters from blurring together at small sizes or low resolutions.19
+4.1.2 Dynamic Tracking
+A crucial, often overlooked detail in replicating Apple's typography is Dynamic Tracking. The operating system (iOS/macOS) and Apple's design guidelines dictate that tracking is not static. As the font size increases, the tracking tightens. As it decreases, tracking loosens.
+* At 17pt (Body), tracking might be roughly -0.41 (tight but readable).
+* At 60pt (Headline), tracking tightens significantly to create a solid, cohesive word shape.
+* At 10pt (Caption), tracking opens up to +0.12 or more to aid legibility.
+To replicate the Apple style, one cannot simply select "SF Pro" and type; one must adjust the tracking values according to the specific point size being used.19
+4.2 Typographic Hierarchy & The "Punchy" Copy
+Apple's typographic layouts are defined by extreme contrast in size and weight, often surrounded by generous whitespace.18
+4.2.1 The Hierarchy Stack
+An analysis of the provided images (e.g., Image 1, Image 6) reveals a consistent stack:
+   1. The Headline (Hero): Massive scale (e.g., 80pt+ in web contexts), set in Semibold or Bold. It anchors the page and often consists of short, punchy statements.
+   2. The Subhead/Eyebrow: Significantly smaller (e.g., 30-40pt), often placed above the headline (as seen in Image 1: "iPhone 12 and iPhone 12 Pro"). This text is frequently set in a lighter weight (Regular) or a lighter color (e.g., systemGray or #86868b) to recede visually and establish context before the punchline.18
+   3. Body Copy: Highly legible, set with optimal line height (approx. 1.4 - 1.5x font size). Paragraphs are kept short—rarely more than 3-4 lines—to prevent visual fatigue.23
+4.2.2 Syntactic Minimalism
+The copywriting style is as engineered as the visual design. It is rhythmic, staccato, and benefit-focused.
+   * Sentence Fragments: Full sentences are often abandoned for impact. "Big. Bigger." or "Brilliant. In every way." (Image 4).
+   * The Power of the Period: Punctuation is used deliberately to force pauses. By placing a period after a single word ("Brilliant."), the design forces the reader to stop and absorb the concept before moving to the modifier ("In every way."). This slows down the consumption of the ad, giving weight to every word.24
+   * Repetition: Apple uses rhetorical devices like anaphora (repeating a sequence of words at the beginnings of neighboring clauses), e.g., "Pro cameras. Pro display. Pro performance." This builds a rhythmic cadence that feels authoritative.
+________________
+5. Layout Architecture: The Grid and The Bento
+The structural foundation of Apple's visual design is the Grid. While early Apple design relied on the "Swiss Style" (modular, asymmetric grids), recent years have seen the evolution of the Bento Grid—a layout style resembling a Japanese bento box, characterized by rounded rectangles, modular content blocks, and uniform gaps.26
+5.1 The Bento Grid System
+The Bento Grid allows Apple to present complex, multifaceted information—specs, features, cameras, chips—in a unified, digestible format. This is particularly visible in their "Keynote" presentations and product summary slides.
+5.1.1 Structural Characteristics
+   * Modularity: Each "box" in the grid is a self-contained unit of information. A large square might house the hero feature (e.g., the A14 Bionic chip), while smaller rectangles house secondary features (e.g., "Ceramic Shield", "5G").
+   * Visual Hierarchy through Size: The physical size of the box dictates the importance of the feature. This allows users to scan the "story" of the product non-linearly.26
+   * Uniform Guttering: The spacing between boxes (gutters) is mathematically consistent (often 20px or 30px depending on the viewport), creating a sense of order and calm.27
+   * Corner Radii: Every box features the signature Apple "squircle" (super-ellipse) corner radius. Unlike a standard rounded corner which transitions abruptly from straight line to arc, the Apple squircle transitions gradually, creating a smoother, more organic curve that feels friendlier to the eye.
+5.2 Whitespace (Negative Space)
+Negative space in Apple layouts is not "empty"; it is an active design element. It is used to frame the product and create a sense of luxury.28
+5.2.1 The Luxury Signal
+In visual semiotics, high information density (clutter) is associated with "discount" or "bargain" (e.g., a grocery store flyer crammed with coupons). Abundant whitespace signals that the brand is confident enough to let the product stand alone. It suggests that the object is art. By removing all peripheral distractions—no bursts, no starbursts, no complex backgrounds—the eye is forced to settle on the only element with high contrast: the product itself.28
+5.2.2 Margins and Centering
+On web and print, margins are generous. Web containers often cap max-width (e.g., 980px or 1024px content areas on larger screens) to prevent line lengths from becoming too long for comfortable reading. Layouts often feature a central axis (Image 1, Image 4), with the product and text center-aligned to create a formal, poised presentation.27
+5.3 Web Layout Specifics: Parallax and Scrollytelling
+Apple's product pages utilize Scrollytelling—animations triggered by scroll position—to explain complex mechanisms.30
+   * Canvas Sequences: Many "video" elements on Apple sites are actually <canvas> elements rendering a sequence of high-res JPEGs triggered by the scroll bar. This ensures smooth playback frame-by-frame, tied directly to user interaction, rather than a passive video loop. As the user scrolls, the phone might rotate, the layers of the screen might separate, or the camera lens might disassemble.30
+   * Sticky Positioning: Text often "sticks" to the center of the screen while the product image rotates or changes in the background. This keeps the messaging anchored while the visual context evolves, ensuring the user reads the copy while engaging with the visual.31
+________________
+6. Motion Design: The Physics of "Ease"
+Motion in the Apple ecosystem is designed to feel physical, not digital. It follows the principles of inertia, friction, and mass.
+6.1 Custom Bezier Curves
+Standard CSS animations (ease-in, ease-out) are rarely used as they can feel robotic. Apple employs custom Cubic Bezier curves that mimic real-world physics.32
+   * The "Spring" Effect: Animations often overshoot their target slightly and settle back (spring dynamics), or start slowly (overcoming inertia) and snap into place.
+   * CSS Values: A typical Apple-style easing curve might look like cubic-bezier(0.25, 0.1, 0.25, 1.0). This creates a swift acceleration but a very smooth, gradual deceleration (ease-out). The "settle" time is long, making the UI feel responsive (it starts moving immediately) yet polished (it lands softly).33
+6.2 Kinetic Typography
+In advertising (e.g., the "Don't Blink" campaign style), Apple utilizes kinetic typography where text acts as the visual protagonist.
+   * Sync to Rhythm: Text appears in perfect sync with percussive audio tracks. The cut is always on the beat.
+   * Scale as Emphasis: Words zoom from the background to fill the screen, simulating the sensation of the word "hitting" the viewer. This adds a visceral, tactile quality to the reading experience.35
+________________
+7. Color and Brand Identity Guidelines
+Replicating the Apple style requires strict adherence to their color and identity protocols. The palette is intentionally restrained to allow product colors to pop.
+7.1 The Neutral Palette
+The core brand colors are achromatic, serving as a gallery wall for the products:
+   * White: #FFFFFF (Backgrounds, clean space).
+   * Black: #000000 (Text, logos, "Pro" backgrounds).
+   * Off-Whites: #F5F5F7 (Athens Gray). This is a critical color in Apple's web design. It is used for "standard" product sections or backgrounds to create a softer, more approachable feel than stark white, reducing eye strain.22
+   * Greys:
+   * System Gray: #8E8E93 (Secondary text).
+   * Shark Grey: #1D1D1F (Used for dark mode backgrounds or high-contrast text).22
+7.2 Logo Usage
+The Apple logo is treated with religious reverence.
+   * Clear Space: The minimum clear space around the logo is strictly enforced (minimum 1/4 height of the logo), ensuring it never feels crowded.37
+   * Color: The logo is almost exclusively black or white. It is never colored (except in specific retro-homage campaigns), never gradient-filled in modern contexts, and never shadowed. It is a flat, confident graphic symbol.40
+________________
+8. Synthesis: Replicating the Workflow
+To generate assets that authentically replicate the Apple style, the following integrated workflow is recommended, synthesizing lighting, retouching, and design principles.
+Phase 1: Pre-Production & Lighting
+   1. Subject Prep: Select a product with premium materials (glass/metal). Clean it microscopically using compressed air and microfiber. Any dust will become a star in the low-key sky.
+   2. Environment: Use a black seamless background for a "Pro" look or #F5F5F7 paper for a "Consumer" look.
+   3. Lighting Setup:
+   * Place Strip Boxes with Grids at 160° angles (almost behind the subject) to catch the edges.
+   * Use a 1:3 Ratio: The rim lights should be significantly brighter than the fill.
+   * Negative Fill: Place black velvet cards immediately outside the frame to crush shadows.
+   * Main Gradient: Place a large scrim close to the product. Shine a light through it to create a smooth gradient highlight on the face or screen.
+Phase 2: Capture
+   1. Lens Choice: Use a telephoto lens (85mm - 100mm) to compress the image and flatten the geometry. This minimizes perspective distortion, making the product look orthogonal and precise.41
+   2. Focus Stack: Capture 15-20 frames shifting focus from front to back to ensure infinite depth of field.
+Phase 3: Post-Production
+   1. Composite: Merge the focus stack in Helicon Focus or Photoshop.
+   2. Retouch: Use Frequency Separation. Smooth the Low Frequency layer to perfect lighting gradients. Clean the High Frequency layer to remove dust while keeping material grain.
+   3. Grade: Desaturate neutrals (metals should look silver/grey, not blue/yellow). Push contrast using a subtle S-curve. Ensure blacks are true black (0,0,0) for the low-key look. Cool the shadows slightly (a tiny push of teal) to give a modern, clean "tech" feel.42
+Phase 4: Layout & Design
+   1. Grid: Establish a Bento Grid. Use strict multiples of 8px or 10px for spacing and margins.
+   2. Type: Use San Francisco (or a close neo-grotesque like Inter or Roboto if SF is unavailable). Set headlines to Semibold, body to Regular. Adjust tracking: tighten headlines, loosen captions.
+   3. Space: Remove elements until the design breaks, then add one back. If in doubt, add more whitespace.
+________________
+9. Conclusion
+The "Apple Style" is not a singular aesthetic choice but a culmination of rigorous subtractive processes. It is the result of removing the noise of the real world—through lighting that eliminates ambient spill, retouching that eliminates surface flaws, typography that eliminates decorative excess, and layouts that eliminate cognitive clutter.
+To replicate it is to practice the art of engineered minimalism. It requires the photographer to think like a lighting engineer, the retoucher to think like a surgeon, and the designer to think like an architect. The resulting image—a gleaming, perfect monolith floating in a void—is more than a product shot; it is a visual argument for the inevitability and perfection of the device itself.
+Table 1: Key Technical Specifications for Apple Aesthetic Replication
+Component
+	Specification / Value
+	Application
+	Font Family
+	San Francisco (SF Pro)
+	Primary Brand Voice
+	Headline Weight
+	Semibold / Bold
+	Hero Messaging
+	Body Weight
+	Regular
+	Informational Text
+	Tracking
+	Dynamic (Tighten for large, Loosen for small)
+	Legibility Optimization
+	Background (Light)
+	#F5F5F7 (Athens Gray)
+	Standard Product Lines
+	Background (Dark)
+	#000000 or #1D1D1F
+	Pro Product Lines
+	Rim Light Position
+	135° - 170°
+	Defining Edges
+	Lighting Modifier
+	Strip Box with Grid
+	Controlled Edge Highlights
+	Animation Curve
+	cubic-bezier(0.25, 0.1, 0.25, 1.0)
+	"Spring" / Natural Ease
+	Layout System
+	Bento Grid / Modular
+	Feature Breakdown
+	Copywriting
+	Short, Fragmented, Period-heavy
+	Brand Tone

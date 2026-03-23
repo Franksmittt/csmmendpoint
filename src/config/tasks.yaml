@@ -1,0 +1,242 @@
+research_task:
+  description: >
+    Research and strategize for {company_name} in {industry}.
+    VERTICAL MODE: {vertical_mode} — {research_vertical_hint}
+    Vertical creative guardrails (read first): {vertical_creative_rules}
+    Brand context: {brand_context}
+    Full services/brands list (use verbatim themes): {services_list}
+    Target markets / audience mindset: {target_markets}
+    Voice/tone notes: {tone}
+    Photography / camera direction for social visuals: {photography_style}
+    Featured tire manufacturer (co-brand), exact string: {featured_brand}
+    Brand vault profile for this run: {brand_guidelines}
+    SA high-velocity tire model lines for this co-brand (product grounding): {brand_models}
+    Selected post format for this run: {post_format}
+    Selected content pillar: {content_pillar}
+    Creative hook / angle for this run: {creative_angle}
+    If vertical_mode is firewood: do NOT prioritize tyre manufacturer psychology, tread patterns,
+    or fitment-bay proof. Instead surface angles for dry hardwood, braai heat, coals, Gauteng
+    delivery zones, estate access, WhatsApp/COD trust (copy angle only—do NOT propose phone-in-hand
+    or app-screen visuals), seasonal heating, and product lines from
+    services_list (Geelhaak, Braai Mix, Sekelbos, bag sizes/MOQs as given).
+    If vertical_mode is automotive: the Creative Agent will route visuals by content_pillar
+    (studio promo vs educational space vs workshop fitment)—surface research angles that fit
+    that pillar's likely set and mood.
+    If vertical_mode is automotive AND featured_brand is not exactly "None", at least one bullet
+    must tie the angle to that manufacturer's psychology and compliant co-branding (without
+    inventing unauthorized claims).
+    If brand_context encodes heritage, safety-first, premium positioning, or specific
+    visual identity cues, carry those into angles (do not default to generic discount retail).
+    Deliver 4-6 bullets: pains for {target_markets}, proof tied to services_list,
+    differentiation, hooks aligned with {content_pillar}, and 2-3 post angles that respect
+    {post_format} constraints (brevity for stories vs feed).
+  expected_output: >
+    Bullet list—every bullet must reference {company_name}, {services_list}, or
+    {target_markets}; ban generic filler.
+  agent: market_researcher
+
+content_creation_task:
+  description: >
+    Create ONE post for {company_name} focused EXCLUSIVELY on the content pillar:
+    {content_pillar}. Do not blend pillars.
+    VERTICAL MODE: {vertical_mode}
+    {vertical_creative_rules}
+
+    === DUAL IMAGE PROMPTS (NON-NEGOTIABLE — ALL VERTICAL MODES) ===
+    Output TWO complete image prompts for the SAME post — same story, subject, and brand truth, recomposed per canvas:
+    • "Image_Generation_Prompt_1_1" — **1:1 square** (Instagram/Facebook feed). Center-weight composition; safe cropping;
+      strong single focal subject; balanced negative space for overlays at corners.
+    • "Image_Generation_Prompt_9_16" — **9:16 vertical** (Stories/Reels). Vertical hierarchy (top→bottom); leave
+      top/bottom safe zones for UI; subject may sit lower third; taller establishing context or portrait crop.
+    Both must obey all realism, brand, and vertical_creative_rules below. Do not paste identical text if framing
+    must differ — each prompt must name its aspect ratio explicitly (e.g. "1:1 square frame" / "9:16 vertical frame").
+    SQUARE SAFE-ZONE RULE (NON-NEGOTIABLE): In Image_Generation_Prompt_1_1, reserve the top 20% and bottom 20%
+    as text-safe areas with background/context only. Do NOT place hero product, logo-critical details, faces, or
+    key action inside those bands. Keep the subject concentrated in the middle 60% vertical band.
+    HARD CLIENT LOCK: Never import another client's location DNA, brand name, architecture, colour system,
+    or product catalog. If company_name is Alberton Tyre Clinic, do NOT describe Alberton Battery Mart's
+    light-brick + floated-cement reception style unless that exact look exists in Alberton Tyre Clinic's
+    own brand_context/photography_style. Keep every prompt strictly client-local.
+
+    === ROUTING — READ BEFORE ANYTHING ELSE ===
+    If vertical_mode is firewood: Your image prompts and Caption MUST follow ONLY the
+    firewood rules in vertical_creative_rules and the client brief (brand_context, services_list,
+    photography_style). SKIP the entire "TYRE RETAIL — IMAGE & PRODUCT RULES" section below—do not
+    describe tread, sidewall, rubber compound, tyre stickers, fitment bay as the product, or tyre SKUs.
+    Vary visuals: flames-only, coals, hearth, delivery, macro bark/end grain, abstract Hardware Noir,
+    OR product mesh bag—not a bag in every post. Pillar still routes mood: (A) Promotional/Authority =
+    premium hero or abstract heat; (B) Educational = macro texture / diagram space; (C) Service =
+    delivery/truth of fulfilment.
+    If vertical_mode is firewood and logs/splits/bark/end-grain appear: BOTH prompts MUST
+    follow the XYLOLOGY block inside vertical_creative_rules (SA Geelhaak / Knoppiesdoring / Sekelbos /
+    Snuifpeul signatures—checks on end grain, bark depth, heartwood/sapwood halos). Explicitly forbid
+    pine, birch, oak, or generic pale Northern Hemisphere firewood look.
+    If vertical_mode is firewood (CRITICAL): neither prompt may depict smartphones,
+    tablets, laptops, smartwatches, chat apps, messaging UI, or any glowing “device screen” stock trope—
+    even though brand_context may mention WhatsApp for orders. Visuals = wood, fire, braai, hearth,
+    delivery, or approved abstract heat only. Repeat “no phones, no screens, no gadgets” in the prompt
+    as a negative constraint when helpful.
+    If vertical_mode is battery: Your image prompts and Caption MUST follow battery rules in
+    vertical_creative_rules and client brief only. SKIP tyre-specific sections entirely. Do NOT depict
+    tyre tread, sidewalls, mounted wheels, or tyre workshop hero shots. Focus on battery products,
+    diagnostics, alternator checks, fitment bays, under-bonnet installs, mobile callouts, and backup
+    power scenarios. WhatsApp can be CTA copy, not device imagery.
+    If vertical_mode is automotive: Apply the TYRE RETAIL section below in full.
+
+    You are acting as the Master Commercial Art Director: both image prompts must be
+    dynamically tailored to this pillar—not a static default. Lean into {creative_angle} for
+    copy structure while honoring pillar and {post_format}.
+    From services_list, pick ONLY 1-2 specific items that best support this pillar and
+    mention them concretely (names/types of service or brand), not the whole catalog.
+    Audience: {target_markets}. Brand context: {brand_context}. Tone: {tone}.
+    Client photography_style (workshop truth, camera character, and any HARD exclusions): {photography_style}
+    Featured tire manufacturer (exact string; "None" = no co-brand vault): {featured_brand}
+    Battery featured line preference for this run: {battery_featured_line}
+    Brand vault (compliance + voice): {brand_guidelines}
+    Authorized model list for this run: {brand_models}
+    If vertical_mode is automotive AND featured_brand is not exactly "None", align caption with vault
+    psychology; weave slogan/mission when natural (no fabricated promotions or legal claims).
+    Post format: {post_format} — Story = very short caption; Feed = slightly richer but tight.
+
+    === CAPTION — CONTACT, WEBSITE & HASHTAGS (NON-NEGOTIABLE FOR ALL CLIENTS) ===
+    The "Caption" must read as a complete social post: hook + value + CTA, then a **footer block** with
+    contact and discovery. Pull facts ONLY from brand_context and services_list — never invent numbers,
+    URLs, trading hours, or suburbs.
+    - **Phones & WhatsApp:** Include every phone number and WhatsApp number exactly as written in
+      brand_context (all lines, all numbers). If the brief lists multiple numbers, include all.
+    - **Website:** If brand_context includes a website URL, include it in the footer (full https:// form).
+      If no website appears in brand_context, omit the website line (do not guess a domain).
+    - **Physical address:** If brand_context includes a street address / shop location, include it in the
+      footer for local clients (Alberton Tyre Clinic, Alberton Battery Mart). If brand_context explicitly
+      states there is no shop street address (e.g. Miwesu Fire Wood — online/WhatsApp + delivery only),
+      do NOT invent a street address; mention website + WhatsApp/phone + "Gauteng delivery" where accurate.
+    - **Hashtags:** End the caption with exactly **one line** of **3–8 hashtags** relevant to the post topic,
+      {company_name}, location, and service (e.g. #AlbertonTyreClinic #WheelAlignment #Pirelli). No spaces
+      inside a hashtag; use CamelCase or single words. Do not reuse another company's hashtags.
+    - **Format:** For Feed, use short lines or bullet separators; for Story, compress footer to one tight
+      block but keep every required contact number.
+
+    FIREWOOD PRODUCT ENFORCEMENT (when vertical_mode is firewood): You MUST only name products,
+    bag sizes, MOQs, prices, and zones that appear in services_list or brand_context. Reference
+    real lines (e.g. Geelhaak Hardwood, The Ultimate Braai Mix, Premium Sekelbos) when promoting
+    product. Never invent SKUs, fake discounts, or suburbs not in the brief.
+
+    BATTERY PRODUCT ENFORCEMENT (when vertical_mode is battery):
+    - If battery_featured_line is not "Auto" and not "Random", prioritize that line as the hero product
+      family in both caption and image prompt (when truthful and fitment-relevant).
+    - For Alberton Battery Mart, keep Eco Plus / Power Plus as preferred promo/value lines where suitable.
+    - Do not invent battery specs, CCA/Ah values, prices, or warranty terms not present in the brief.
+
+    === TYRE RETAIL — IMAGE & PRODUCT RULES (automotive ONLY; OMIT ENTIRELY IF vertical_mode is firewood) ===
+
+    PRODUCT ENFORCEMENT (TYRES — NON-NEGOTIABLE when vertical_mode is automotive): If {featured_brand}
+    is provided and is not exactly "None", you MUST explicitly mention and promote one specific actual
+    tire model from this list: {brand_models}. Choose the model that best fits the target audience of
+    {content_pillar} and {target_markets}. Never invent, garble, or hallucinate fake tire names or SKUs
+    that are not in that authorized list (when co-branded). If promoting a Bakkie/SUV/LCV or
+    A/T-oriented model, you may cite relevant South African market vehicles (e.g. Toyota Hilux,
+    Ford Ranger, Isuzu D-Max) as contextual examples.
+
+    COMBINATION MATRIX (NON-NEGOTIABLE, automotive): You must flawlessly merge {post_format},
+    {content_pillar}, and {featured_brand} (plus {brand_guidelines} when brand is not "None") into one
+    coherent creative execution. There is no fixed template—each triple is unique. If the format is
+    educational / minimalist but the brand vault is bold or aggressive, balance both: calm layout
+    with compliant brand accents, not one directive cancelling the other. If the format is Story
+    (short copy) but the pillar demands product hero studio, compress the visual ambition without
+    abandoning vault rules. If featured_brand is "None", lean on {brand_context} and {company_name}
+    only—do not invent a manufacturer. The final JSON must satisfy Caption + both image prompts
+    + Suggested_Text_Overlay requirements for this exact combination in one pass.
+
+    === Image prompts — DYNAMIC RULES (apply ALL that apply; pillar ROUTES the set) — TYRES ONLY ===
+
+    RULE 1 — CONTEXTUAL ROUTING (ENVIRONMENT BY CONTENT PILLAR):
+    You MUST choose the environment based on {content_pillar} as follows—state it explicitly in the prompt:
+    (A) Promotional / Sale OR Brand Authority (product-hero, co-brand, or premium trust visuals):
+        Setting MUST read as a clean, high-end commercial execution: professional studio,
+        seamless or solid premium backdrop, dramatic rim/edge lighting, controlled gradients,
+        or a dramatic standalone product hero (pedestal, floating hero, sculptural light).
+        NO messy workshop clutter, oil stains, random tools, or documentary bay chaos in the frame
+        unless brand_context explicitly demands contrast for this single post (rare).
+    (B) Did You Know? / Educational:
+        Setting MUST be minimalist: generous negative space, macro photography of tread/sidewall/
+        valve detail, or soft abstract bokeh backgrounds. Composition must leave visual room for
+        future text overlays—do NOT clutter the background with busy detail.
+    (C) Service Highlight (fitment, service proof, behind-the-scenes):
+        Setting MUST use the authentic local workshop environment described in {photography_style}—
+        specific textures, layout, light sources from that brief—not a generic "garage."
+
+    RULE 2 — "CLEAN TIRE" MECHANICAL LOGIC (LOGICAL REALISM):
+    Apply mechanical logic to tyre condition in every prompt:
+    - If the scene is mounting, installing, delivering, or presenting NEW stock: the tyre MUST be
+      described as pristine—brand-new deep black rubber, unworn tread, and visible manufacturer
+      tread stickers or labels where appropriate. Authentic new-rubber sheen is correct.
+    - Dirty, scuffed, worn, or faded rubber is ONLY for removed tyres, trade-ins, inspections,
+      rotation stories, or heritage/value angles where the narrative requires used rubber.
+    Never describe a just-being-fitted tyre as filthy or worn.
+
+    RULE 2b — WHEEL, BALANCER & ALIGNMENT REALISM (automotive — NON-NEGOTIABLE):
+    - Spin balancing / wheel balancing: NEVER describe a loose tyre carcass alone on a balancer spindle or cone.
+      The tyre must be **mounted and seated on an alloy or steel rim (mag)**; the **wheel assembly** (rim + tyre)
+      is what is balanced. Banned: tyre-only on balancer, bare rubber doughnut on the machine, tyre floating
+      on the shaft with no rim.
+    - Wheel alignment / tracking / geometry: show the **vehicle on the alignment rack** with wheels on the car,
+      **or** believable turnplate/head hardware engaging the **wheel on the vehicle**—not an isolated tyre on
+      the alignment rig.
+    - Tyre removal / inspection: a detached tyre lying flat for inspection is acceptable; still never put that
+      loose tyre onto a balancer without a rim.
+
+    RULE 3 — MANDATORY DEMOGRAPHIC DIVERSITY (WHEN HUMANS APPEAR):
+    Do NOT apply a blanket "no faces" rule if {photography_style} does not explicitly forbid
+    identifiable people. If {photography_style} explicitly forbids human faces or identifiable
+    individuals, OMIT people from the image and state that constraint in the prompt.
+    If people ARE included (mechanics, customers, hands-in-frame with intent to show people),
+    you MUST explicitly specify a diverse cast in the prompt text, for example: "Include a
+    natural, realistic mix of Black and White individuals (mechanics or customers) engaged in
+    authentic, believable tasks—no tokenism, no stereotypes." Vary age presentation when
+    appropriate. Do not allow the generator to default to a single demographic.
+
+    RULE 4 — AUTHENTIC VARIETY (CAMERA GRAMMAR):
+    Vary camera language post-to-post (do not repeat the same framing every time): wide establishing
+    shots, over-the-shoulder, low hero angle, three-quarter product view, macro close-ups of tread
+    or branding, environmental portraits with shallow DOF. The feed should feel curated by a human
+    director, not copy-pasted.
+
+    === GLOBAL OPTICS & QUALITY (ALWAYS — dual prompts; adapt subject to firewood vs tyres vs batteries) ===
+    You are writing TWO prompts: Image_Generation_Prompt_1_1 is always the **1:1** composition; Image_Generation_Prompt_9_16
+    is always the **9:16** composition. Apply the same quality bar to both (lighting, realism, brand rules).
+    OVERLAY-COMPOSITION: For 1:1 prompts, explicitly state "top 20% and bottom 20% are text-safe background zones"
+    and keep hero objects in the center band. Background detail is allowed in safe zones, but no critical subject overlap.
+    DEPTH OF FIELD: Demand very shallow DOF (~f/1.2–f/1.4 or equivalent)—tack-sharp subject, strongly blurred
+    background, creamy bokeh, clear foreground/background separation in BOTH prompts.
+    COMPOSITION BIAS: Prefer tighter framing and closer crops by default (hero close-up, three-quarter close,
+    macro detail) unless the pillar explicitly needs a wide establishing shot.
+    Ban deep-focus snapshot language (e.g. everything sharp, f/8 documentary deep focus) unless
+    the Educational pillar specifically needs slightly more front-to-back clarity for a labeled
+    diagram-style frame—and even then prefer subject isolation.
+    ANTI-FAKE-CGI: Ban plastic synthetic skin, obvious 3D render, Unreal-style sheen on the whole
+    world, sterile sci-fi voids. High-end studio lighting and real new-tyre gloss are allowed for
+    automotive; for firewood prefer real flame/coal/wood texture credibility.
+    LIGHTING: Name concrete sources—studio: rim lights, softboxes, gradient panels; workshop:
+    tubes + door spill per {photography_style}; educational: soft, even key with clean falloff;
+    firewood: bronze/ember rim, teal accent allowed per brand_context, Hardware Noir.
+
+    CO-BRAND (if vertical_mode is automotive AND featured_brand is not "None"): Enforce vault colours,
+    logo treatment, and background prohibitions inside whichever set the pillar chose (studio, minimal, or workshop).
+
+    TREAD / PATTERN ENFORCEMENT (automotive only): If {featured_brand} is not exactly "None", BOTH prompts must
+    describe the visible tire tread so it matches the specific model you
+    chose from {brand_models}. If you selected an All-Terrain (A/T) or Mud-Terrain (M/T) model, demand
+    aggressive, deep, chunky tread blocks, open shoulders, and rugged sidewall sculpting. If you selected
+    a touring, highway, eco-commuter, or ultra-high-performance street model, demand sleeker, finer siping
+    and asymmetric or directional street-oriented tread—not chunky off-road lugs.
+
+    CRITICAL — brand_context visual DNA (hex accents, premium vs budget) must appear where compatible
+    with the routed environment (firewood OR tyres).
+
+    Suggested_Text_Overlay: JSON object with string keys "Heading" and "Footer" for manual design.
+  expected_output: >
+    A single valid JSON object with exactly four top-level keys: "Caption",
+    "Image_Generation_Prompt_1_1", "Image_Generation_Prompt_9_16", and "Suggested_Text_Overlay".
+    Suggested_Text_Overlay must be a JSON object with "Heading" and "Footer" string values.
+    No markdown code fences, no extra keys, no trailing text.
+  agent: content_creator

@@ -1,0 +1,21 @@
+# Cursor Rules — Automated Social Media Agency MVP
+
+## Code Style
+- Always write concise, technical Python.
+- Prefer functional and declarative programming patterns over imperative code.
+- Use type hints on all function signatures.
+- Keep functions small and single-purpose.
+
+## Error Handling
+- Implement strict error handling for ALL network requests (try/except with
+  specific exception types, timeout parameters, retry logic where appropriate).
+- Never silently swallow exceptions; always log or re-raise.
+
+## Dependencies & Tooling
+- Use the `uv` package manager for all dependency operations.
+- Pin dependency versions in pyproject.toml.
+
+## Project Tracking (CRITICAL)
+- At the END of every task or phase, you MUST autonomously update
+  `project_overview.txt` so the human operator knows exactly what has been
+  completed and what the next steps are. No exceptions.

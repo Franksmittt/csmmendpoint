@@ -1,0 +1,173 @@
+================================================================================
+WOODS PAGE – IMAGE SPECIFICATION FOR EACH WOOD SPECIES
+================================================================================
+Project: Miwesu Fire Wood (standalone-thermal)
+Page: app/woods/[slug]/page.tsx – one page per wood species.
+
+--------------------------------------------------------------------------------
+SUMMARY
+--------------------------------------------------------------------------------
+• Images per wood species: 7
+• Wood species (6 total): Geelhaak, Knoppiesdoring, Sekelbos, Snuifpeul, Mopane, Rooibos
+• Total images to create: 6 × 7 = 42 images
+
+You will create 7 images per wood. The same 7 “slots” (hero, the wood, the look, etc.) are used for every species; only the wood in the photo changes.
+
+--------------------------------------------------------------------------------
+STATUS: WHAT'S DONE vs WHAT'S TO DO
+--------------------------------------------------------------------------------
+DONE (wired into the app):
+  • IMAGE 1 – HERO for all 6 woods.
+    Files in public/: Geelhaak_Hero.png, Knoppiesdoring_hero.png, Sekelbos_Hero.png,
+    Snuifpeul_Hero.png, Mopanie_Hero.png, Rooibos_Hero.png.
+    Code: app/woods/[slug]/page.tsx uses these for the hero and for Open Graph/Twitter.
+  • IMAGE 2 – The wood (appearance & grain) for all 6 woods.
+    Files in public/: Image2_Geelhaak.png, Image2_Knoppiesdoring.png, Image2_Sekelbos.png,
+    Image2_Snuifpeul.png, Image2_Mopanie.png, Image2_Rooibos.png.
+    Code: app/woods/[slug]/page.tsx uses these in the “The wood” section (slot index 1).
+  • IMAGE 3 – The look (wide) for all 6 woods.
+    Files in public/: Image3_Geelhaak.png, Image3_Knoppiesdoring.png, Image3_Sekelbos.png,
+    Image3_Snuifpeul.png, Image3_Mopanie.png, Image3_Rooibos.png.
+    Code: app/woods/[slug]/page.tsx uses these in the “The look” section (slot index 2).
+  • IMAGE 4 – The burn (how it performs) for all 6 woods.
+    Files in public/: Image4_Geelhaak.png, Image4_Knoppiesdoring.png, Image4_Sekelbos.png,
+    Image4_Snuifpeul.png, Image4_Mopanie.png, Image4_Rooibos.png.
+    Code: app/woods/[slug]/page.tsx uses these in the “The burn” section (slot index 3).
+  • IMAGE 5 – Bark/heartwood close-up for all 6 woods.
+    Files in public/: Image5_Geelhaak.png, Image5_Knoppiesdoring.png, Image5_Sekelbos.png,
+    Image5_Snuifpeul.png, Image5_Mopanie.png, Image5_Rooibos.png.
+    Code: app/woods/[slug]/page.tsx uses these in “The look” panel and first gallery square (slot index 4).
+  • IMAGE 6 – Gallery 2 (braai wood) for all 6 woods.
+    Files in public/: Image6_Geelhaak.png, Image6_Knoppiesdoring.png, Image6_Sekelbos.png,
+    Image6_Snuifpeul.png, Image6_Mopanie.png, Image6_Rooibos.png.
+    Code: app/woods/[slug]/page.tsx uses these in the gallery strip, second square (slot index 5).
+  • IMAGE 7 – Gallery 3 (premium firewood) for all 6 woods.
+    Files in public/: Image7_Geelhaak.png, Image7_Knoppiesdoring.png, Image7_Sekelbos.png,
+    Image 7_Snuifpeul.png, Image7_Mopanie.png, Image7_Rooibos.png.
+    Code: app/woods/[slug]/page.tsx uses these in the gallery strip, third square (slot index 6).
+
+ALL 42 IMAGES COMPLETE. No placeholders remain for woods pages.
+
+--------------------------------------------------------------------------------
+IMAGE SLOTS – WHAT EACH IMAGE IS FOR & WHAT TO CREATE
+--------------------------------------------------------------------------------
+
+--- IMAGE 1: HERO (slot index 0) ---
+• Where it’s used: Full-width hero at top of the wood species page. Text overlay: wood name, scientific name, tagline.
+• Suggested aspect ratio: 16:9 or 21:9 (wide, cinematic). Min usable: ~1320×600.
+• What to create:
+  A striking, wide shot that says “this wood / braai / firewood” and works with dark overlay. Options:
+  – Stack of split logs of this species (identifiable by bark/colour) in good light, maybe with a braai or fire pit in the scene.
+  – Close-up of a pile of this wood with shallow depth of field and warm, premium feel.
+  – This wood burning in a braai or fire, flames/coals visible, atmospheric.
+  Keep the lower third relatively uncluttered so overlay text stays readable.
+• Alt text used: “[Wood name] braai wood – premium firewood Gauteng”
+
+--- IMAGE 2: THE WOOD – APPEARANCE & GRAIN (slot index 1) ---
+• Where it’s used: “The wood” section, next to the intro paragraph (large 4:3 panel).
+• Suggested aspect ratio: 4:3. Suggested size: ~800×600.
+• What to create:
+  Shows the wood’s identity: grain, colour, and overall look. Options:
+  – Split face of a log so heartwood and sapwood (lighter outer band) are visible.
+  – Several pieces of this species arranged to show colour variation and grain.
+  – Close-up of the distinctive feature (e.g. Geelhaak’s golden/russet tone, Knoppiesdoring’s dark heartwood, Sekelbos two-tone).
+  Should feel “product shot” but natural – this is the “appearance and grain” shot.
+• Alt text used: “[Wood name] hardwood – appearance and grain”
+
+--- IMAGE 3: THE LOOK – WIDE (slot index 2) ---
+• Where it’s used: “The look” section – main large image (wide rectangle) above the bark/heartwood/sapwood text cards.
+• Suggested aspect ratio: 16:10. Suggested size: ~800×500 or 960×600.
+• What to create:
+  Broader view of “the look” of this wood – bark, shape, and how it presents in real use. Options:
+  – Logs of this species with bark visible (showing bark texture and shape).
+  – A small stack or row of logs so bark, colour, and form are clear.
+  – Mix of round and split pieces to show both bark and heartwood/sapwood.
+  Complements the “Bark & shape” and “Heartwood & sapwood” copy next to it.
+• Alt text used: “[Wood name] firewood – the look”
+
+--- IMAGE 4: THE BURN – HOW IT PERFORMS (slot index 3) ---
+• Where it’s used: “The burn” section – wide mood image with “How it performs” label overlay.
+• Suggested aspect ratio: 2:1. Suggested size: ~800×400 or 1000×500.
+• What to create:
+  This wood actually burning. Options:
+  – Flames and/or coals of this wood in a braai or fire pit (no other wood types in frame if possible).
+  – Close-up of glowing coals or active flame so the “burn” is the focus.
+  – Braai with meat or grill optional; focus should be on fire/coals from this species.
+  Warm, inviting, slightly atmospheric; works with a dark gradient overlay at the bottom.
+• Alt text used: “[Wood name] – how it burns, braai wood”
+
+--- IMAGE 5: BARK / HEARTWOOD CLOSE-UP (slot index 4) ---
+• Where it’s used: (a) “The look” section – smaller panel next to the wide “look” image, (b) First image in the 3-image gallery strip at the bottom.
+• Suggested aspect ratio: 4:3 for the panel; also cropped to square in gallery. So either 4:3 or 1:1 works; 4:3 is safe.
+• Suggested size: ~400×300 or 600×450.
+• What to create:
+  Detail shot: bark and/or the transition from bark to heartwood. Options:
+  – Close-up of bark texture and colour typical of this species.
+  – End grain or split face showing heartwood (and sapwood if visible).
+  – One or two pieces that clearly show “bark and heartwood” for quick ID.
+  This slot is reused in the gallery, so a shot that still looks good when cropped square is ideal.
+• Alt text used: “[Wood name] – bark and heartwood” / “[Wood name] firewood gallery”
+
+--- IMAGE 6: GALLERY – BRAAI WOOD (slot index 5) ---
+• Where it’s used: Second image in the 3-image gallery strip (all displayed as squares).
+• Suggested aspect ratio: 1:1 (square) preferred; will be cropped to square if not.
+• Suggested size: ~400×400 or 600×600.
+• What to create:
+  A second strong shot of this wood – different angle or context from images 4 and 5. Options:
+  – Stack or pile of this wood (lifestyle / “ready for braai”).
+  – Hand or tool near the wood (e.g. placing a log, lighting) to add context.
+  – Same wood in a bag or at a delivery-style setup if that fits the brand.
+  Should read clearly as “[Wood name] braai wood” at a glance.
+• Alt text used: “[Wood name] braai wood”
+
+--- IMAGE 7: GALLERY – PREMIUM FIREWOOD (slot index 6) ---
+• Where it’s used: Third image in the 3-image gallery strip (square).
+• Suggested aspect ratio: 1:1. Suggested size: ~400×400 or 600×600.
+• What to create:
+  Third variation – again clearly this species. Options:
+  – Another detail (grain, colour, split) that hasn’t been covered yet.
+  – Wood in a fireplace or fire pit (if different from image 4).
+  – Clean product-style shot: neat stack or single log on a neutral surface.
+  Round off the gallery with a “premium firewood” feel.
+• Alt text used: “[Wood name] premium firewood Gauteng”
+
+--------------------------------------------------------------------------------
+RECOMMENDED DIMENSIONS SUMMARY (for your reference)
+--------------------------------------------------------------------------------
+1. Hero:           1320×600  (or 1920×810 for 16:9)
+2. The wood:       800×600   (4:3)
+3. The look wide:  960×600   (16:10) or 800×500
+4. The burn:       800×400   (2:1) or 1000×500
+5. Bark/heartwood: 400×300   (4:3) or 600×450 – also used as gallery square
+6. Gallery 2:      400×400   (1:1) or 600×600
+7. Gallery 3:      400×400   (1:1) or 600×600
+
+Using 1200px or 1600px on the long side is fine for retina; the site will scale down.
+
+--------------------------------------------------------------------------------
+PER-WOOD CHECKLIST (6 species × 7 images = 42 images)
+--------------------------------------------------------------------------------
+Naming suggestion: [Name]_Hero.png for hero; then [Name]_2.png … [Name]_7.png for slots 2–7
+(e.g. Geelhaak_Hero.png, Geelhaak_2.png … Geelhaak_7.png). Place all in public/.
+
+                    Hero   Wood  Look  Burn  Bark  Gal2  Gal3
+[✓] Geelhaak            ✓     ✓     ✓     ✓     ✓     ✓     ✓
+[✓] Knoppiesdoring      ✓     ✓     ✓     ✓     ✓     ✓     ✓
+[✓] Sekelbos            ✓     ✓     ✓     ✓     ✓     ✓     ✓
+[✓] Snuifpeul           ✓     ✓     ✓     ✓     ✓     ✓     ✓
+[✓] Mopane              ✓     ✓     ✓     ✓     ✓     ✓     ✓
+[✓] Rooibos             ✓     ✓     ✓     ✓     ✓     ✓     ✓
+
+Legend: ✓ = done and wired in app.  – = to do (placeholder still used).
+
+--------------------------------------------------------------------------------
+NOTES FOR CREATING THE IMAGES
+--------------------------------------------------------------------------------
+• Consistency: Keep lighting and style (e.g. warm, natural, premium) similar across all 42 so the site feels cohesive.
+• Species accuracy: Each set of 7 should clearly show one species only – bark, colour, and grain should match the copy in lib/woods.ts (e.g. Geelhaak peeling yellowish bark and golden–russet heartwood; Knoppiesdoring knobbly bark and very dark heartwood; Sekelbos two-tone; etc.).
+• Hero images: already in public/ and wired in app/woods/[slug]/page.tsx (and used for OG/twitter).
+• Slots 2–7: once you add files to public/ with consistent names (e.g. Geelhaak_2.png … Geelhaak_7.png), we can wire them the same way.
+
+================================================================================
+END OF SPEC
+================================================================================

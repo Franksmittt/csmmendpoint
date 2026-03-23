@@ -1,0 +1,16 @@
+---
+description: Brand bible docs and CRM fields for client-specific CrewAI output
+globs:
+  - docs/brands/**/*.md
+  - docs/GENERATION_PLAYBOOK.md
+  - src/config/agents.yaml
+  - src/config/tasks.yaml
+  - scripts/upsert_alberton_brand.py
+---
+
+# Branded client content
+
+- Per-client **voice, services, and visual DNA** live in Streamlit/SQLite (`brand_context`, `tone`, `services_list`, `target_markets`) and in **`docs/brands/*.md`**.
+- **Alberton Tyre Clinic:** follow `docs/brands/alberton-tyre-clinic.md` — Tyre Orange `#F17924`, dark charcoal premium garage imagery, heritage/safety copy (since 1989, Alberton), no discount-yard tone unless explicitly briefed.
+- When changing `tasks.yaml` / `agents.yaml`, keep **generic** rules in YAML; put **client-specific** lines only in brand markdown + CRM paste blocks.
+- After editing a brand doc, sync CRM via UI or `uv run python scripts/upsert_alberton_brand.py`.

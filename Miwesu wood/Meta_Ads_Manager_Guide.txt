@@ -1,0 +1,226 @@
+================================================================================
+META ADS MANAGER — CAMPAIGN CREATION WALKTHROUGH
+================================================================================
+
+When you click "Create" you see:
+
+  • Create new campaign
+  • New ad set or ad
+  • Buying type: Auction
+  • Campaign objective: choose one of the options below
+
+
+--------------------------------------------------------------------------------
+1. CAMPAIGN OBJECTIVES (OVERVIEW)
+--------------------------------------------------------------------------------
+
+  AWARENESS
+  ---------
+  Show your ads to people who are most likely to remember them.
+  Good for: Reach | Brand awareness | Video views
+
+  TRAFFIC
+  -------
+  Send people to a destination (website, app, Instagram profile, Facebook event).
+  Good for: Link clicks | Landing page views | Instagram profile visits |
+            Messenger, Instagram and WhatsApp | Calls
+
+  ENGAGEMENT
+  ----------
+  Get more messages, purchases through messaging, video views, post engagement,
+  Page likes or event responses.
+  Good for: Messenger, Instagram and WhatsApp | Video views | Post engagement |
+            Conversions | Calls
+
+  LEADS
+  -----
+  Collect leads for your business or brand.
+  Good for: Website and instant forms | Instant forms |
+            Messenger, Instagram and WhatsApp | Conversions | Calls
+
+  APP PROMOTION
+  -------------
+  Find new people to install your app and continue using it.
+  Good for: App installs | App events
+
+  SALES
+  -----
+  Find people likely to purchase your product or service.
+  Good for: Conversions | Catalog sales |
+            Messenger, Instagram and WhatsApp | Calls
+
+
+================================================================================
+2. AWARENESS — FLOW (STEP BY STEP)
+================================================================================
+
+--------------------------------------------------------------------------------
+Step 1: Campaign details
+--------------------------------------------------------------------------------
+
+  • Campaign name
+  • Campaign details
+  • Buying type: Auction
+  • Campaign objective: Awareness
+
+  Show more options:
+  • Advantage+ campaign budget — Off
+    Distribute your budget across ad sets to get more results. You can control
+    spending for each ad set.
+  • A/B test — Off
+    Compare versions to see what works best; each shown to separate audience groups.
+  • Special Ad Categories
+    Declare if ads relate to financial products, employment, housing, social
+    issues, elections or politics. Requirements differ by country.
+  • Categories — Select the categories that best describe this campaign.
+    Declare category if applicable.
+
+--------------------------------------------------------------------------------
+Step 2: Placements
+--------------------------------------------------------------------------------
+
+  • Account controls — Excluded placements: None
+  • Advantage+ placements
+    Budget allocated by Meta across multiple placements based on likely performance.
+
+  Hide options:
+  • Brand safety and suitability
+    Meta applies brand safety via Community Standards and Monetization Policies.
+    Brand suitability can add filters/topic exclusions (may lower reach, increase cost).
+  • Inventory filters
+    Default filter applied. Excessively controversial/offensive content always excluded.
+  • In-content ads — Expanded (ad set)
+  • Audience Network ads — Expanded (ad set)
+  • Publisher block lists — None selected
+  • Content type exclusions — None selected
+
+--------------------------------------------------------------------------------
+Step 3: Ad setup
+--------------------------------------------------------------------------------
+
+  • Ad creative — Select and optimize ad text, media and enhancements.
+  • Creative testing — Compare up to 5 creative versions.
+  • Chat builder — Choose a template for the chat after people tap your ad.
+    Suggested chat template:
+    - Welcome message: "Hi! Please let us know how we can help you."
+    - Add a call to action
+    - Pre-filled message: "Hello! Can I get more info on this?"
+  • Tracking — Conversion events (website events, app events, offline events).
+  • URL parameters — Build a URL parameter.
+
+
+================================================================================
+3. TRAFFIC — FLOW (STEP BY STEP)
+================================================================================
+
+--------------------------------------------------------------------------------
+Step 1: Campaign details
+--------------------------------------------------------------------------------
+
+  • Buying type: Auction
+  • Campaign objective: Traffic
+
+  Show more options:
+  • Budget
+    - Budget strategy: Campaign budget (Advantage+ campaign budget) or Ad set budget.
+    - Campaign budget: Automatically distribute budget to best opportunities.
+    - Ad set budget: Set different bid strategies or budget schedules per ad set.
+    - Share some of your budget with other ad sets — up to 20% when it may improve
+      performance.
+  • Campaign bid strategy — Highest volume
+  • A/B test — Off
+  • Special Ad Categories — Declare if applicable.
+  • Categories — Select categories for this campaign.
+
+--------------------------------------------------------------------------------
+Step 2: Advantage+ audience & placements
+--------------------------------------------------------------------------------
+
+  • Advantage+ audience
+    Meta shows ads to people most likely to respond, using your suggestion and
+    other audiences when it may improve performance.
+    Option: Switch to original audience options.
+
+  • Ad transparency
+    Show who benefits from and pays for ads (may appear in Ad Library).
+    Build trust by completing verification.
+
+  • Placements
+    Where your ad appears across Meta technologies.
+    Excluded placements: None.
+    Advantage+ placements — budget allocated by Meta for best performance.
+    Show more options available.
+
+--------------------------------------------------------------------------------
+Step 3: Ad setup
+--------------------------------------------------------------------------------
+
+  • Destination — Where to send people when they tap or click:
+    - Call phone number (country code, valid number)
+    - Enable callback requests — Off
+    - Callback: spreadsheet or Messenger
+    - Call on WhatsApp
+
+  • Ad creative — Select and optimize ad text, media and enhancements.
+    Note: "Please specify an image to run with this ad."
+
+  • Creative testing — Compare up to 5 versions.
+  • Tracking — Website events, app events, offline events.
+
+
+================================================================================
+4. ENGAGEMENT — FLOW (STEP BY STEP)
+================================================================================
+
+--------------------------------------------------------------------------------
+Step 1: Campaign details
+--------------------------------------------------------------------------------
+
+  • Buying type: Auction
+  • Campaign objective: Engagement
+
+  Show more options:
+  • Budget — Same structure as Traffic (campaign vs ad set budget, sharing, etc.).
+  • Campaign bid strategy — Highest volume
+  • A/B test — Off
+  • Special Ad Categories — Declare if applicable.
+  • Categories — Select categories for this campaign.
+
+--------------------------------------------------------------------------------
+Step 2: Conversion, audience & placements
+--------------------------------------------------------------------------------
+
+  • Conversion
+    - Conversion location: Calls
+    - Performance goal: How you measure success.
+      Example: Maximize number of calls — deliver ads to get the most possible calls.
+    - Facebook Page — Choose the Page you want to promote (Select Page).
+    - Value rules — Tell Meta how much more certain audiences, conversion
+      locations and placements are worth; system optimizes for these.
+    - Delivery type: Standard
+
+  • Advantage+ audience — Same as Traffic (auto audience + option to switch to
+    original audience options).
+  • Ad transparency — Same as Traffic.
+  • Placements — Same as Traffic (Advantage+ placements, excluded placements, etc.).
+  • Show more options available.
+
+--------------------------------------------------------------------------------
+Step 3: Ad setup
+--------------------------------------------------------------------------------
+
+  • Multi-advertiser ads
+    Your ad can appear with others in the same ad unit; creative may be resized
+    or cropped.
+
+  • Ad creative — Select and optimize ad text, media and enhancements.
+    Note: "A post is required. Select or create a post to publish."
+    Option: Enter post ID.
+
+  • Creative testing — Compare up to 5 versions.
+  • Tracking — Website events, app events, offline events.
+
+
+================================================================================
+END OF GUIDE
+================================================================================

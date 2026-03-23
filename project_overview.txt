@@ -1,0 +1,101 @@
+=====================================
+  INTELLIGENT CONTENT PLANNER & ASSETS
+=====================================
+
+PROJECT GOAL
+------------
+Internal agency dashboard: manage clients in SQLite, run a CrewAI + Gemini pipeline
+to produce captions, Image_Generation_Prompt briefs, and Suggested_Text_Overlay
+(Heading + Footer) for manual design, client approval, and posting. Track delivery
+status (Draft → Sent to Client → Posted), surface content gaps by pillar and
+featured brand (last 30 days), and copy prompts into Midjourney / Gemini / Imagen—no
+in-app image generation or auto-posting.
+
+CURRENT PHASE
+-------------
+Text-only creative pipeline, batch generation (1–25 runs), and prompt rules that
+deliberately mix tyre condition, setting, and optics so the feed does not look samey.
+
+HOW THE AI “THINKS” ABOUT IMAGE PROMPTS
+---------------------------------------
+Configured in config/tasks.yaml and config/agents.yaml (and reinforced by creative_hook
+options in app.py). The model is instructed to vary visuals intelligently—not every
+post is a grimy workshop with old rubber.
+
+  TYRE CONDITION (MIX, NOT A DEFAULT)
+  - Brand-new tyres: allowed and encouraged when the story fits—fresh tread, honest
+    product shine, mounting context, “just unwrapped” rubber. Real photography language,
+    not plastic CGI gloss on the whole frame.
+  - Worn / dirty / service-context tyres: still valid when the angle is value, heritage,
+    inspection, or gritty bay work. The fitter installs new stock daily; prompts should
+    reflect that variety.
+
+  WHERE THE SCENE LIVES (SETTING VARIETY)
+  - Documentary workshop / fitment bay when it matches the pillar or hook.
+  - Product-ad and co-brand heroes often OFF the bay: tyre on a pedestal or plinth,
+    wet/dry tarmac, roadside, minimal colour-block sets—always respecting manufacturer
+    vault colours and logo rules (e.g. Dunlop, Continental, Pirelli constraints).
+  - Retail-ready stacks, racks, or detail shots when useful.
+
+  OPTICS (ALMOST EVERY PROMPT)
+  - Shallow depth of field described like ~f/1.2–f/1.4: tack-sharp subject, strong
+    background bokeh whether the backdrop is workshop, road, or a minimal set.
+
+  GUARDRAILS
+  - Ban obvious fake-CGI / 3D-render / sterile sci-fi voids; allow authentic new-rubber
+    speculars and controlled product lighting.
+  - Client photography_style remains the default camera character and carries any hard
+    exclusions (e.g. no faces); cleaner hero lighting is allowed when the post calls for it.
+
+  WHAT DRIVES VARIETY IN THE APP
+  - content_pillar, featured_brand (tyre vault or None), post_format (1:1 vs 9:16).
+  - creative_angle: fixed hook on single run, or random per run in batch mode—including
+    hooks that explicitly push “product hero (pedestal/road)” vs “workshop moment.”
+
+COMPLETED STEPS (WHERE THINGS STAND)
+------------------------------------
+[Streamlit + SQLite + CrewAI] — current build
+  1. Dependencies: streamlit, pandas, crewai[google-genai]; no MoviePy/Pillow in app
+  2. Environment: .env.example — GEMINI_API_KEY + MODEL; main.py launches Streamlit
+  3. database.py: agency.db (clients + posts); CRUD helpers
+  4. tasks.yaml / agents.yaml: creative_angle; JSON Caption + Image_Generation_Prompt +
+     Suggested_Text_Overlay {Heading, Footer}; DOF + setting + tyre-condition mix as above
+  5. brand_vault.py: featured tyre brands and guidelines for co-brand prompts
+  6. app.py: Generation Hub — batch 1–25; single run = chosen pillar, brand, creative hook;
+     batch = random pillar, brand, hook; audit log + expanders to copy caption & image prompt
+  7. json_utils.py: fence stripping for robust JSON parse
+  8. .streamlit/config.toml: dark DOS-style shell; app.py VT323 + CGA colours; clients in sidebar
+
+NEXT STEPS
+----------
+- Optional: export posts to CSV / Notion
+- Optional: multi-user auth for the dashboard
+
+BRAND BIBLES & GENERATION RULES
+-------------------------------
+- Playbook: docs/GENERATION_PLAYBOOK.md
+- Client docs: docs/brands/README.md
+- Alberton Tyre Clinic: docs/brands/alberton-tyre-clinic.md (CRM paste blocks + pillar map)
+- Sync Alberton row from bible: uv run python scripts/upsert_alberton_brand.py
+- tasks.yaml: Image_Generation_Prompt obeys brand_context visual DNA + vault compliance
+
+LAUNCH INSTRUCTIONS
+-------------------
+1. uv sync
+2. cp .env.example .env  → set GEMINI_API_KEY (and MODEL if you change it)
+3. From project root:
+       uv run python src/main.py
+   or:
+       cd src && uv run streamlit run app.py
+
+TECHNICAL STACK
+---------------
+- Language:         Python 3.12–3.13
+- LLM:              Google Gemini (default MODEL=gemini/gemini-2.5-flash)
+- Agents:           CrewAI (google-genai extra)
+- UI:               Streamlit
+- Data:             SQLite (agency.db at repo root)
+- Tables:           clients (+ services_list, target_markets, photography_style),
+                    posts (+ suggested_text_overlay JSON text)
+- Env:              python-dotenv
+- Package manager:  uv

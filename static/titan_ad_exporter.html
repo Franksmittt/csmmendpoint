@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Titan Ad Exporter — Endpoint Media</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <style>
+    :root {
+      --panel-bg: #252525;
+      --page-bg: #1a1a1a;
+      --atc-orange: #F17924;
+      --abm-red: #E33B3B;
+      --miwesu-orange: #E48A3B;
+      --samsung-blue: #1428A0;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: var(--page-bg);
+      color: #fff;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-wrap: wrap;
+      padding: 20px;
+      gap: 24px;
+      align-items: flex-start;
+    }
+    #controls {
+      width: 320px;
+      flex-shrink: 0;
+      background: var(--panel-bg);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    #controls h3 { margin: 0 0 16px 0; font-size: 1.1rem; }
+    .input-group { margin-bottom: 14px; }
+    .input-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 11px;
+      color: #aaa;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 9px 10px;
+      background: #333;
+      border: 1px solid #444;
+      color: #fff;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    textarea { min-height: 64px; resize: vertical; }
+    .row-inline { display: flex; align-items: center; gap: 10px; }
+    .row-inline input[type="checkbox"] { width: auto; }
+    #preview-outer {
+      flex: 1;
+      min-width: 280px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    #scale-wrap {
+      transform-origin: top center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+      border: 1px solid #333;
+      line-height: 0;
+    }
+    #ad-container {
+      position: relative;
+      overflow: hidden;
+      background: #000;
+    }
+    #ad-container.format-916 { width: 1080px; height: 1920px; }
+    #ad-container.format-11 { width: 1080px; height: 1080px; }
+    #bg-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .header-overlay {
+      position: absolute;
+      top: 40px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      /* Safe padding — keeps headline clear of edges on 1080-wide export */
+      padding: 0 72px;
+      text-shadow: 0 4px 18px rgba(0,0,0,0.88), 0 2px 4px rgba(0,0,0,0.6);
+    }
+    .brand-title {
+      /* Fixed to 1080px canvas — large headline, one line (all three presets fit with side padding) */
+      font-size: 84px;
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      margin: 0 auto;
+      line-height: 1.05;
+      white-space: nowrap;
+      max-width: 100%;
+      display: inline-block;
+    }
+    .brand-title .accent { }
+    .sub-text {
+      font-size: 30px;
+      font-weight: 400;
+      margin-top: 14px;
+      opacity: 0.95;
+      line-height: 1.25;
+      padding: 0 8px;
+    }
+    .footer-overlay {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 86%;
+      max-width: 920px;
+      padding: 16px 20px;
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    }
+    .contact-num {
+      font-size: 44px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #fff;
+      line-height: 1.25;
+    }
+    button.export-btn {
+      width: 100%;
+      padding: 12px;
+      background: var(--samsung-blue);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      margin-top: 8px;
+      font-size: 14px;
+    }
+    button.export-btn:hover { filter: brightness(1.08); }
+    .hidden { display: none !important; }
+    .hint { font-size: 11px; color: #777; margin-top: 8px; line-height: 1.4; }
+  </style>
+</head>
+<body>
+
+<div id="controls">
+  <h3>Titan Ad Exporter</h3>
+  <div class="input-group">
+    <label>Upload background image</label>
+    <input type="file" id="imageInput" accept="image/*">
+  </div>
+  <div class="input-group">
+    <label>Company preset</label>
+    <select id="companySelect"></select>
+  </div>
+  <div class="input-group">
+    <label>Format</label>
+    <select id="formatSelect">
+      <option value="916">9:16 Vertical (Stories / Reels)</option>
+      <option value="11">1:1 Square (Feed)</option>
+    </select>
+  </div>
+  <div class="input-group">
+    <label>Sub-text (service / product)</label>
+    <textarea id="subTextInput" placeholder="e.g. Premium wheel alignment"></textarea>
+  </div>
+  <div class="input-group row-inline">
+    <input type="checkbox" id="toggleSub" checked>
+    <label for="toggleSub" style="margin:0;">Show sub-text</label>
+  </div>
+  <div class="input-group">
+    <label>Contact line</label>
+    <input type="text" id="contactInput" placeholder="Phone · WhatsApp">
+  </div>
+  <button type="button" class="export-btn" id="export">Export high-res JPEG</button>
+  <p class="hint">Export uses html2canvas at 2× scale. Preview below is scaled to fit — actual file matches the selected format (1080px wide).</p>
+</div>
+
+<div id="preview-outer">
+  <div id="scale-wrap">
+    <div id="ad-container" class="format-916">
+      <img id="bg-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1080' height='1920'%3E%3Crect fill='%23111' width='100%25' height='100%25'/%3E%3Ctext fill='%23555' x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='36'%3EUpload image%3C/text%3E%3C/svg%3E" alt="Background">
+      <div class="header-overlay">
+        <h1 class="brand-title" id="brandTitle"></h1>
+        <div id="subTextDisplay" class="sub-text"></div>
+      </div>
+      <div class="footer-overlay">
+        <div class="contact-num" id="contactDisplay"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  const PRESETS = {
+    atc: {
+      label: 'Alberton Tyre Clinic',
+      titleHtml: 'Alberton <span class="accent" style="color:var(--atc-orange)">Tyre</span> Clinic',
+      subDefault: 'Invest in Safety',
+      contact: '011 907 8495'
+    },
+    abm: {
+      label: 'Alberton Battery Mart',
+      titleHtml: 'Alberton <span class="accent" style="color:var(--abm-red)">Battery</span> Mart',
+      subDefault: 'Diagnostics · fitment · callouts',
+      contact: '010 109 6211'
+    },
+    miwesu: {
+      label: 'Miwesu Fire Wood',
+      titleHtml: 'Miwesu <span class="accent" style="color:var(--miwesu-orange)">Fire</span> Wood',
+      subDefault: 'Heat. Redefined.',
+      contact: '+27 73 030 9679'
+    }
+  };
+
+  const companySelect = document.getElementById('companySelect');
+  const formatSelect = document.getElementById('formatSelect');
+  const imageInput = document.getElementById('imageInput');
+  const bgImage = document.getElementById('bg-image');
+  const brandTitle = document.getElementById('brandTitle');
+  const subTextInput = document.getElementById('subTextInput');
+  const subTextDisplay = document.getElementById('subTextDisplay');
+  const toggleSub = document.getElementById('toggleSub');
+  const contactInput = document.getElementById('contactInput');
+  const contactDisplay = document.getElementById('contactDisplay');
+  const adContainer = document.getElementById('ad-container');
+  const scaleWrap = document.getElementById('scale-wrap');
+
+  Object.keys(PRESETS).forEach(function (key) {
+    const opt = document.createElement('option');
+    opt.value = key;
+    opt.textContent = PRESETS[key].label;
+    companySelect.appendChild(opt);
+  });
+
+  function fitBrandTitle() {
+    const box = document.querySelector('.header-overlay');
+    if (!box || !brandTitle) return;
+    const maxPx = 84;
+    let px = maxPx;
+    brandTitle.style.fontSize = px + 'px';
+    var guard = 0;
+    while (brandTitle.scrollWidth > box.clientWidth && px > 44 && guard < 30) {
+      px -= 2;
+      brandTitle.style.fontSize = px + 'px';
+      guard++;
+    }
+  }
+
+  function applyPreset(key) {
+    const p = PRESETS[key];
+    brandTitle.innerHTML = p.titleHtml;
+    subTextInput.value = p.subDefault;
+    contactInput.value = p.contact;
+    syncText();
+    fitBrandTitle();
+  }
+
+  function syncText() {
+    subTextDisplay.textContent = subTextInput.value;
+    contactDisplay.textContent = contactInput.value;
+    subTextDisplay.classList.toggle('hidden', !toggleSub.checked || !subTextInput.value.trim());
+  }
+
+  function applyFormat() {
+    const v = formatSelect.value;
+    adContainer.classList.remove('format-916', 'format-11');
+    adContainer.classList.add(v === '11' ? 'format-11' : 'format-916');
+    fitBrandTitle();
+    fitPreview();
+  }
+
+  function fitPreview() {
+    const maxW = Math.min(520, Math.max(280, window.innerWidth - 400));
+    const w = adContainer.offsetWidth;
+    const scale = Math.min(1, maxW / w);
+    scaleWrap.style.transform = 'scale(' + scale + ')';
+    const h = adContainer.offsetHeight * scale;
+    document.getElementById('preview-outer').style.minHeight = Math.ceil(h + 24) + 'px';
+  }
+
+  companySelect.addEventListener('change', function () {
+    applyPreset(companySelect.value);
+  });
+  formatSelect.addEventListener('change', applyFormat);
+  subTextInput.addEventListener('input', syncText);
+  contactInput.addEventListener('input', syncText);
+  toggleSub.addEventListener('change', syncText);
+  window.addEventListener('resize', function () {
+    fitBrandTitle();
+    fitPreview();
+  });
+
+  imageInput.addEventListener('change', function (e) {
+    const f = e.target.files && e.target.files[0];
+    if (!f) return;
+    const reader = new FileReader();
+    reader.onload = function (ev) {
+      bgImage.src = ev.target.result;
+      bgImage.onload = function () {
+        fitBrandTitle();
+        fitPreview();
+      };
+    };
+    reader.readAsDataURL(f);
+  });
+
+  document.getElementById('export').addEventListener('click', function () {
+    if (typeof html2canvas !== 'function') {
+      alert('html2canvas failed to load. Check your network and refresh.');
+      return;
+    }
+    const prevTransform = scaleWrap.style.transform;
+    scaleWrap.style.transform = 'none';
+    html2canvas(adContainer, {
+      scale: 2,
+      useCORS: true,
+      allowTaint: true,
+      backgroundColor: null,
+      logging: false
+    }).then(function (canvas) {
+      scaleWrap.style.transform = prevTransform;
+      const link = document.createElement('a');
+      const tag = companySelect.value + '-' + formatSelect.value;
+      link.download = 'titan-ad-' + tag + '.jpg';
+      link.href = canvas.toDataURL('image/jpeg', 0.92);
+      link.click();
+    }).catch(function (err) {
+      scaleWrap.style.transform = prevTransform;
+      console.error(err);
+      alert('Export failed: ' + (err && err.message ? err.message : String(err)));
+    });
+  });
+
+  applyPreset('atc');
+  applyFormat();
+  syncText();
+  fitPreview();
+})();
+</script>
+</body>
+</html>
