@@ -57,14 +57,14 @@ from config.vertical_creative import (
 from crew import SocialMediaCrew
 from json_utils import parse_crew_json
 
-# Design tokens — classical / editorial (warm paper, ink, navy & bronze)
-C_BG = "#f5f0e8"
-C_SURFACE = "#fffcf7"
-C_TEXT = "#2c2416"
-C_TEXT_BODY = "#4a433a"
-C_MUTED = "#6b6459"
-C_BORDER = "#cdc6b9"
-C_INPUT_BG = "#fffdf8"
+# Design tokens — Bento–Halo (Athens gray field, white squircle cards, navy/bronze accents)
+C_BG = "#F5F5F7"  # Apple Athens Gray — reduced eye strain
+C_SURFACE = "#FFFFFF"  # pure white cards
+C_TEXT = "#1d1d1f"
+C_TEXT_BODY = "#424245"
+C_MUTED = "#6e6e73"
+C_BORDER = "#CDC6B9"  # subtle warm hairline (spec)
+C_INPUT_BG = "#FAFAFA"
 C_PRIMARY = "#1e3a5f"
 C_ACCENT = "#7c5c36"
 C_HEADING = "#1c1917"
@@ -75,8 +75,10 @@ C_ACCENT_YELLOW = C_ACCENT
 C_ATHENS = C_TEXT_BODY
 C_GRAY = C_MUTED
 C_BLUE = C_PRIMARY
-C_SHARK = "#ebe6dc"
+C_SHARK = "#F5F5F7"  # nested panels on white
 C_CONFIDENCE = C_SUCCESS
+# Motion (Samsung One UI–style ease)
+C_EASE_PRODUCT = "cubic-bezier(0.22, 0.25, 0.00, 1.0)"
 
 VIEW_DASHBOARD = "Dashboard"
 VIEW_ONBOARD = "New client"
@@ -185,7 +187,7 @@ OB_PHOTOGRAPHY = "ob_photography_style"
 
 
 def _inject_classical_theme() -> None:
-    """Classical editorial UI: warm paper, serif headings, restrained navy & bronze."""
+    """Bento–Halo UI: Athens gray field, white squircle cards, rim-lit chrome, product motion."""
     st.markdown(
         """
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -205,39 +207,55 @@ def _inject_classical_theme() -> None:
           }}
           [data-testid="stHeader"] {{
             background-color: {C_SURFACE} !important;
-            border-bottom: 1px solid {C_BORDER} !important;
+            border-bottom: 1px solid rgba(0,0,0,0.06) !important;
           }}
           .block-container {{
-            padding-top: 1.25rem !important;
-            padding-bottom: 2rem !important;
+            padding-top: 1.5rem !important;
+            padding-bottom: 2.5rem !important;
             max-width: 1200px !important;
           }}
           .main .block-container p, .main .block-container li, .main label,
           .main [data-testid="stWidgetLabel"] p {{
             font-family: 'Source Sans 3', sans-serif !important;
             font-size: 17px !important;
+            letter-spacing: 0.02em;
           }}
           .main h1 {{
             font-size: 2rem !important;
             color: {C_HEADING} !important;
             font-family: 'Crimson Pro', 'Georgia', serif !important;
             font-weight: 600 !important;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.05em;
           }}
           .main h2, .main h3, .main h4 {{
             color: {C_PRIMARY} !important;
             font-family: 'Crimson Pro', 'Georgia', serif !important;
             font-weight: 600 !important;
+            letter-spacing: -0.03em;
           }}
           .stCaption, [data-testid="stCaption"] {{
             color: {C_MUTED} !important;
             font-family: 'Source Sans 3', sans-serif !important;
             font-size: 0.92rem !important;
+            letter-spacing: 0.02em;
           }}
 
+          /* Viewing (top) vs Interaction (bottom) — One UI–style rhythm */
+          .em-zone-viewing {{
+            min-height: 28vh;
+            padding-bottom: 1.25rem;
+            margin-bottom: 0.5rem;
+          }}
+          .em-zone-interaction {{
+            padding-top: 0.5rem;
+          }}
+
+          /* Bento gutters: 20px between modules */
+          div[data-testid="stHorizontalBlock"] {{ gap: 20px !important; }}
+
           section[data-testid="stSidebar"] {{
-            background: linear-gradient(180deg, #faf6ef 0%, {C_SURFACE} 100%) !important;
-            border-right: 1px solid {C_BORDER} !important;
+            background: linear-gradient(180deg, #fafafa 0%, {C_SURFACE} 100%) !important;
+            border-right: 1px solid rgba(0,0,0,0.06) !important;
           }}
           section[data-testid="stSidebar"] .block-container {{
             padding-top: 0.75rem !important;
@@ -250,7 +268,7 @@ def _inject_classical_theme() -> None:
             color: {C_HEADING} !important;
             margin: 0 0 0.15rem 0;
             line-height: 1.15;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.05em;
           }}
           .ui-sidebar-heading {{
             font-family: 'Source Sans 3', sans-serif !important;
@@ -262,15 +280,21 @@ def _inject_classical_theme() -> None:
             margin: 0.75rem 0 0.4rem 0;
           }}
           section[data-testid="stSidebar"] .stButton > button {{
-            border-radius: 6px !important;
-            min-height: 40px !important;
+            border-radius: 12px !important;
+            min-height: 44px !important;
             font-size: 15px !important;
             font-weight: 500 !important;
             font-family: 'Source Sans 3', sans-serif !important;
+            letter-spacing: 0.02em;
             width: 100% !important;
             text-align: left !important;
             justify-content: flex-start !important;
             padding-left: 12px !important;
+            transition: transform 0.22s {C_EASE_PRODUCT}, box-shadow 0.22s {C_EASE_PRODUCT}, background-color 0.22s {C_EASE_PRODUCT} !important;
+          }}
+          section[data-testid="stSidebar"] .stButton > button:hover {{
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
           }}
           section[data-testid="stSidebar"] .stButton > button[kind="primary"] {{
             background-color: {C_PRIMARY} !important;
@@ -280,18 +304,23 @@ def _inject_classical_theme() -> None:
           section[data-testid="stSidebar"] .stButton > button[kind="secondary"] {{
             background-color: {C_SURFACE} !important;
             color: {C_TEXT} !important;
-            border: 1px solid {C_BORDER} !important;
+            border: 1px solid rgba(0,0,0,0.08) !important;
           }}
           section[data-testid="stSidebar"] hr {{
-            border-color: {C_BORDER} !important;
+            border-color: rgba(0,0,0,0.06) !important;
             margin: 0.75rem 0 !important;
           }}
 
           .stButton > button {{
-            border-radius: 6px !important;
+            border-radius: 12px !important;
             font-family: 'Source Sans 3', sans-serif !important;
             font-size: 16px !important;
             font-weight: 500 !important;
+            letter-spacing: 0.02em;
+            transition: transform 0.22s {C_EASE_PRODUCT}, box-shadow 0.22s {C_EASE_PRODUCT}, background-color 0.22s {C_EASE_PRODUCT}, border-color 0.22s {C_EASE_PRODUCT} !important;
+          }}
+          .stButton > button:hover {{
+            transform: translateY(-1px);
           }}
           .stButton > button[kind="primary"] {{
             background-color: {C_PRIMARY} !important;
@@ -301,15 +330,20 @@ def _inject_classical_theme() -> None:
           .stButton > button[kind="primary"]:hover {{
             background-color: #2a4d75 !important;
             color: #faf8f5 !important;
+            box-shadow: 0 6px 20px rgba(30, 58, 95, 0.25);
           }}
           .stButton > button[kind="secondary"] {{
             background-color: {C_SURFACE} !important;
             color: {C_TEXT} !important;
-            border: 1px solid {C_BORDER} !important;
+            border: 1px solid rgba(0,0,0,0.08) !important;
           }}
           .stDownloadButton > button {{
-            border-radius: 6px !important;
+            border-radius: 12px !important;
             font-family: 'Source Sans 3', sans-serif !important;
+            transition: transform 0.22s {C_EASE_PRODUCT}, box-shadow 0.22s {C_EASE_PRODUCT} !important;
+          }}
+          .stDownloadButton > button:hover {{
+            transform: translateY(-1px);
           }}
 
           div[data-testid="column"] {{
@@ -317,27 +351,30 @@ def _inject_classical_theme() -> None:
             padding: 0 !important;
             border: none !important;
           }}
-          div[data-testid="stHorizontalBlock"] {{ gap: 1rem !important; }}
 
-          .em-card {{
+          /* Squircle-style cards (24px radius — superellipse feel without clipping children) */
+          .em-card, .em-panel, .em-squircle {{
             background: {C_SURFACE};
             border: 1px solid {C_BORDER};
-            border-radius: 8px;
-            padding: 14px 16px;
+            border-radius: 24px;
+            padding: 16px 18px;
             margin-bottom: 12px;
-            box-shadow: 0 1px 2px rgba(28, 25, 23, 0.04);
+            box-shadow:
+              0 1px 2px rgba(0,0,0,0.04),
+              0 8px 24px rgba(0,0,0,0.06);
+            transition: box-shadow 0.25s {C_EASE_PRODUCT}, transform 0.25s {C_EASE_PRODUCT};
           }}
           .em-panel {{
             background: {C_SHARK};
-            border: 1px solid {C_BORDER};
-            border-radius: 8px;
-            padding: 12px 14px;
-            margin: 10px 0;
+            padding: 14px 16px;
+          }}
+          .em-bento-tall {{
+            min-height: 280px;
           }}
           .em-panel-label {{
-            font-size: 0.85rem !important;
+            font-size: 0.75rem !important;
             color: {C_MUTED} !important;
-            margin: 0 0 6px 0;
+            margin: 0 0 8px 0;
             font-family: 'Source Sans 3', sans-serif !important;
             font-weight: 600 !important;
             text-transform: uppercase;
@@ -345,52 +382,57 @@ def _inject_classical_theme() -> None:
           }}
           .em-panel-body {{
             color: {C_TEXT_BODY} !important;
-            font-size: 17px !important;
-            line-height: 1.45 !important;
+            font-size: 16px !important;
+            line-height: 1.5 !important;
             margin: 0;
             font-family: 'Source Sans 3', sans-serif !important;
+            letter-spacing: 0.02em;
           }}
 
           .main [class*="-em_generation_hub"] {{
-            border: 1px solid {C_BORDER} !important;
-            border-radius: 8px !important;
+            border: 1px solid rgba(0,0,0,0.06) !important;
+            border-radius: 24px !important;
             padding: 0 !important;
             background: {C_SURFACE} !important;
             margin-bottom: 1.25rem !important;
-            box-shadow: 0 2px 8px rgba(28, 25, 23, 0.06);
+            box-shadow: 0 4px 32px rgba(0,0,0,0.07);
+            overflow: hidden;
           }}
           .main [class*="-em_generation_hub"] > div {{
             background: {C_SURFACE} !important;
             border: none !important;
-            border-radius: 8px !important;
+            border-radius: 24px !important;
             margin: 0 !important;
-            padding: 14px 16px !important;
+            padding: 18px 20px !important;
           }}
 
           .stTextInput > div > div > input,
           .stTextArea > div > div > textarea,
           .stNumberInput input {{
-            border-radius: 6px !important;
+            border-radius: 12px !important;
             background-color: {C_INPUT_BG} !important;
             color: {C_TEXT_BODY} !important;
-            border: 1px solid {C_BORDER} !important;
+            border: 1px solid rgba(0,0,0,0.08) !important;
             font-family: 'Source Sans 3', sans-serif !important;
             font-size: 16px !important;
+            letter-spacing: 0.02em;
           }}
           .stSelectbox [data-baseweb="select"] > div {{
-            border-radius: 6px !important;
+            border-radius: 12px !important;
             background-color: {C_INPUT_BG} !important;
-            border: 1px solid {C_BORDER} !important;
+            border: 1px solid rgba(0,0,0,0.08) !important;
             min-height: 44px !important;
           }}
           .stSelectbox [data-baseweb="select"] span {{
             font-family: 'Source Sans 3', sans-serif !important;
             font-size: 16px !important;
             color: {C_TEXT_BODY} !important;
+            letter-spacing: 0.02em;
           }}
           [data-baseweb="menu"] {{
             background-color: {C_SURFACE} !important;
-            border: 1px solid {C_BORDER} !important;
+            border: 1px solid rgba(0,0,0,0.08) !important;
+            border-radius: 12px !important;
           }}
           [data-baseweb="menu"] li {{
             font-family: 'Source Sans 3', sans-serif !important;
@@ -399,18 +441,19 @@ def _inject_classical_theme() -> None:
 
           [data-testid="stExpander"] {{
             background: {C_SURFACE} !important;
-            border: 1px solid {C_BORDER} !important;
-            border-radius: 8px !important;
+            border: 1px solid rgba(0,0,0,0.08) !important;
+            border-radius: 20px !important;
           }}
           [data-testid="stExpander"] summary {{
             color: {C_PRIMARY} !important;
             font-family: 'Source Sans 3', sans-serif !important;
             font-weight: 500 !important;
+            letter-spacing: 0.02em;
           }}
 
           div[data-testid="stAlert"] {{
-            border-radius: 8px !important;
-            border: 1px solid {C_BORDER} !important;
+            border-radius: 16px !important;
+            border: 1px solid rgba(0,0,0,0.06) !important;
             background-color: {C_SURFACE} !important;
             font-family: 'Source Sans 3', sans-serif !important;
           }}
@@ -420,39 +463,46 @@ def _inject_classical_theme() -> None:
 
           .main [data-testid="stDataFrame"],
           .main [data-testid="stDataFrame"] > div {{
-            border-radius: 8px !important;
-            border: 1px solid {C_BORDER} !important;
+            border-radius: 16px !important;
+            border: 1px solid rgba(0,0,0,0.06) !important;
             background: {C_SURFACE} !important;
             font-family: 'Source Sans 3', sans-serif !important;
+            letter-spacing: 0.02em;
           }}
 
           .ui-hero {{
             font-family: 'Crimson Pro', Georgia, serif !important;
             color: {C_HEADING} !important;
-            font-size: 1.85rem !important;
+            font-size: 2rem !important;
             font-weight: 600 !important;
-            line-height: 1.2;
-            margin: 0 0 0.35rem 0;
-            letter-spacing: -0.02em;
+            line-height: 1.15;
+            margin: 0 0 0.5rem 0;
+            letter-spacing: -0.05em;
           }}
           .ui-hero-sub {{
             font-family: 'Source Sans 3', sans-serif !important;
             color: {C_MUTED} !important;
-            font-size: 0.95rem !important;
-            margin: 0 0 1rem 0;
-            line-height: 1.45;
+            font-size: 1rem !important;
+            margin: 0 0 1.25rem 0;
+            line-height: 1.5;
+            letter-spacing: 0.02em;
           }}
+          /* Rim light + inner glow (active client) */
           .ui-active-client {{
             font-family: 'Source Sans 3', sans-serif !important;
             color: {C_TEXT} !important;
             font-size: 1.05rem !important;
-            margin: 0 0 1rem 0;
-            border-left: 3px solid {C_ACCENT};
-            padding: 8px 12px;
-            background: {C_SURFACE};
-            border-radius: 0 6px 6px 0;
+            margin: 0 0 1.25rem 0;
+            padding: 14px 16px;
+            background: linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 100%);
+            border-radius: 0 20px 20px 0;
             border: 1px solid {C_BORDER};
             border-left: 3px solid {C_ACCENT};
+            box-shadow:
+              inset 0 1px 0 rgba(255,255,255,0.9),
+              inset 0 0 10px rgba(255,255,255,0.1),
+              0 4px 24px rgba(0,0,0,0.06);
+            letter-spacing: 0.02em;
           }}
           .ui-active-client .ui-accent {{ color: {C_PRIMARY} !important; font-weight: 600 !important; }}
 
@@ -471,6 +521,7 @@ def _inject_classical_theme() -> None:
             margin: 0 0 0.25rem 0;
             font-family: 'Crimson Pro', Georgia, serif !important;
             font-weight: 600 !important;
+            letter-spacing: -0.04em;
           }}
           .em-audit-header-sub {{
             font-size: 0.98rem !important;
@@ -478,8 +529,9 @@ def _inject_classical_theme() -> None:
             margin: 0 0 0.75rem 0;
             line-height: 1.45;
             font-family: 'Source Sans 3', sans-serif !important;
+            letter-spacing: 0.02em;
           }}
-          hr {{ border: none !important; border-top: 1px solid {C_BORDER} !important; margin: 1rem 0 !important; }}
+          hr {{ border: none !important; border-top: 1px solid rgba(0,0,0,0.06) !important; margin: 1rem 0 !important; }}
 
           .stProgress > div > div {{
             background-color: {C_PRIMARY} !important;
@@ -511,8 +563,8 @@ def _clipboard_button(label: str, text: str) -> None:
     components.html(
         f"""
         <button type="button"
-          style="padding:0.35rem 0.85rem;border-radius:6px;border:1px solid #cdc6b9;
-                 background:#fffcf7;color:#1e3a5f;cursor:pointer;font-family:'Source Sans 3',system-ui,sans-serif;
+          style="padding:0.35rem 0.85rem;border-radius:12px;border:1px solid #CDC6B9;
+                 background:#FFFFFF;color:#1e3a5f;cursor:pointer;font-family:'Source Sans 3',system-ui,sans-serif;
                  font-size:15px;font-weight:500;"
           onclick="navigator.clipboard.writeText({payload}).catch(()=>{{}})">
           {html.escape(label)}
@@ -978,6 +1030,59 @@ def _render_onboarding() -> None:
     st.markdown("</div>", unsafe_allow_html=True)
 
 
+def _hub_plan_summary_html(client: dict, brand_choices: list[str]) -> str:
+    """Plan summary for Bento left rail — driven by session state (matches manual expander logic)."""
+    _cn = html.escape(str(client["company_name"]))
+    _ind = html.escape(str(client["industry"]))
+    batch = int(st.session_state.get(EM_HUB_BATCH, 1))
+    post_format = st.session_state.get(EM_HUB_POST_FORMAT, POST_FORMAT_OPTIONS[0])
+    if batch <= 1:
+        content_pillar = st.session_state.get(EM_HUB_PILLAR, CONTENT_PILLAR_OPTIONS[0])
+        featured_brand = st.session_state.get(EM_HUB_BRAND, FEATURED_BRAND_NONE)
+        hook_pick = st.session_state.get(EM_HUB_HOOK, "Random")
+    else:
+        content_pillar = CONTENT_PILLAR_OPTIONS[0]
+        featured_brand = FEATURED_BRAND_NONE
+        hook_pick = "Random"
+    _fmt = html.escape(str(post_format))
+    _pil = html.escape(str(content_pillar))
+    _fb = html.escape(str(featured_brand))
+    _co = (
+        f" Co-brand vault: <strong>{_fb}</strong>."
+        if featured_brand != FEATURED_BRAND_NONE
+        else ""
+    )
+    if batch <= 1:
+        _hk = (
+            "Random hook"
+            if hook_pick == "Random"
+            else html.escape(str(hook_pick)[:120])
+        )
+        _batch_line = (
+            f"Pillar: <strong>{_pil}</strong>. Creative hook: <strong>{_hk}</strong>. "
+            f"You copy caption & prompts; images are created manually."
+        )
+    else:
+        _mix_fmt_key = "em_manual_mixed_format"
+        _vf = (
+            "Feed + Story mixed each run."
+            if st.session_state.get(_mix_fmt_key, True)
+            else "Single format (left) for all runs."
+        )
+        _batch_line = (
+            f"<strong>{batch}</strong> runs — randomized pillar, brand, hook. {_vf}"
+        )
+    return (
+        f'<div class="em-panel em-bento-tall em-squircle" role="region" aria-label="Plan summary">'
+        f'<p class="em-panel-label">Plan summary</p>'
+        f'<p class="em-panel-body"><strong>What runs:</strong> Research on <strong>{_cn}</strong> '
+        f"(<strong>{_ind}</strong>), then one creative pass → caption + 1:1 & 9:16 image prompts + overlay JSON."
+        f"{_co if batch <= 1 else ''}</p>"
+        f'<p class="em-panel-body" style="margin-top:0.5rem;">Format: <strong>{_fmt}</strong>. {_batch_line}</p>'
+        f"</div>"
+    )
+
+
 def _render_dashboard_hero() -> None:
     st.markdown(
         '<p class="ui-hero">Endpoint Media — Content console</p>'
@@ -1190,15 +1295,18 @@ def main() -> None:
         _render_overlay_studio(clients)
         return
 
+    # --- Viewing zone (top): hero, context, content gaps — One UI "see first" ---
+    st.markdown('<div class="em-zone em-zone-viewing">', unsafe_allow_html=True)
     _render_dashboard_hero()
 
     if not clients:
         st.markdown(
-            f'<div class="em-card"><p style="color:{C_ATHENS};margin:0;">'
+            f'<div class="em-card em-squircle"><p style="color:{C_ATHENS};margin:0;">'
             f"No clients yet. In the sidebar, click "
             f'<strong style="color:{C_TEXT};">{VIEW_ONBOARD}</strong> to add one.</p></div>',
             unsafe_allow_html=True,
         )
+        st.markdown("</div>", unsafe_allow_html=True)
         return
 
     _require_gemini()
@@ -1226,7 +1334,11 @@ def main() -> None:
         client=client,
     )
 
-    st.markdown("**Content gaps** (last 30 days)")
+    st.markdown(
+        f'<p class="em-audit-header-title" style="margin-top:0.5rem;">Content intelligence</p>'
+        f'<p class="em-audit-header-name" style="font-size:1.1rem;">Gaps · last 30 days</p>',
+        unsafe_allow_html=True,
+    )
     _alerts = db.get_content_gap_analysis(
         _cid,
         content_pillars=CONTENT_PILLAR_OPTIONS,
@@ -1284,364 +1396,338 @@ def main() -> None:
                         _crew_brands_for_client(client, brand_choices),
                     )
 
-    with st.container(border=True, key="em_generation_hub", gap="medium"):
-        st.markdown("#### Generate")
+    st.markdown("</div>", unsafe_allow_html=True)
 
-        # Auto-Pilot must mutate hub keys before selectboxes/inputs with those keys run.
-        if st.session_state.pop(EM_PENDING_AUTOPILOT, False):
-            st.session_state[EM_HUB_POST_FORMAT] = random.choice(tuple(POST_FORMAT_OPTIONS))
-            st.session_state[EM_HUB_PILLAR] = random.choice(tuple(CONTENT_PILLAR_OPTIONS))
-            st.session_state[EM_HUB_BRAND] = random.choice(
-                _crew_brands_for_client(client, brand_choices)
+    # --- Interaction zone (bottom): generation + library — reachability / controls ---
+    st.markdown('<div class="em-zone em-zone-interaction">', unsafe_allow_html=True)
+
+    with st.container(border=True, key="em_generation_hub", gap="medium"):
+        _bc_l, _bc_r = st.columns([5, 7], gap="large")
+        with _bc_l:
+            st.markdown(
+                _hub_plan_summary_html(client, list(_crew_brands_for_client(client, brand_choices))),
+                unsafe_allow_html=True,
             )
-            st.session_state[EM_HUB_HOOK] = random.choice(
-                tuple(_creative_hook_options_for_client(client))
+        with _bc_r:
+            st.markdown("#### Generate")
+
+            # Auto-Pilot must mutate hub keys before selectboxes/inputs with those keys run.
+            if st.session_state.pop(EM_PENDING_AUTOPILOT, False):
+                st.session_state[EM_HUB_POST_FORMAT] = random.choice(tuple(POST_FORMAT_OPTIONS))
+                st.session_state[EM_HUB_PILLAR] = random.choice(tuple(CONTENT_PILLAR_OPTIONS))
+                st.session_state[EM_HUB_BRAND] = random.choice(
+                    _crew_brands_for_client(client, brand_choices)
+                )
+                st.session_state[EM_HUB_HOOK] = random.choice(
+                    tuple(_creative_hook_options_for_client(client))
+                )
+                if is_battery_vertical(client):
+                    st.session_state[EM_HUB_BATTERY_LINE] = random.choice(
+                        ("Random",) + BATTERY_FEATURED_LINE_OPTIONS
+                    )
+                else:
+                    st.session_state[EM_HUB_BATTERY_LINE] = "Auto"
+                st.session_state[EM_HUB_BATCH] = 1
+                _ap_pf = st.session_state[EM_HUB_POST_FORMAT]
+                _ap_pil = st.session_state[EM_HUB_PILLAR]
+                _ap_br = st.session_state[EM_HUB_BRAND]
+                _ap_hk = st.session_state[EM_HUB_HOOK]
+                _ap_bl = st.session_state.get(EM_HUB_BATTERY_LINE, "Auto")
+                _ap_brand_toast = (
+                    "no co-brand (None)"
+                    if _ap_br == FEATURED_BRAND_NONE
+                    else str(_ap_br)
+                )
+                st.toast(
+                    f"Auto-Pilot engaged: Generating a {_ap_pf} about {_ap_pil} featuring {_ap_brand_toast}!",
+                    icon="🎲",
+                )
+                _execute_generation_pipeline(
+                    client,
+                    _ap_pf,
+                    1,
+                    _ap_pil,
+                    _ap_br,
+                    _ap_hk,
+                    _ap_bl,
+                    _crew_brands_for_client(client, brand_choices),
+                )
+
+            _cn = html.escape(str(client["company_name"]))
+            _ind = html.escape(str(client["industry"]))
+            st.markdown(
+                f'<div class="em-card em-squircle" style="margin-top:4px;">'
+                f'<p style="color:{C_WHITE};font-size:1.2rem;font-weight:600;margin:0 0 4px 0;letter-spacing:-0.02em;">{_cn}</p>'
+                f'<p style="color:{C_GRAY};margin:0 0 4px 0;letter-spacing:0.02em;">{_ind}</p></div>',
+                unsafe_allow_html=True,
             )
-            if is_battery_vertical(client):
-                st.session_state[EM_HUB_BATTERY_LINE] = random.choice(
-                    ("Random",) + BATTERY_FEATURED_LINE_OPTIONS
+            if is_firewood_vertical(client):
+                _mix_intro = (
+                    f"<p style='color:{C_ATHENS};font-size:1.02rem;margin:0 0 16px 0;'>"
+                    f"Click once to create <strong style='color:{C_WHITE};'>{MIXED_PACK_POST_COUNT} posts</strong> "
+                    f"with a random mix of pillars (service, education, promo, authority), "
+                    f"<strong style='color:{C_WHITE};'>Feed + Story</strong> formats, and creative hooks—"
+                    f"delivery, braai/coals, product hero, did-you-know, and promo angles driven by your brief "
+                    f"(wood lines, moisture/dry story, Gauteng delivery, WhatsApp orders). "
+                    f"<strong style='color:{C_WHITE};'>No tyre co-brands</strong> for this client.</p>"
+                )
+            elif is_battery_vertical(client):
+                _mix_intro = (
+                    f"<p style='color:{C_ATHENS};font-size:1.02rem;margin:0 0 16px 0;'>"
+                    f"Click once to create <strong style='color:{C_WHITE};'>{MIXED_PACK_POST_COUNT} posts</strong> "
+                    f"with a random mix of pillars (service, education, promo, authority), "
+                    f"<strong style='color:{C_WHITE};'>Feed + Story</strong> formats, and hooks—"
+                    f"battery diagnostics, mobile callouts, fitment, and backup power angles from your brief. "
+                    f"<strong style='color:{C_WHITE};'>No tyre co-brands</strong> for this client.</p>"
                 )
             else:
-                st.session_state[EM_HUB_BATTERY_LINE] = "Auto"
-            st.session_state[EM_HUB_BATCH] = 1
-            _ap_pf = st.session_state[EM_HUB_POST_FORMAT]
-            _ap_pil = st.session_state[EM_HUB_PILLAR]
-            _ap_br = st.session_state[EM_HUB_BRAND]
-            _ap_hk = st.session_state[EM_HUB_HOOK]
-            _ap_bl = st.session_state.get(EM_HUB_BATTERY_LINE, "Auto")
-            _ap_brand_toast = (
-                "no co-brand (None)"
-                if _ap_br == FEATURED_BRAND_NONE
-                else str(_ap_br)
-            )
-            st.toast(
-                f"Auto-Pilot engaged: Generating a {_ap_pf} about {_ap_pil} featuring {_ap_brand_toast}!",
-                icon="🎲",
-            )
-            _execute_generation_pipeline(
-                client,
-                _ap_pf,
-                1,
-                _ap_pil,
-                _ap_br,
-                _ap_hk,
-                _ap_bl,
-                _crew_brands_for_client(client, brand_choices),
-            )
-
-        _cn = html.escape(str(client["company_name"]))
-        _ind = html.escape(str(client["industry"]))
-        st.markdown(
-            f'<div class="em-card" style="margin-top:8px;">'
-            f'<p style="color:{C_WHITE};font-size:1.25rem;font-weight:600;margin:0 0 4px 0;">{_cn}</p>'
-            f'<p style="color:{C_GRAY};margin:0 0 12px 0;">{_ind}</p></div>',
-            unsafe_allow_html=True,
-        )
-        if is_firewood_vertical(client):
-            _mix_intro = (
-                f"<p style='color:{C_ATHENS};font-size:1.02rem;margin:0 0 16px 0;'>"
-                f"Click once to create <strong style='color:{C_WHITE};'>{MIXED_PACK_POST_COUNT} posts</strong> "
-                f"with a random mix of pillars (service, education, promo, authority), "
-                f"<strong style='color:{C_WHITE};'>Feed + Story</strong> formats, and creative hooks—"
-                f"delivery, braai/coals, product hero, did-you-know, and promo angles driven by your brief "
-                f"(wood lines, moisture/dry story, Gauteng delivery, WhatsApp orders). "
-                f"<strong style='color:{C_WHITE};'>No tyre co-brands</strong> for this client.</p>"
-            )
-        elif is_battery_vertical(client):
-            _mix_intro = (
-                f"<p style='color:{C_ATHENS};font-size:1.02rem;margin:0 0 16px 0;'>"
-                f"Click once to create <strong style='color:{C_WHITE};'>{MIXED_PACK_POST_COUNT} posts</strong> "
-                f"with a random mix of pillars (service, education, promo, authority), "
-                f"<strong style='color:{C_WHITE};'>Feed + Story</strong> formats, and hooks—"
-                f"battery diagnostics, mobile callouts, fitment, and backup power angles from your brief. "
-                f"<strong style='color:{C_WHITE};'>No tyre co-brands</strong> for this client.</p>"
-            )
-        else:
-            _mix_intro = (
-                f"<p style='color:{C_ATHENS};font-size:1.02rem;margin:0 0 16px 0;'>"
-                f"Click once to create <strong style='color:{C_WHITE};'>{MIXED_PACK_POST_COUNT} posts</strong> "
-                f"with a random mix of pillars (service, education, promo, authority), "
-                f"<strong style='color:{C_WHITE};'>Feed + Story</strong> formats, "
-                f"tyre co-brands (or None), and hooks—workshop, product ads, did-you-knows, and more.</p>"
-            )
-        st.markdown(_mix_intro, unsafe_allow_html=True)
-
-        _pid = int(client["id"])
-        _ph_key = f"photo_style_edit_{_pid}"
-        if _ph_key not in st.session_state:
-            st.session_state[_ph_key] = str(client.get("photography_style") or "")
-        with st.expander("Photography & visual style (applies to all generations)", expanded=False):
-            st.caption(
-                "Feeds CrewAI image prompts. "
-                + (
-                    "Match real sets—product, delivery, braai, hearth; anti-glossy, documentary realism."
-                    if is_firewood_vertical(client)
-                    else (
-                        "Match real battery scenes—engine bay fitment, diagnostics, callouts; no phones/screens."
-                        if is_battery_vertical(client)
-                        else "Match your real workshop—anti-glossy, documentary realism."
-                    )
+                _mix_intro = (
+                    f"<p style='color:{C_ATHENS};font-size:1.02rem;margin:0 0 16px 0;'>"
+                    f"Click once to create <strong style='color:{C_WHITE};'>{MIXED_PACK_POST_COUNT} posts</strong> "
+                    f"with a random mix of pillars (service, education, promo, authority), "
+                    f"<strong style='color:{C_WHITE};'>Feed + Story</strong> formats, "
+                    f"tyre co-brands (or None), and hooks—workshop, product ads, did-you-knows, and more.</p>"
                 )
-            )
-            st.text_area(
-                "Photography & visual style",
-                height=260,
-                key=_ph_key,
-                placeholder=(
-                    "e.g., Hardware Noir product hero; bronze rim light on splits; shallow DOF; "
-                    "alternate flames/coals, delivery, macro bark—no bag every post; NO glossy CGI."
-                    if is_firewood_vertical(client)
-                    else (
-                        "e.g., Battery fitment bay + under-bonnet closeups; Midtronics tester in frame; "
-                        "mobile callout van context; no phones/app UI; NO glossy CGI."
-                        if is_battery_vertical(client)
+            st.markdown(_mix_intro, unsafe_allow_html=True)
+
+            _pid = int(client["id"])
+            _ph_key = f"photo_style_edit_{_pid}"
+            if _ph_key not in st.session_state:
+                st.session_state[_ph_key] = str(client.get("photography_style") or "")
+            with st.expander("Photography & visual style (applies to all generations)", expanded=False):
+                st.caption(
+                    "Feeds CrewAI image prompts. "
+                    + (
+                        "Match real sets—product, delivery, braai, hearth; anti-glossy, documentary realism."
+                        if is_firewood_vertical(client)
                         else (
-                            "e.g., Documentary-style SA fitment centre; black coin-mat floors, orange lifts, "
-                            "fluorescent + daylight from roll-up door; DSLR 50mm; NO faces, NO glossy CGI."
+                            "Match real battery scenes—engine bay fitment, diagnostics, callouts; no phones/screens."
+                            if is_battery_vertical(client)
+                            else "Match your real workshop—anti-glossy, documentary realism."
                         )
                     )
-                ),
-                label_visibility="collapsed",
-            )
-            if st.button("Save photography style", key=f"save_photo_style_{_pid}"):
-                db.update_client(_pid, photography_style=str(st.session_state.get(_ph_key) or ""))
-                st.session_state.pop(_ph_key, None)
-                st.success("Photography style saved.")
-                st.rerun()
-
-        st.caption(
-            f"⏱ {MIXED_PACK_POST_COUNT} sequential AI runs — usually about a minute or two total. "
-            "Progress bar updates below; failed runs are listed without stopping the batch."
-        )
-        if st.button(
-            f"Generate {MIXED_PACK_POST_COUNT} mixed posts",
-            type="primary",
-            use_container_width=True,
-            key="em_generate_mixed_pack",
-        ):
-            _execute_generation_pipeline(
-                client,
-                POST_FORMAT_OPTIONS[0],
-                MIXED_PACK_POST_COUNT,
-                CONTENT_PILLAR_OPTIONS[0],
-                FEATURED_BRAND_NONE,
-                "Random",
-                "Random" if is_battery_vertical(client) else "Auto",
-                _crew_brands_for_client(client, brand_choices),
-                mixed_variety=True,
-            )
-
-        with st.expander("Manual generation — one post, custom batch, or Auto-Pilot", expanded=False):
-            col_format, col_batch = st.columns(2, gap="large")
-
-            with col_format:
-                st.markdown(
-                    f'<p style="color:{C_GRAY};font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 8px 0;">Post format</p>',
-                    unsafe_allow_html=True,
                 )
-                post_format = st.selectbox(
-                    "Post format",
-                    options=POST_FORMAT_OPTIONS,
+                st.text_area(
+                    "Photography & visual style",
+                    height=260,
+                    key=_ph_key,
+                    placeholder=(
+                        "e.g., Hardware Noir product hero; bronze rim light on splits; shallow DOF; "
+                        "alternate flames/coals, delivery, macro bark—no bag every post; NO glossy CGI."
+                        if is_firewood_vertical(client)
+                        else (
+                            "e.g., Battery fitment bay + under-bonnet closeups; Midtronics tester in frame; "
+                            "mobile callout van context; no phones/app UI; NO glossy CGI."
+                            if is_battery_vertical(client)
+                            else (
+                                "e.g., Documentary-style SA fitment centre; black coin-mat floors, orange lifts, "
+                                "fluorescent + daylight from roll-up door; DSLR 50mm; NO faces, NO glossy CGI."
+                            )
+                        )
+                    ),
                     label_visibility="collapsed",
-                    key=EM_HUB_POST_FORMAT,
                 )
-
-            with col_batch:
-                st.markdown(
-                    f'<p style="color:{C_GRAY};font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 8px 0;">Batch size</p>',
-                    unsafe_allow_html=True,
-                )
-                batch_count = st.number_input(
-                    "How many posts to generate",
-                    min_value=1,
-                    max_value=30,
-                    step=1,
-                    help="Batch mode randomizes pillar, tyre brand, and hook each run. "
-                    "Enable “Randomize Feed vs Story” below for the same variety as the main button.",
-                    label_visibility="collapsed",
-                    key=EM_HUB_BATCH,
-                )
-
-            _mix_fmt_key = "em_manual_mixed_format"
-            if int(batch_count) > 1:
-                st.checkbox(
-                    "Randomize Feed vs Story format on each post (recommended for variety packs)",
-                    key=_mix_fmt_key,
-                    value=True,
-                )
-
-            if int(batch_count) <= 1:
-                col_pillar, col_brand, col_hook = st.columns(3, gap="large")
-                with col_pillar:
-                    st.markdown(
-                        f'<p style="color:{C_GRAY};font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 8px 0;">Content pillar</p>',
-                        unsafe_allow_html=True,
-                    )
-                    content_pillar = st.selectbox(
-                        "Content pillar",
-                        options=CONTENT_PILLAR_OPTIONS,
-                        label_visibility="collapsed",
-                        key=EM_HUB_PILLAR,
-                    )
-                with col_brand:
-                    st.markdown(
-                        f'<p style="color:{C_GRAY};font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 8px 0;">Featured brand</p>',
-                        unsafe_allow_html=True,
-                    )
-                    featured_brand = st.selectbox(
-                        "Featured brand",
-                        options=list(_crew_brands_for_client(client, brand_choices)),
-                        label_visibility="collapsed",
-                        key=EM_HUB_BRAND,
-                    )
-                with col_hook:
-                    st.markdown(
-                        f'<p style="color:{C_GRAY};font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 8px 0;">Creative hook</p>',
-                        unsafe_allow_html=True,
-                    )
-                    hook_pick = st.selectbox(
-                        "Creative hook",
-                        options=["Random"] + list(_creative_hook_options_for_client(client)),
-                        label_visibility="collapsed",
-                        key=EM_HUB_HOOK,
-                    )
-                if is_battery_vertical(client):
-                    st.markdown(
-                        f'<p style="color:{C_GRAY};font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;margin:10px 0 8px 0;">Battery featured line</p>',
-                        unsafe_allow_html=True,
-                    )
-                    battery_line_pick = st.selectbox(
-                        "Battery featured line",
-                        options=list(_battery_line_options_for_client(client)),
-                        label_visibility="collapsed",
-                        key=EM_HUB_BATTERY_LINE,
-                    )
-                else:
-                    battery_line_pick = "Auto"
-            else:
-                _batch_brand_note = (
-                    "**co-brand stays off** (non-tyre vertical)"
-                    if is_non_tyre_vertical(client)
-                    else "**featured tyre brand** (including None)"
-                )
-                st.info(
-                    f"**Batch ×{int(batch_count)}** — each run randomizes **content pillar**, "
-                    f"{_batch_brand_note}, and **creative hook**. "
-                    "Use the checkbox above to also randomize **Feed vs Story** per post."
-                )
-                if is_battery_vertical(client):
-                    battery_line_pick = st.selectbox(
-                        "Battery featured line in batch",
-                        options=["Random"] + list(_battery_line_options_for_client(client)),
-                        help="Choose a fixed battery line for all runs, or Random.",
-                        key=EM_HUB_BATTERY_LINE,
-                    )
-                else:
-                    battery_line_pick = "Auto"
-                content_pillar = CONTENT_PILLAR_OPTIONS[0]
-                featured_brand = FEATURED_BRAND_NONE
-                hook_pick = "Random"
-
-            with st.expander("Client brief", expanded=False):
-                st.markdown(
-                    f'<p style="color:{C_GRAY};"><strong style="color:{C_WHITE};">Tone</strong> · '
-                    f'{html.escape(str(client.get("tone") or "—"))}</p>',
-                    unsafe_allow_html=True,
-                )
-                st.markdown(
-                    f'<p style="color:{C_GRAY};"><strong style="color:{C_WHITE};">Services</strong> · '
-                    f'{html.escape(str(client.get("services_list") or "—"))}</p>',
-                    unsafe_allow_html=True,
-                )
-                st.markdown(
-                    f'<p style="color:{C_GRAY};"><strong style="color:{C_WHITE};">Markets</strong> · '
-                    f'{html.escape(str(client.get("target_markets") or "—"))}</p>',
-                    unsafe_allow_html=True,
-                )
-                st.markdown(
-                    f'<p style="color:{C_GRAY};"><strong style="color:{C_WHITE};">Photography & visual</strong> · '
-                    f'{html.escape(str(client.get("photography_style") or "—"))}</p>',
-                    unsafe_allow_html=True,
-                )
-                st.markdown(
-                    f'<p style="color:{C_ATHENS};">{html.escape(str(client["brand_context"]))}</p>',
-                    unsafe_allow_html=True,
-                )
-
-            _fmt = html.escape(str(post_format))
-            _pil = html.escape(str(content_pillar))
-            _fb = html.escape(str(featured_brand))
-            _co = (
-                f" Co-brand vault: <strong>{_fb}</strong>."
-                if featured_brand != FEATURED_BRAND_NONE
-                else ""
-            )
-            if int(batch_count) <= 1:
-                _hk = (
-                    "Random hook"
-                    if hook_pick == "Random"
-                    else html.escape(str(hook_pick)[:120])
-                )
-                _batch_line = (
-                    f"Pillar: <strong>{_pil}</strong>. Creative hook: <strong>{_hk}</strong>. "
-                    f"You copy caption & prompts; images are created manually."
-                )
-            else:
-                _vf = (
-                    "Feed + Story mixed each run."
-                    if st.session_state.get(_mix_fmt_key, True)
-                    else "Single format (left) for all runs."
-                )
-                _batch_line = (
-                    f"<strong>{int(batch_count)}</strong> runs — randomized pillar, brand, hook. {_vf}"
-                )
-            st.markdown(
-                f'<div class="em-panel" role="region" aria-label="Plan summary">'
-                f'<p class="em-panel-label">Plan summary</p>'
-                f'<p class="em-panel-body"><strong>What runs:</strong> Research on <strong>{_cn}</strong> '
-                f"(<strong>{_ind}</strong>), then one creative pass → caption + 1:1 & 9:16 image prompts + overlay JSON."
-                f"{_co if int(batch_count) <= 1 else ''}</p>"
-                f'<p class="em-panel-body" style="margin-top:0.5rem;">{_batch_line}</p>'
-                f"</div>",
-                unsafe_allow_html=True,
-            )
-
-            st.markdown(
-                "<div style='height:8px;' aria-hidden='true'></div>",
-                unsafe_allow_html=True,
-            )
-            btn_auth, btn_auto = st.columns(2, gap="medium")
-            with btn_auth:
-                if st.button(
-                    "Run generation",
-                    type="primary",
-                    use_container_width=True,
-                    key="em_authorize_execute",
-                ):
-                    _manual_mixed = (
-                        int(batch_count) > 1 and st.session_state.get(_mix_fmt_key, True)
-                    )
-                    _execute_generation_pipeline(
-                        client,
-                        post_format,
-                        int(batch_count),
-                        content_pillar,
-                        featured_brand,
-                        hook_pick,
-                        battery_line_pick,
-                        _crew_brands_for_client(client, brand_choices),
-                        mixed_variety=_manual_mixed,
-                    )
-            with btn_auto:
-                if st.button(
-                    "Auto-Pilot (random settings)",
-                    type="secondary",
-                    use_container_width=True,
-                    key="em_autopilot_surprise",
-                    help="Random format, pillar, brand & hook—then runs the same CrewAI save pipeline.",
-                ):
-                    st.session_state[EM_PENDING_AUTOPILOT] = True
+                if st.button("Save photography style", key=f"save_photo_style_{_pid}"):
+                    db.update_client(_pid, photography_style=str(st.session_state.get(_ph_key) or ""))
+                    st.session_state.pop(_ph_key, None)
+                    st.success("Photography style saved.")
                     st.rerun()
+
+            st.caption(
+                f"⏱ {MIXED_PACK_POST_COUNT} sequential AI runs — usually about a minute or two total. "
+                "Progress bar updates below; failed runs are listed without stopping the batch."
+            )
+            if st.button(
+                f"Generate {MIXED_PACK_POST_COUNT} mixed posts",
+                type="primary",
+                use_container_width=True,
+                key="em_generate_mixed_pack",
+            ):
+                _execute_generation_pipeline(
+                    client,
+                    POST_FORMAT_OPTIONS[0],
+                    MIXED_PACK_POST_COUNT,
+                    CONTENT_PILLAR_OPTIONS[0],
+                    FEATURED_BRAND_NONE,
+                    "Random",
+                    "Random" if is_battery_vertical(client) else "Auto",
+                    _crew_brands_for_client(client, brand_choices),
+                    mixed_variety=True,
+                )
+
+            with st.expander("Manual generation — one post, custom batch, or Auto-Pilot", expanded=False):
+                col_format, col_batch = st.columns(2, gap="large")
+
+                with col_format:
+                    st.markdown(
+                        f'<p style="color:{C_GRAY};font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 8px 0;">Post format</p>',
+                        unsafe_allow_html=True,
+                    )
+                    post_format = st.selectbox(
+                        "Post format",
+                        options=POST_FORMAT_OPTIONS,
+                        label_visibility="collapsed",
+                        key=EM_HUB_POST_FORMAT,
+                    )
+
+                with col_batch:
+                    st.markdown(
+                        f'<p style="color:{C_GRAY};font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 8px 0;">Batch size</p>',
+                        unsafe_allow_html=True,
+                    )
+                    batch_count = st.number_input(
+                        "How many posts to generate",
+                        min_value=1,
+                        max_value=30,
+                        step=1,
+                        help="Batch mode randomizes pillar, tyre brand, and hook each run. "
+                        "Enable “Randomize Feed vs Story” below for the same variety as the main button.",
+                        label_visibility="collapsed",
+                        key=EM_HUB_BATCH,
+                    )
+
+                _mix_fmt_key = "em_manual_mixed_format"
+                if int(batch_count) > 1:
+                    st.checkbox(
+                        "Randomize Feed vs Story format on each post (recommended for variety packs)",
+                        key=_mix_fmt_key,
+                        value=True,
+                    )
+
+                if int(batch_count) <= 1:
+                    col_pillar, col_brand, col_hook = st.columns(3, gap="large")
+                    with col_pillar:
+                        st.markdown(
+                            f'<p style="color:{C_GRAY};font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 8px 0;">Content pillar</p>',
+                            unsafe_allow_html=True,
+                        )
+                        content_pillar = st.selectbox(
+                            "Content pillar",
+                            options=CONTENT_PILLAR_OPTIONS,
+                            label_visibility="collapsed",
+                            key=EM_HUB_PILLAR,
+                        )
+                    with col_brand:
+                        st.markdown(
+                            f'<p style="color:{C_GRAY};font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 8px 0;">Featured brand</p>',
+                            unsafe_allow_html=True,
+                        )
+                        featured_brand = st.selectbox(
+                            "Featured brand",
+                            options=list(_crew_brands_for_client(client, brand_choices)),
+                            label_visibility="collapsed",
+                            key=EM_HUB_BRAND,
+                        )
+                    with col_hook:
+                        st.markdown(
+                            f'<p style="color:{C_GRAY};font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 8px 0;">Creative hook</p>',
+                            unsafe_allow_html=True,
+                        )
+                        hook_pick = st.selectbox(
+                            "Creative hook",
+                            options=["Random"] + list(_creative_hook_options_for_client(client)),
+                            label_visibility="collapsed",
+                            key=EM_HUB_HOOK,
+                        )
+                    if is_battery_vertical(client):
+                        st.markdown(
+                            f'<p style="color:{C_GRAY};font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;margin:10px 0 8px 0;">Battery featured line</p>',
+                            unsafe_allow_html=True,
+                        )
+                        battery_line_pick = st.selectbox(
+                            "Battery featured line",
+                            options=list(_battery_line_options_for_client(client)),
+                            label_visibility="collapsed",
+                            key=EM_HUB_BATTERY_LINE,
+                        )
+                    else:
+                        battery_line_pick = "Auto"
+                else:
+                    _batch_brand_note = (
+                        "**co-brand stays off** (non-tyre vertical)"
+                        if is_non_tyre_vertical(client)
+                        else "**featured tyre brand** (including None)"
+                    )
+                    st.info(
+                        f"**Batch ×{int(batch_count)}** — each run randomizes **content pillar**, "
+                        f"{_batch_brand_note}, and **creative hook**. "
+                        "Use the checkbox above to also randomize **Feed vs Story** per post."
+                    )
+                    if is_battery_vertical(client):
+                        battery_line_pick = st.selectbox(
+                            "Battery featured line in batch",
+                            options=["Random"] + list(_battery_line_options_for_client(client)),
+                            help="Choose a fixed battery line for all runs, or Random.",
+                            key=EM_HUB_BATTERY_LINE,
+                        )
+                    else:
+                        battery_line_pick = "Auto"
+                    content_pillar = CONTENT_PILLAR_OPTIONS[0]
+                    featured_brand = FEATURED_BRAND_NONE
+                    hook_pick = "Random"
+
+                with st.expander("Client brief", expanded=False):
+                    st.markdown(
+                        f'<p style="color:{C_GRAY};"><strong style="color:{C_WHITE};">Tone</strong> · '
+                        f'{html.escape(str(client.get("tone") or "—"))}</p>',
+                        unsafe_allow_html=True,
+                    )
+                    st.markdown(
+                        f'<p style="color:{C_GRAY};"><strong style="color:{C_WHITE};">Services</strong> · '
+                        f'{html.escape(str(client.get("services_list") or "—"))}</p>',
+                        unsafe_allow_html=True,
+                    )
+                    st.markdown(
+                        f'<p style="color:{C_GRAY};"><strong style="color:{C_WHITE};">Markets</strong> · '
+                        f'{html.escape(str(client.get("target_markets") or "—"))}</p>',
+                        unsafe_allow_html=True,
+                    )
+                    st.markdown(
+                        f'<p style="color:{C_GRAY};"><strong style="color:{C_WHITE};">Photography & visual</strong> · '
+                        f'{html.escape(str(client.get("photography_style") or "—"))}</p>',
+                        unsafe_allow_html=True,
+                    )
+                    st.markdown(
+                        f'<p style="color:{C_ATHENS};">{html.escape(str(client["brand_context"]))}</p>',
+                        unsafe_allow_html=True,
+                    )
+
+                st.markdown(
+                    "<div style='height:8px;' aria-hidden='true'></div>",
+                    unsafe_allow_html=True,
+                )
+                btn_auth, btn_auto = st.columns(2, gap="medium")
+                with btn_auth:
+                    if st.button(
+                        "Run generation",
+                        type="primary",
+                        use_container_width=True,
+                        key="em_authorize_execute",
+                    ):
+                        _manual_mixed = (
+                            int(batch_count) > 1 and st.session_state.get(_mix_fmt_key, True)
+                        )
+                        _execute_generation_pipeline(
+                            client,
+                            post_format,
+                            int(batch_count),
+                            content_pillar,
+                            featured_brand,
+                            hook_pick,
+                            battery_line_pick,
+                            _crew_brands_for_client(client, brand_choices),
+                            mixed_variety=_manual_mixed,
+                        )
+                with btn_auto:
+                    if st.button(
+                        "Auto-Pilot (random settings)",
+                        type="secondary",
+                        use_container_width=True,
+                        key="em_autopilot_surprise",
+                        help="Random format, pillar, brand & hook—then runs the same CrewAI save pipeline.",
+                    ):
+                        st.session_state[EM_PENDING_AUTOPILOT] = True
+                        st.rerun()
 
     st.markdown(
         f'<p class="em-audit-header-title" style="margin-top:2.5rem;">Post library</p>'
@@ -1653,10 +1739,11 @@ def main() -> None:
     posts = db.get_posts_for_client(int(client["id"]))
     if not posts:
         st.markdown(
-            f'<div class="em-card"><p style="color:{C_GRAY};margin:0;">'
+            f'<div class="em-card em-squircle"><p style="color:{C_GRAY};margin:0;">'
             f"No generated assets yet for this client.</p></div>",
             unsafe_allow_html=True,
         )
+        st.markdown("</div>", unsafe_allow_html=True)
         return
 
     _seq_map = db.client_post_sequence_by_id(int(client["id"]))
@@ -1859,6 +1946,8 @@ def main() -> None:
             on_change=_make_workflow_change_handler(_pid, _wk),
         )
         st.markdown("<div style='height:8px'></div>", unsafe_allow_html=True)
+
+    st.markdown("</div>", unsafe_allow_html=True)
 
 
 if __name__ == "__main__":

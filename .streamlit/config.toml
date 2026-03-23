@@ -1,11 +1,11 @@
-# Classical light theme (matches app.py editorial CSS)
+# Bento–Halo theme (matches app.py — Athens gray + white cards)
 
 [theme]
 base = "light"
 primaryColor = "#1e3a5f"
-backgroundColor = "#f5f0e8"
-secondaryBackgroundColor = "#fffcf7"
-textColor = "#2c2416"
+backgroundColor = "#F5F5F7"
+secondaryBackgroundColor = "#FFFFFF"
+textColor = "#1d1d1f"
 
 [client]
 toolbarMode = "minimal"
