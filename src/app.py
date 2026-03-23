@@ -20,6 +20,25 @@ if str(_SRC) not in sys.path:
 
 load_dotenv(_SRC.parent / ".env")
 
+
+def _hydrate_env_from_streamlit_secrets() -> None:
+    """Streamlit Community Cloud stores keys in st.secrets; CrewAI reads os.environ."""
+    try:
+        sec = st.secrets
+    except Exception:
+        return
+    for key in (
+        "GEMINI_API_KEY",
+        "MODEL",
+        "PUBLISHER_SHARED_KEY",
+        "PUBLISHER_QUEUE_CLIENTS",
+    ):
+        if key in sec and not (os.getenv(key) or "").strip():
+            val = sec[key]
+            if val is not None and str(val).strip():
+                os.environ[key] = str(val).strip()
+
+
 import database as db
 from config.brand_vault import (
     FEATURED_BRAND_NONE,
@@ -476,7 +495,9 @@ def _inject_classical_theme() -> None:
 
 def _require_gemini() -> None:
     if not os.getenv("GEMINI_API_KEY"):
-        st.error("Set GEMINI_API_KEY in your `.env` file (see `.env.example`).")
+        st.error(
+            "Set **GEMINI_API_KEY** in `.env` locally, or in **Streamlit Cloud → App settings → Secrets**."
+        )
         st.stop()
 
 
@@ -1139,6 +1160,8 @@ def main() -> None:
         layout="wide",
         initial_sidebar_state="expanded",
     )
+    # Must run after set_page_config (first Streamlit call); secrets → os.environ for CrewAI.
+    _hydrate_env_from_streamlit_secrets()
     _inject_classical_theme()
     db.init_db()
 
