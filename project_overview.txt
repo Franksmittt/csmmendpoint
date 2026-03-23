@@ -1,101 +1,226 @@
-=====================================
-  INTELLIGENT CONTENT PLANNER & ASSETS
-=====================================
+================================================================================
+ENDPOINT MEDIA — CONTENT CONSOLE (csmm / csmmendpoint)
+================================================================================
 
-PROJECT GOAL
-------------
-Internal agency dashboard: manage clients in SQLite, run a CrewAI + Gemini pipeline
-to produce captions, Image_Generation_Prompt briefs, and Suggested_Text_Overlay
-(Heading + Footer) for manual design, client approval, and posting. Track delivery
-status (Draft → Sent to Client → Posted), surface content gaps by pillar and
-featured brand (last 30 days), and copy prompts into Midjourney / Gemini / Imagen—no
-in-app image generation or auto-posting.
+WHAT THIS PROJECT IS
+--------------------------------------------------------------------------------
+A Streamlit-based internal tool for a social/content studio ("Endpoint Media").
+It stores client brand profiles in SQLite, runs AI-assisted post generation
+(CrewAI + Gemini) per client, and tracks manual distribution workflow: captions,
+1:1 and 9:16 image prompts, optional overlay JSON, final exported images, QC,
+and a separate "publisher" view for someone who posts to Facebook without
+needing Meta page access.
 
-CURRENT PHASE
--------------
-Text-only creative pipeline, batch generation (1–25 runs), and prompt rules that
-deliberately mix tyre condition, setting, and optics so the feed does not look samey.
+Core idea: one place to generate and approve content, hand off assets + copy
+to a publisher via a private link (query param + shared key), not auto-post
+to Facebook in Phase 1.
 
-HOW THE AI “THINKS” ABOUT IMAGE PROMPTS
----------------------------------------
-Configured in config/tasks.yaml and config/agents.yaml (and reinforced by creative_hook
-options in app.py). The model is instructed to vary visuals intelligently—not every
-post is a grimy workshop with old rubber.
+KEY FILES
+--------------------------------------------------------------------------------
+  src/app.py          Main UI, theme CSS, navigation, generation hub, post library,
+                      publisher queue view (?view=publisher&key=...)
+  src/main.py         Entry: local runs spawn Streamlit on app.py; Cloud runs
+                      app in-process (no nested Streamlit server).
+  src/database.py     SQLite schema, migrations, posts/clients CRUD, QC/publisher
+                      fields, content gap analysis helpers.
+  src/seed_clients.py Default clients inserted when DB has zero clients (fresh deploy).
+  src/crew.py         CrewAI social media crew wiring.
+  src/config/         Brand vault (featured manufacturers), vertical creative rules
+                      (tyre vs battery vs firewood clients).
+  static/titan_ad_exporter.html   "Overlay studio" — browser HTML exporter (html2canvas).
+  .streamlit/config.toml           Streamlit theme tokens (aligns with app CSS).
+  agency.db           Local SQLite file (gitignored). Cloud gets its own ephemeral DB.
+  .env.example        Documents env vars; real secrets go in .env (local) or
+                      Streamlit Cloud Secrets (deployed).
 
-  TYRE CONDITION (MIX, NOT A DEFAULT)
-  - Brand-new tyres: allowed and encouraged when the story fits—fresh tread, honest
-    product shine, mounting context, “just unwrapped” rubber. Real photography language,
-    not plastic CGI gloss on the whole frame.
-  - Worn / dirty / service-context tyres: still valid when the angle is value, heritage,
-    inspection, or gritty bay work. The fitter installs new stock daily; prompts should
-    reflect that variety.
+================================================================================
+USER-FACING VIEWS (SIDEBAR NAVIGATION)
+================================================================================
 
-  WHERE THE SCENE LIVES (SETTING VARIETY)
-  - Documentary workshop / fitment bay when it matches the pillar or hook.
-  - Product-ad and co-brand heroes often OFF the bay: tyre on a pedestal or plinth,
-    wet/dry tarmac, roadside, minimal colour-block sets—always respecting manufacturer
-    vault colours and logo rules (e.g. Dunlop, Continental, Pirelli constraints).
-  - Retail-ready stacks, racks, or detail shots when useful.
+The left sidebar is the primary navigation. Structure:
 
-  OPTICS (ALMOST EVERY PROMPT)
-  - Shallow depth of field described like ~f/1.2–f/1.4: tack-sharp subject, strong
-    background bokeh whether the backdrop is workshop, road, or a minimal set.
+  Endpoint Media          (title — Crimson Pro, large)
+  Content studio          (caption — muted)
 
-  GUARDRAILS
-  - Ban obvious fake-CGI / 3D-render / sterile sci-fi voids; allow authentic new-rubber
-    speculars and controlled product lighting.
-  - Client photography_style remains the default camera character and carries any hard
-    exclusions (e.g. no faces); cleaner hero lighting is allowed when the post calls for it.
+  [ Dashboard ]           Primary nav — generation + post library for selected client
+  [ New client ]          Onboarding form — add/edit client DNA (no generation chrome)
+  [ Overlay studio ]      Full-width embed of Titan-style HTML ad exporter
 
-  WHAT DRIVES VARIETY IN THE APP
-  - content_pillar, featured_brand (tyre vault or None), post_format (1:1 vs 9:16).
-  - creative_angle: fixed hook on single run, or random per run in batch mode—including
-    hooks that explicitly push “product hero (pedestal/road)” vs “workshop moment.”
+  CLIENTS                 (section heading — uppercase, letter-spaced, muted)
+  [ Client name ]         One button per client; active client highlighted (navy).
+                          Clicking a client switches active client and returns to Dashboard.
 
-COMPLETED STEPS (WHERE THINGS STAND)
-------------------------------------
-[Streamlit + SQLite + CrewAI] — current build
-  1. Dependencies: streamlit, pandas, crewai[google-genai]; no MoviePy/Pillow in app
-  2. Environment: .env.example — GEMINI_API_KEY + MODEL; main.py launches Streamlit
-  3. database.py: agency.db (clients + posts); CRUD helpers
-  4. tasks.yaml / agents.yaml: creative_angle; JSON Caption + Image_Generation_Prompt +
-     Suggested_Text_Overlay {Heading, Footer}; DOF + setting + tyre-condition mix as above
-  5. brand_vault.py: featured tyre brands and guidelines for co-brand prompts
-  6. app.py: Generation Hub — batch 1–25; single run = chosen pillar, brand, creative hook;
-     batch = random pillar, brand, hook; audit log + expanders to copy caption & image prompt
-  7. json_utils.py: fence stripping for robust JSON parse
-  8. .streamlit/config.toml: dark DOS-style shell; app.py VT323 + CGA colours; clients in sidebar
+Session state:
+  - current_view: Dashboard | New client | Overlay studio
+  - em_active_client_id: which client is selected for Dashboard generation/library
 
-NEXT STEPS
-----------
-- Optional: export posts to CSV / Notion
-- Optional: multi-user auth for the dashboard
+SPECIAL URL (NO SIDEBAR FLOW)
+--------------------------------------------------------------------------------
+  ?view=publisher&key=<PUBLISHER_SHARED_KEY>
+  External publisher queue: posts marked QC "Ready for Publisher" for clients
+  matching PUBLISHER_QUEUE_CLIENTS. Download ZIP, copy caption, track schedule/posted.
 
-BRAND BIBLES & GENERATION RULES
--------------------------------
-- Playbook: docs/GENERATION_PLAYBOOK.md
-- Client docs: docs/brands/README.md
-- Alberton Tyre Clinic: docs/brands/alberton-tyre-clinic.md (CRM paste blocks + pillar map)
-- Sync Alberton row from bible: uv run python scripts/upsert_alberton_brand.py
-- tasks.yaml: Image_Generation_Prompt obeys brand_context visual DNA + vault compliance
+================================================================================
+DASHBOARD LAYOUT (MAIN WORK AREA) — "Dashboard" VIEW
+================================================================================
 
-LAUNCH INSTRUCTIONS
--------------------
-1. uv sync
-2. cp .env.example .env  → set GEMINI_API_KEY (and MODEL if you change it)
-3. From project root:
-       uv run python src/main.py
-   or:
-       cd src && uv run streamlit run app.py
+When "Dashboard" is selected and at least one client exists:
 
-TECHNICAL STACK
----------------
-- Language:         Python 3.12–3.13
-- LLM:              Google Gemini (default MODEL=gemini/gemini-2.5-flash)
-- Agents:           CrewAI (google-genai extra)
-- UI:               Streamlit
-- Data:             SQLite (agency.db at repo root)
-- Tables:           clients (+ services_list, target_markets, photography_style),
-                    posts (+ suggested_text_overlay JSON text)
-- Env:              python-dotenv
-- Package manager:  uv
+1) HERO (top)
+   - Title: "Endpoint Media — Content console" (class ui-hero)
+   - Subtitle explaining: pick client in sidebar, generate posts, copy assets,
+     track delivery (class ui-hero-sub)
+
+2) ACTIVE CLIENT STRIP
+   - Line: "Active client: <name> · profile #<id>" (class ui-active-client)
+   - Left accent bar in bronze (C_ACCENT); border and light surface background
+
+3) CONTENT GAPS (last 30 days)
+   - Heading + gap analysis alerts from database (pillars / featured brands vs recent posts)
+   - Each alert: info/warning styling; optional "Generate Post to Fill Gap" button
+
+4) GENERATION HUB (contained "card" region)
+   - Wrapped in a bordered, shadowed container (em_generation_hub styling)
+   - Typically includes:
+     - Post format: Standard Feed (1:1) vs Story (9:16)
+     - Content pillar, featured brand (vault), creative hook (options vary by vertical:
+       automotive tyre vs battery vs firewood)
+     - Batch count, mixed-format options, battery product line (battery vertical only)
+     - Plan summary panel (em-panel): explains what will run for this client
+     - Buttons: "Run generation" (primary navy), "Auto-Pilot (random settings)"
+
+5) POST LIBRARY (below generation)
+   - Section header styled as audit block (em-audit-header-*):
+     "Post library" / subtitle about asset delivery & tracking
+   - Summary table (Streamlit dataframe): post #, created, pillar, brand, format,
+     delivery workflow status, QC status
+   - Per-post cards (em-card):
+     - Suggested caption (read-only text area) + Copy button (clipboard iframe)
+     - 1:1 and 9:16 AI image prompts + Copy buttons
+     - Optional expander: suggested text overlay JSON
+     - Meta line: pillar, brand, format
+     - Final images: upload square + vertical, Save, Mark ready for publisher,
+       Revert QC to draft
+     - Delivery status select: Draft / Sent to Client / Posted
+
+================================================================================
+"NEW CLIENT" VIEW
+================================================================================
+- Title: NEW CLIENT
+- Two-column layout for Identity vs Market (columns with gap)
+- Fields: company name, industry, services/products/brands, target markets,
+  brand context, tone, photography style
+- Initialize button creates client in DB and returns user to Dashboard behavior
+
+================================================================================
+"OVERLAY STUDIO" VIEW
+================================================================================
+- Title: Overlay Studio
+- Embeds static/titan_ad_exporter.html via streamlit.components.html (tall iframe)
+- Titan-style layout: dark panel, brand header, optional sub-text, frosted footer;
+  export high-res JPEG via html2canvas (same as standalone HTML prototype)
+- Note in UI: can open the HTML file directly in browser if CDN blocks
+
+================================================================================
+VISUAL DESIGN SYSTEM — COLORS (DESIGN TOKENS IN src/app.py)
+================================================================================
+
+Philosophy: "Classical editorial" — warm paper background, ink-like text,
+restrained navy primary and bronze accent (not neon startup UI).
+
+Token name              Hex         Role
+--------------------------------------------------------------------------------
+C_BG                    #f5f0e8     App page background (warm paper)
+C_SURFACE               #fffcf7     Cards, inputs, sidebar lift, alerts
+C_TEXT                  #2c2416     Primary ink (headings emphasis)
+C_TEXT_BODY             #4a433a     Body copy
+C_MUTED                 #6b6459     Captions, labels, secondary text
+C_BORDER                #cdc6b9     Borders, dividers
+C_INPUT_BG              #fffdf8     Input fields
+C_PRIMARY               #1e3a5f     Navy — primary buttons, H2/H3, sidebar active
+C_ACCENT                #7c5c36     Bronze — left accent bar on active client strip
+C_HEADING               #1c1917     Hero / page titles
+C_SUCCESS               #2f5f46     Success-adjacent (legacy name)
+C_SHARK                 #ebe6dc     Panel background (plan summary panels)
+
+Streamlit native theme (.streamlit/config.toml) mirrors these:
+  primaryColor #1e3a5f, backgroundColor #f5f0e8, secondaryBackgroundColor #fffcf7,
+  textColor #2c2416, base light, toolbar minimal.
+
+================================================================================
+TYPOGRAPHY
+================================================================================
+
+Fonts loaded from Google Fonts (injected in _inject_classical_theme):
+  - Crimson Pro (serif): page titles, sidebar title, section headers, audit titles
+  - Source Sans 3 (sans): body, labels, buttons, inputs, tables
+
+Hierarchy:
+  - Main h1: ~2rem, Crimson Pro semibold, C_HEADING
+  - h2/h3/h4: Crimson Pro, C_PRIMARY
+  - Body: 17px default, C_TEXT_BODY
+  - Captions: ~0.92rem, C_MUTED
+  - Sidebar section "Clients": uppercase micro-label, letter-spacing, C_MUTED
+
+================================================================================
+COMPONENT PATTERNS (CSS CLASSES)
+================================================================================
+
+em-card           Light surface card with border, 8px radius, subtle shadow
+em-panel          Muted background (C_SHARK) plan/summary blocks
+em-panel-label    Uppercase small label above panel body
+em-panel-body     Panel body text
+ui-hero / ui-hero-sub     Dashboard hero title + subtitle
+ui-active-client  Active client row with bronze left border
+em-audit-header-* Post library section titles (uppercase small title + serif name)
+ui-sidebar-title   Sidebar app name
+ui-sidebar-heading Sidebar section labels (e.g. "Clients")
+
+Buttons:
+  - Primary: navy fill (C_PRIMARY), hover slightly lighter blue (#2a4d75)
+  - Secondary: surface fill, C_TEXT, C_BORDER outline
+  - Border radius 6px, medium weight, Source Sans 3
+
+Inputs:
+  - Rounded 6px, C_INPUT_BG, C_BORDER, C_TEXT_BODY
+
+Dataframe:
+  - Bordered, rounded, C_SURFACE background
+
+Progress / spinner:
+  - Progress bar fill C_PRIMARY; spinner color C_PRIMARY
+
+Clipboard buttons (inline HTML):
+  - Light surface, navy text, border #cdc6b9 — matches editorial buttons
+
+================================================================================
+DATA & WORKFLOW (BEHAVIORAL MODEL)
+================================================================================
+
+Clients: company profile, industry, brand_context, tone, services_list,
+         target_markets, photography_style
+
+Posts:  caption, combined image_prompt (legacy), separate 1:1 and 9:16 prompts,
+        suggested_text_overlay JSON, content pillar, featured brand, post format,
+        workflow_status (Draft / Sent to Client / Posted),
+        final image paths (square + vertical), qc_status (Draft / Ready for Publisher),
+        publisher_status, scheduled_for, notes, timestamps.
+
+Seeding: If the clients table is empty on init_db(), seed_clients.py adds
+         Alberton Tyre Clinic, Alberton Battery Mart, Miwesu Fire wood (full briefs).
+
+Publisher: PUBLISHER_SHARED_KEY + PUBLISHER_QUEUE_CLIENTS (comma-separated name
+           fragments) gate the external view.
+
+================================================================================
+FUTURE DIRECTION (NOT YET IMPLEMENTED)
+================================================================================
+
+One-click pipeline discussed: generate → produce two images → apply overlays in
+Python → write to final_posts → optional Approve button → Ready for publisher.
+That would extend the Generation Hub / post-save flow; current Phase 1 uses
+manual image creation + Titan export + upload.
+
+================================================================================
+END OF DOCUMENT
+================================================================================
