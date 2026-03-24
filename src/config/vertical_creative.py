@@ -344,6 +344,13 @@ must repeat and enforce this instruction in plain text:
 4) "Attachment is the source of truth for the product."
 Repeat attachment adherence at least twice in each prompt when product fidelity is required.
 
+EXACT PRODUCT LOCK (CRITICAL):
+- Every offroad post must advertise one exact product only.
+- Both image prompts must begin with: "Exact product to advertise: <product name>".
+- Caption must include the exact same product name string verbatim.
+- Forbidden phrasing: "similar to", "like", "inspired by", "generic off-road shock", or any non-specific product wording.
+- If product specificity is weak in source brief, select the most concrete available product phrase from services_list/brand_context and keep it consistent across caption and both prompts.
+
 VISUAL SUBJECTS:
 - Product-hero ads: clean premium studio OR realistic fitment-bay scene per photography_style.
 - Service highlight: workshop fitment truth, tools, underbody/suspension context, realistic torque/installation cues.

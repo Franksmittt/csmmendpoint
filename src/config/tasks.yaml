@@ -88,6 +88,7 @@ content_creation_task:
     If vertical_mode is automotive: Apply the TYRE RETAIL section below in full.
     If vertical_mode is offroad: SKIP the entire TYRE RETAIL section below. Use offroad product/fitment
     rules from vertical_creative_rules and enforce strict attachment fidelity for product ads.
+    If vertical_mode is offroad, you MUST lock the creative to one exact product.
 
     You are acting as the Master Commercial Art Director: both image prompts must be
     dynamically tailored to this pillar—not a static default. Lean into {creative_angle} for
@@ -132,6 +133,18 @@ content_creation_task:
       family in both caption and image prompt (when truthful and fitment-relevant).
     - For Alberton Battery Mart, keep Eco Plus / Power Plus as preferred promo/value lines where suitable.
     - Do not invent battery specs, CCA/Ah values, prices, or warranty terms not present in the brief.
+
+    OFFROAD PRODUCT ENFORCEMENT (when vertical_mode is offroad — NON-NEGOTIABLE):
+    - Choose exactly ONE specific product to advertise from services_list/brand_context.
+      Use the most concrete product wording available (brand + product family + platform where possible).
+      Example style: "EFS X-Treme shock absorber for Toyota Hilux GD6 front fitment".
+    - Prefix BOTH image prompts with this exact line:
+      "Exact product to advertise: <product name>"
+    - The Caption must repeat the exact same product name verbatim (character-for-character).
+    - Do NOT use vague language such as "similar to", "inspired by", "like EFS/Tough Dog", "off-road shock absorber",
+      or generic category-only wording without a specific product lock.
+    - If a reference attachment will be used, include this exact directive in BOTH prompts:
+      "Use the uploaded reference image of <product name> as the single source of truth."
 
     === TYRE RETAIL — IMAGE & PRODUCT RULES (automotive ONLY; OMIT ENTIRELY IF vertical_mode is firewood OR offroad) ===
 
