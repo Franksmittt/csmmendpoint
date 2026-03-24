@@ -25,13 +25,14 @@ KEY FILES
                       fields, content gap analysis helpers.
   src/seed_clients.py Default clients inserted when DB has zero clients (fresh deploy).
   src/crew.py         CrewAI social media crew wiring.
-  src/config/         Brand vault (featured manufacturers), vertical creative rules
-                      (tyre vs battery vs firewood clients).
+  src/config/         brand_vault.py (tyre co-brands), vertical_creative.py (per-vertical
+                      rules), agents.yaml, tasks.yaml (CrewAI task text + JSON contract).
   static/titan_ad_exporter.html   "Overlay studio" — browser HTML exporter (html2canvas).
   .streamlit/config.toml           Streamlit theme tokens (aligns with app CSS).
   agency.db           Local SQLite file (gitignored). Cloud gets its own ephemeral DB.
   .env.example        Documents env vars; real secrets go in .env (local) or
                       Streamlit Cloud Secrets (deployed).
+  scripts/            upsert_* / add_client_* — programmatic client profile updates into agency.db
 
 ================================================================================
 USER-FACING VIEWS (SIDEBAR NAVIGATION)
@@ -207,25 +208,156 @@ Posts:  caption, combined image_prompt (legacy), separate 1:1 and 9:16 prompts,
         publisher_status, scheduled_for, notes, timestamps.
 
 Seeding: If the clients table is empty on init_db(), seed_clients.py adds
-         Alberton Tyre Clinic, Alberton Battery Mart, Miwesu Fire wood (full briefs).
+         Alberton Tyre Clinic, Alberton Battery Mart, Miwesu Fire wood, Absolute Offroad
+         (full briefs in code — keep in sync with scripts/upsert_*.py).
 
 Publisher: PUBLISHER_SHARED_KEY + PUBLISHER_QUEUE_CLIENTS (comma-separated name
            fragments) gate the external view.
 
 ================================================================================
-LATEST UPDATE - 2026-03-24 (ABSOLUTE OFFROAD ONBOARDING)
+WHERE WE ARE NOW (SPRING 2026)
 ================================================================================
 
-- Added and upserted new client profile: Absolute Offroad.
-- Added dedicated offroad vertical routing (separate from tyre retail, battery, and firewood).
-- Enforced SA-market product realism for offroad posts (no international-only/invented SKUs).
-- Added strict attachment-fidelity rules for product ads (repeat reference-image adherence).
-- Added Absolute Offroad preset to Overlay Studio (Titan exporter).
-- Generated and saved 3 initial Absolute Offroad posts in agency.db.
+Repo / deploy
+  - GitHub: csmmendpoint (Streamlit app can auto-deploy from master).
+  - Local run:  uv run python src/main.py  → Streamlit (usually http://localhost:8501).
+  - Hosted: Streamlit Community Cloud — app URL is managed in Streamlit dashboard; waking
+    from sleep redeploys from latest Git when Cloud rebuilds.
 
-Operational note:
-- Absolute Offroad generation now avoids tyre manufacturer co-brand randomization and uses
-  offroad-specific creative hooks and rules.
+Environment
+  - GEMINI_API_KEY required for generation (local .env or Streamlit Secrets).
+  - PUBLISHER_SHARED_KEY + PUBLISHER_QUEUE_CLIENTS for external publisher view.
+
+Database
+  - agency.db is local; Cloud has its own SQLite (not in git). Client rows must exist on
+    each environment (seed, onboarding UI, or scripts/upsert_*.py).
+
+Clients in seed + onboarding (conceptual)
+  - Alberton Tyre Clinic, Alberton Battery Mart, Miwesu Fire wood (seed when DB empty).
+  - Absolute Offroad added via scripts/upsert_absolute_offroad.py and aligned seed_clients.
+  - Overlay Studio presets: ATC, ABM, Miwesu, Absolute Offroad (static/titan_ad_exporter.html).
+
+Recent behaviour changes (high level)
+  - Absolute Offroad: offroad vertical — exact product naming in prompts, SA-market guardrails,
+    attachment fidelity for product-reference images.
+  - Alberton Battery Mart: diagnostics framed as health check on customer battery/charging system;
+    Eco Plus / Power Plus mainly install/showcase/promo (not “new battery is faulty”);
+    mix of in-store and studio/magazine-style ads allowed.
+
+================================================================================
+AI GENERATION MODEL — HOW EACH CUSTOMER / VERTICAL "THINKS"
+================================================================================
+
+This section explains the rules the app encodes so CrewAI output stays on-brand. The
+"model" here is the combination of: CrewAI agents, task prompts (tasks.yaml), injected
+vertical rules (vertical_creative.py), optional tyre brand vault (brand_vault.py),
+and each client row in SQLite (brand_context, services_list, photography_style, etc.).
+
+PIPELINE (same for all clients)
+  1) User selects client + options in Dashboard (format, pillar, featured brand where
+     applicable, creative hook, batch).
+  2) App builds inputs: company profile + vertical_mode + vertical_creative_rules +
+     research_vertical_hint + featured_brand / brand_guidelines / brand_models (tyres only).
+  3) CrewAI runs sequential tasks:
+     - market_researcher (research_task) — bullets grounded in client + pillar.
+     - content_creator (content_creation_task) — ONE JSON object per run:
+         Caption,
+         Image_Generation_Prompt_1_1,
+         Image_Generation_Prompt_9_16,
+         Suggested_Text_Overlay { "Heading", "Footer" }.
+  4) App saves post; images are produced manually from prompts (Phase 1).
+
+VERTICAL ROUTING (src/config/vertical_creative.py)
+  The app picks exactly one vertical per client. That controls which block of rules is
+  injected and which creative hooks appear in the UI.
+
+  vertical_mode values:
+    firewood   — Miwesu (and similar if name/brief matches).
+    battery    — Alberton Battery Mart (name match + battery keywords).
+    offroad    — Absolute Offroad (name match) or strong 4x4/offroad keywords in brief.
+    automotive — default: tyre retail (e.g. Alberton Tyre Clinic).
+
+--------------------------------------------------------------------------------
+AUTOMOTIVE (TYRE RETAIL) — e.g. Alberton Tyre Clinic
+--------------------------------------------------------------------------------
+How it "thinks":
+  - Featured manufacturer (optional): dropdown uses brand_vault.py — slogans, visual rules,
+    SA-oriented model hints for grounding copy (no invented tyre SKUs when co-branded).
+  - Content pillar routes SETTING: promo/authority → clean studio hero; educational →
+    minimal/macro; service → authentic workshop from photography_style.
+  - Mechanical realism: wheel balancing shows tyre ON a rim (not loose carcass on balancer);
+    alignment shows vehicle on rack or believable hardware — not floating tyre-only rigs.
+  - Tyre condition logic: new tyres look new when being fitted; worn only when story needs it.
+  - Demographics: if people appear and photography_style does not forbid faces, prompts ask
+    for diverse, believable SA representation.
+  - Image prompts: dual aspect (1:1 + 9:16), shallow DOF, overlay safe-zones for 1:1.
+
+Hooks (examples): workshop, product hero, did-you-know, promo — tyre-appropriate list in app.py.
+
+--------------------------------------------------------------------------------
+BATTERY — Alberton Battery Mart
+--------------------------------------------------------------------------------
+How it "thinks":
+  - NOT tyre retail: image prompts must not centre tyre tread, tyre-only heroes, or tyre
+    workshop as the product story.
+  - Workshop look when in-store: clean modern SA fit-out (light face brick, floated cement,
+    charcoal feature walls) — from BATTERY_WORKSHOP_VISUAL_SPEC in vertical_creative.py.
+  - Product lines: Eco Plus / Power Plus are priority for VALUE/showcase/install posts.
+    Diagnostics/testing copy should focus on the CUSTOMER'S existing battery and alternator
+    health — not “testing a brand-new Eco Plus/Power Plus because it is faulty.”
+    New batteries appear in install, product hero, and promo contexts without fault implication.
+  - Optional battery line picker in UI for targeted runs.
+  - Scene mix: not every ad must be in-store — allowed: premium studio / magazine / gradient
+    backdrops, product-on-plinth, campaign-style lighting (still photorealistic, no fake UI).
+
+Hooks: battery-specific list (diagnostics, callout, Start/Stop, fleet, backup power, etc.).
+
+--------------------------------------------------------------------------------
+FIREWOOD — Miwesu Fire wood
+--------------------------------------------------------------------------------
+How it "thinks":
+  - No tyre metaphors, no tyre vault co-branding for images/caption.
+  - Wood imagery must follow SA hardwood xylology (Geelhaak, Knoppiesdoring, Sekelbos, etc.) —
+    ban generic Northern pine/oak/birch look; details in MIWESU_WOOD_VISUAL_SPEC.
+  - No phones, tablets, chat UI, or app screens in images — WhatsApp stays in caption CTA only.
+  - Product names, bag sizes, MOQs, zones only from brief — no invented prices or suburbs.
+
+Hooks: braai, delivery, product hero, ember/abstract heat, educational macro, etc.
+
+--------------------------------------------------------------------------------
+OFFROAD — Absolute Offroad
+--------------------------------------------------------------------------------
+How it "thinks":
+  - Not tyre retail: tyre manufacturer vault and TYRE RETAIL block in tasks.yaml are skipped.
+  - South Africa market guardrails: advertise products/brands that are credible SA-available
+    per brief; no invented SKUs or international-only lines presented as in-stock.
+  - Exact product lock: both image prompts must lead with a line like
+    "Exact product to advertise: <one specific product string>" and the caption must repeat
+    the same string — no vague "similar to EFS/Tough Dog" style-only wording.
+  - Product ads with a user-supplied reference image: prompts repeat strict attachment
+    fidelity — study attachment, match geometry/colour/branding, do not mutate the product.
+  - Creative hooks are offroad-specific (suspension authority, protection, recovery, platform
+    angles, etc.), not generic tyre hooks.
+
+--------------------------------------------------------------------------------
+SHARED JSON & QUALITY RULES (tasks.yaml — content_creation_task)
+--------------------------------------------------------------------------------
+  - Every run outputs valid JSON only (no markdown fences): Caption + two prompts + overlay.
+  - Captions end with contact block from brand_context (phones, WhatsApp, site, address rules
+    per client), plus one line of 3–8 hashtags.
+  - Dual prompts must match aspect (1:1 square vs 9:16 vertical) and usually share the same
+    creative idea with recomposed framing.
+
+================================================================================
+LATEST UPDATE (DOCUMENT) — 2026-03-24+
+================================================================================
+
+- Absolute Offroad onboarded; offroad vertical; exact product naming; attachment fidelity;
+  Overlay Studio preset; pushed to origin/master.
+- Alberton Battery Mart rules refined: diagnostic vs showcase semantics; Eco Plus / Power Plus
+  positioning; non-store studio/magazine ads allowed.
+- Offroad prompt strictness pushed: commit history on master includes fix: enforce exact
+  offroad product naming and battery creative refinements.
 
 ================================================================================
 FUTURE DIRECTION (NOT YET IMPLEMENTED)
