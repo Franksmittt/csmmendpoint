@@ -307,6 +307,17 @@ PRODUCT PRIORITY: If brand_context/services_list include focus brands, prefer th
 For Alberton Battery Mart strategy, prioritize Eco Plus and Power Plus in promo/feature posts while still allowing
 Willard/Exide/Enertec where needed for fitment accuracy and trust positioning.
 
+DIAGNOSTIC NARRATIVE GUARDRAIL (CRITICAL):
+- Do NOT imply a newly installed Eco Plus or Power Plus battery is being tested because it is faulty.
+- Diagnostic/testing visuals should usually depict the customer's existing battery and full charging-system check
+  (battery + alternator) before replacement decisions.
+- Eco Plus / Power Plus should mainly appear in:
+  1) new installation visuals, or
+  2) product hero/showcase ads, or
+  3) value/promo messaging where no fault implication is made.
+- If diagnostics and Eco Plus / Power Plus appear in the same post, wording must stay preventative/professional:
+  "pre-fitment verification", "charging-system assessment", or "health check" — never "new battery problem".
+
 AUDIENCE: Alberton / New Redruth / Meyersdal + nearby industrial/commercial (e.g., Alrode, Germiston) depending
 on brief. Cover both private motorists (urgent non-start) and fleet/trade customers (downtime cost, reliability).
 
@@ -322,6 +333,12 @@ VISUAL VARIETY (do not repeat one setup):
 6) Deep-cycle/backup power setup (non-gimmicky, real cables and safety posture).
 7) Service counter / reception moment: floated cement counter, brick base, charcoal feature wall, brand-true signage
    (no readable fake fine print).
+
+NOT ALWAYS IN-STORE (IMPORTANT):
+- It is valid to generate premium poster/magazine-style ads without store interior context.
+- Allowed non-store setups: clean gradient studio backgrounds, minimal commercial backdrops, product-on-plinth hero,
+  high-end ad lighting, and campaign-style compositions that still remain photorealistic and brand-true.
+- Keep a healthy mix: workshop realism + product-ad studio executions.
 
 REALISM: No CGI plastic renders, no impossible cable routing, no wrong terminal orientation, no random engine parts.
 """.strip()
