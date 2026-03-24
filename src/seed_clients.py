@@ -164,6 +164,56 @@ MIWESU_PHOTO = (
     "avoid plastic HDR and fake campfire CGI; authentic South African context when location shots are used."
 )
 
+# --- Absolute Offroad (from scripts/upsert_absolute_offroad.py) ---
+
+AO_COMPANY = "Absolute Offroad"
+
+AO_INDUSTRY = "4x4 accessories and fitment specialist — South African market (Alberton)."
+
+AO_BRAND_CONTEXT = """Absolute Offroad is a South African 4x4 specialist focused on technical fitment and real-world overlanding upgrades.
+Location: 28 St Columb Rd, New Redruth, Alberton, 1449.
+Phone / WhatsApp: +27 79 507 0901.
+Email: info@absoluteoffroad.co.za.
+Website: https://absoluteoffroad.co.za/
+Hours: Monday-Friday 08:00-17:00.
+
+Core positioning: engineering-first fitment quality for suspension, protection, recovery, and touring-ready vehicle builds.
+Use only products/brands currently sold in South Africa and listed in the research brief context.
+Do not advertise international-only variants not available in SA.
+Do not invent prices, stock levels, lead times, or warranties.
+
+CRITICAL product-visual rule for product ads:
+If a reference product image is provided by user attachment, the model must match that product exactly.
+Repeat in prompt wording that attachment is source of truth and must be followed strictly.
+No colour swaps, no badge/logo swaps, no geometry changes, no added/removed hardware."""
+
+AO_TONE = (
+    "Confident, technical, premium, practical South African 4x4 voice. "
+    "Authority without hype. Engineering clarity over generic promo fluff."
+)
+
+AO_SERVICES = """Suspension and fitment solutions for key SA platforms (Toyota Hilux/Fortuner/Land Cruiser, Ford Ranger, Suzuki Jimny, Isuzu D-Max where applicable).
+4x4 protection and armour categories: replacement bumpers, sliders, underbody protection.
+Recovery and touring support categories: winch/recovery accessories and off-road support hardware where in brief.
+Brand families to prioritize only when relevant and SA-available per brief: EFS, Tough Dog, Formula 4x4, Onca, MCC, Wildog, Takla, De Graaf, Opposite Lock distributed lines.
+Avoid generic camping-heavy narratives unless explicitly in client brief for that post."""
+
+AO_MARKETS = """South African 4x4 owners and overlanders in Gauteng and nearby regions.
+Primary personas: serious overlanders, technical enthusiasts, bakkie owners needing load-correct fitment, and premium build customers wanting reliable component selection.
+Buying triggers: product authenticity, fitment correctness, harsh-road durability, and trust in local support."""
+
+AO_PHOTO = """Photorealistic South African off-road fitment realism.
+Use premium workshop or grounded outdoor contexts depending on pillar.
+Product ads must clearly show true hardware details.
+No CGI plastic look, no fantasy accessories, no random part substitutions.
+
+For product-image ads with a user attachment, include these constraints explicitly in the prompt:
+1) Study the attached image in strict detail.
+2) Study the attached image in strict detail again before rendering.
+3) Match exact product shape, colour, branding, finish, and hardware layout.
+4) Do not alter, stylize, simplify, or "improve" the product.
+5) Do not add/remove parts; attachment is the source of truth."""
+
 
 def apply_seed_clients() -> None:
     """Insert default clients when the clients table is empty."""
@@ -193,4 +243,13 @@ def apply_seed_clients() -> None:
         services_list=MIWESU_SERVICES,
         target_markets=MIWESU_MARKETS,
         photography_style=MIWESU_PHOTO,
+    )
+    db.add_client(
+        AO_COMPANY,
+        AO_INDUSTRY,
+        AO_BRAND_CONTEXT,
+        tone=AO_TONE,
+        services_list=AO_SERVICES,
+        target_markets=AO_MARKETS,
+        photography_style=AO_PHOTO,
     )

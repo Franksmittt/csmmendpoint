@@ -1,11 +1,8 @@
 """
-Placeholder: upsert Absolute Offroad into agency.db when research is ready.
+Upsert Absolute Offroad into agency.db with approved SA-focused brief.
 
 Usage (repo root):
     uv run python scripts/upsert_absolute_offroad.py
-
-Add PUBLISHER_QUEUE_CLIENTS fragment (e.g. absolute offroad) in `.env` so the
-publisher link can include this client after onboarding.
 """
 
 from __future__ import annotations
@@ -23,19 +20,51 @@ import database as db  # noqa: E402
 COMPANY_NAME = "Absolute Offroad"
 MATCH_SUBSTRING = "absolute offroad"
 
-# TODO: Replace with approved research (site, services, tone, markets).
-INDUSTRY = "Automotive / 4x4 — off-road accessories and fitment (South Africa)."
+INDUSTRY = "4x4 accessories and fitment specialist — South African market (Alberton)."
 
-BRAND_CONTEXT = """TBD: trading name, locations, core categories (lift kits, recovery, tyres, etc.),
-proof points, and compliance rules. Do not invent stock, prices, or warranties."""
+BRAND_CONTEXT = """Absolute Offroad is a South African 4x4 specialist focused on technical fitment and real-world overlanding upgrades.
+Location: 28 St Columb Rd, New Redruth, Alberton, 1449.
+Phone / WhatsApp: +27 79 507 0901.
+Email: info@absoluteoffroad.co.za.
+Website: https://absoluteoffroad.co.za/
+Hours: Monday-Friday 08:00-17:00.
 
-TONE = "TBD: confident, technical, adventure-capable — match final brand voice."
+Core positioning: engineering-first fitment quality for suspension, protection, recovery, and touring-ready vehicle builds.
+Use only products/brands currently sold in South Africa and listed in the research brief context.
+Do not advertise international-only variants not available in SA.
+Do not invent prices, stock levels, lead times, or warranties.
 
-SERVICES_LIST = "TBD: list real services and product lines after research."
+CRITICAL product-visual rule for product ads:
+If a reference product image is provided by user attachment, the model must match that product exactly.
+Repeat in prompt wording that attachment is source of truth and must be followed strictly.
+No colour swaps, no badge/logo swaps, no geometry changes, no added/removed hardware."""
 
-TARGET_MARKETS = "TBD: primary service areas and customer segments."
+TONE = (
+    "Confident, technical, premium, practical South African 4x4 voice. "
+    "Authority without hype. Engineering clarity over generic promo fluff."
+)
 
-PHOTOGRAPHY_STYLE = "TBD: workshop, trail, product hero — align with brand deck."
+SERVICES_LIST = """Suspension and fitment solutions for key SA platforms (Toyota Hilux/Fortuner/Land Cruiser, Ford Ranger, Suzuki Jimny, Isuzu D-Max where applicable).
+4x4 protection and armour categories: replacement bumpers, sliders, underbody protection.
+Recovery and touring support categories: winch/recovery accessories and off-road support hardware where in brief.
+Brand families to prioritize only when relevant and SA-available per brief: EFS, Tough Dog, Formula 4x4, Onca, MCC, Wildog, Takla, De Graaf, Opposite Lock distributed lines.
+Avoid generic camping-heavy narratives unless explicitly in client brief for that post."""
+
+TARGET_MARKETS = """South African 4x4 owners and overlanders in Gauteng and nearby regions.
+Primary personas: serious overlanders, technical enthusiasts, bakkie owners needing load-correct fitment, and premium build customers wanting reliable component selection.
+Buying triggers: product authenticity, fitment correctness, harsh-road durability, and trust in local support."""
+
+PHOTOGRAPHY_STYLE = """Photorealistic South African off-road fitment realism.
+Use premium workshop or grounded outdoor contexts depending on pillar.
+Product ads must clearly show true hardware details.
+No CGI plastic look, no fantasy accessories, no random part substitutions.
+
+For product-image ads with a user attachment, include these constraints explicitly in the prompt:
+1) Study the attached image in strict detail.
+2) Study the attached image in strict detail again before rendering.
+3) Match exact product shape, colour, branding, finish, and hardware layout.
+4) Do not alter, stylize, simplify, or "improve" the product.
+5) Do not add/remove parts; attachment is the source of truth."""
 
 
 def main() -> None:

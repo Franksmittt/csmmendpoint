@@ -213,6 +213,21 @@ Publisher: PUBLISHER_SHARED_KEY + PUBLISHER_QUEUE_CLIENTS (comma-separated name
            fragments) gate the external view.
 
 ================================================================================
+LATEST UPDATE - 2026-03-24 (ABSOLUTE OFFROAD ONBOARDING)
+================================================================================
+
+- Added and upserted new client profile: Absolute Offroad.
+- Added dedicated offroad vertical routing (separate from tyre retail, battery, and firewood).
+- Enforced SA-market product realism for offroad posts (no international-only/invented SKUs).
+- Added strict attachment-fidelity rules for product ads (repeat reference-image adherence).
+- Added Absolute Offroad preset to Overlay Studio (Titan exporter).
+- Generated and saved 3 initial Absolute Offroad posts in agency.db.
+
+Operational note:
+- Absolute Offroad generation now avoids tyre manufacturer co-brand randomization and uses
+  offroad-specific creative hooks and rules.
+
+================================================================================
 FUTURE DIRECTION (NOT YET IMPLEMENTED)
 ================================================================================
 

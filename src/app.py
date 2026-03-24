@@ -53,6 +53,7 @@ from config.vertical_creative import (
     is_battery_vertical,
     is_firewood_vertical,
     is_non_tyre_vertical,
+    is_offroad_vertical,
 )
 from crew import SocialMediaCrew
 from json_utils import parse_crew_json
@@ -126,6 +127,17 @@ CREATIVE_HOOK_OPTIONS = (
     "Workshop moment: fitment bay—honest light; new OR worn tyres as the story demands",
 )
 
+OFFROAD_CREATIVE_HOOK_OPTIONS = (
+    "Suspension authority: explain one real fitment benefit for SA terrain",
+    "Product hero: exact hardware detail and engineering quality in focus",
+    "Workshop proof: before/after fitment credibility with practical outcome",
+    "Protection build: bumpers/sliders/bash plates and why the setup matters",
+    "Recovery readiness: practical gear and safety-first usage context",
+    "Myth-bust: what customers get wrong about 4x4 upgrades",
+    "Platform-specific angle: Hilux, Land Cruiser, Ranger, Jimny fitment relevance",
+    "Brand trust: local SA availability and booking confidence",
+)
+
 # Firewood / solid fuel — no tyre metaphors in hooks (mixed packs & Auto-Pilot use these).
 FIREWOOD_CREATIVE_HOOK_OPTIONS = (
     "Quick tip: storing splits, lighting a clean fire, or keeping hardwood dry",
@@ -162,6 +174,8 @@ BATTERY_FEATURED_LINE_OPTIONS = (
 
 
 def _creative_hook_options_for_client(client: dict) -> tuple[str, ...]:
+    if is_offroad_vertical(client):
+        return OFFROAD_CREATIVE_HOOK_OPTIONS
     if is_battery_vertical(client):
         return BATTERY_CREATIVE_HOOK_OPTIONS
     return (
@@ -1255,7 +1269,7 @@ def _render_overlay_studio(clients: list[dict]) -> None:
     st.info(
         f"**Standalone:** open `{_TITAN_EXPORTER_HTML}` directly in Chrome/Edge if the embedded "
         "view blocks the CDN script (rare). "
-        "Presets: Alberton Tyre Clinic, Alberton Battery Mart, Miwesu Fire Wood."
+        "Presets: Alberton Tyre Clinic, Alberton Battery Mart, Miwesu Fire Wood, Absolute Offroad."
     )
 
 

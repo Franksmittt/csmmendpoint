@@ -9,7 +9,7 @@ from __future__ import annotations
 
 from typing import Literal
 
-VerticalMode = Literal["firewood", "battery", "automotive"]
+VerticalMode = Literal["firewood", "battery", "automotive", "offroad"]
 
 # Single source of truth from "WHAT THE WOOD LOOKS LIKE" research — prompt engineering for
 # generative image models (rejects Northern Hemisphere pine/oak/birch defaults).
@@ -129,7 +129,38 @@ def is_battery_vertical(client: dict) -> bool:
 
 
 def is_non_tyre_vertical(client: dict) -> bool:
-    return is_firewood_vertical(client) or is_battery_vertical(client)
+    return is_firewood_vertical(client) or is_battery_vertical(client) or is_offroad_vertical(client)
+
+
+def is_offroad_vertical(client: dict) -> bool:
+    slug = _name_slug(client)
+    if "absolute offroad" in slug:
+        return True
+    blob = " ".join(
+        [
+            str(client.get("company_name") or ""),
+            str(client.get("industry") or ""),
+            str(client.get("brand_context") or ""),
+            str(client.get("services_list") or ""),
+        ]
+    ).lower()
+    return (
+        not is_firewood_vertical(client)
+        and not is_battery_vertical(client)
+        and any(
+            k in blob
+            for k in (
+                "4x4",
+                "offroad",
+                "off-road",
+                "overland",
+                "suspension kit",
+                "bullbar",
+                "bumper",
+                "recovery gear",
+            )
+        )
+    )
 
 
 def get_vertical_mode(client: dict) -> VerticalMode:
@@ -137,6 +168,8 @@ def get_vertical_mode(client: dict) -> VerticalMode:
         return "firewood"
     if is_battery_vertical(client):
         return "battery"
+    if is_offroad_vertical(client):
+        return "offroad"
     return "automotive"
 
 
@@ -151,6 +184,10 @@ def get_vertical_creative_rules_for_tasks(client: dict) -> str:
         return _BATTERY_VERTICAL_BLOCK.format(
             company=client.get("company_name", "Alberton Battery Mart"),
             battery_workshop_visual_spec=BATTERY_WORKSHOP_VISUAL_SPEC,
+        )
+    if is_offroad_vertical(client):
+        return _OFFROAD_VERTICAL_BLOCK.format(
+            company=client.get("company_name", "Absolute Offroad"),
         )
     if not is_firewood_vertical(client):
         return (
@@ -290,6 +327,41 @@ REALISM: No CGI plastic renders, no impossible cable routing, no wrong terminal 
 """.strip()
 
 
+_OFFROAD_VERTICAL_BLOCK = """
+VERTICAL=offroad (4x4 accessories, suspension, armour, recovery — NOT tyre retail). IGNORE tyre-model vault logic,
+tread-only storytelling, and tyre fitment mandates. Featured tyre co-brand must be treated as "None" for this vertical.
+
+CLIENT DNA — {company}: Focus on South African-available 4x4 products and fitment truth from brand_context/services_list.
+Priority categories: suspension systems (e.g., EFS, Tough Dog, Formula 4x4), protection (Onca, Wildog, MCC),
+interior protection (Takla), exhaust (De Graaf), and recovery/lighting where explicitly listed in the brief.
+
+ATTACHMENT FIDELITY RULE (CRITICAL FOR PRODUCT ADS):
+When a post promotes a specific product SKU or product family and the user supplies a reference image, BOTH image prompts
+must repeat and enforce this instruction in plain text:
+1) "Study the attached reference image in strict detail."
+2) "Match the exact product shape, branding, colour, finish, geometry, and hardware layout from the attachment."
+3) "Do not alter or stylize the product; do not add/remove parts; do not change colours, decals, logos, or proportions."
+4) "Attachment is the source of truth for the product."
+Repeat attachment adherence at least twice in each prompt when product fidelity is required.
+
+VISUAL SUBJECTS:
+- Product-hero ads: clean premium studio OR realistic fitment-bay scene per photography_style.
+- Service highlight: workshop fitment truth, tools, underbody/suspension context, realistic torque/installation cues.
+- Educational: close macro details (shock body, valving hardware, brackets, bushings), clean negative space for overlays.
+
+FORBIDDEN:
+- Invented products/SKUs/brands not in South African availability context from brief.
+- Generic international-only models not sold locally.
+- Product mutations (wrong colourways, wrong logos, fake branding, altered components).
+- Phone UI/chat screen overlays in visuals unless explicitly requested.
+
+CAPTION GUARDRAILS:
+- Mention only products/brands that are actually sold in SA per brief.
+- Avoid fabricated price/warranty/lead-time claims.
+- Keep CTA practical: WhatsApp/phone, fitment booking, and location trust.
+""".strip()
+
+
 def get_research_vertical_hint(client: dict) -> str:
     """Shorter addition for research_task."""
     if is_battery_vertical(client):
@@ -298,6 +370,12 @@ def get_research_vertical_hint(client: dict) -> str:
             "mobile callout response, fleet downtime prevention, and local suburb service trust. "
             "Workshop imagery: ultra-clean modern SA fit-out—light face brick, floated cement counters/floors, "
             "charcoal feature walls, bright daylight—not a grimy generic garage."
+        )
+    if is_offroad_vertical(client):
+        return (
+            "Offroad vertical: prioritize South African-available 4x4 products only (no international-only SKUs), "
+            "fitment trust, and technical credibility. For product ads with reference attachments, enforce strict "
+            "attachment fidelity (exact product colours/geometry/branding; no modifications)."
         )
     if not is_firewood_vertical(client):
         return (
