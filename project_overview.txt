@@ -24,14 +24,24 @@ KEY FILES
   src/database.py     SQLite schema, migrations, posts/clients CRUD, QC/publisher
                       fields, content gap analysis helpers.
   src/seed_clients.py Default clients inserted when DB has zero clients (fresh deploy).
-  src/crew.py         CrewAI social media crew wiring.
+  src/crew.py         CrewAI social media crew wiring + `inject_engagement_insights`.
+  src/engagement_learner.py  Posted + engagement metrics → patterns for research + Analytics.
+  src/analytics.py    Plotly + `build_ai_learning_summary` (wraps engagement_learner).
+  src/video_prompts.py  Short Video (9:16) format helper + `is_short_video_format`.
+  src/content_calendar.py  Pillar colors, scheduled-date bucketing, monthly balance vs targets, **CSV/PDF month export**
+                      (`export_month_to_pdf` / ReportLab), **batch auto-scheduling** (`auto_schedule_posts`,
+                      `spread_schedule_dates`, `pillar_sequence_balance`).
+  src/roles.py        URL `?role=` + session — `user_can(...)`, sidebar view sets (admin/copywriter/designer/publisher).
+  src/asset_pipeline.py  Imagen pair + PIL overlay bake orchestration (used by Dashboard post cards).
+  src/image_generation.py Imagen (Gemini API) single-image generation.
+  src/overlay_pil.py   PIL heading/footer bands; parse overlay JSON; PNG or JPEG output.
   src/config/         brand_vault.py (tyre co-brands), vertical_creative.py (per-vertical
                       rules), agents.yaml, tasks.yaml (CrewAI task text + JSON contract).
   static/titan_ad_exporter.html   "Overlay studio" — browser HTML exporter (html2canvas).
   .streamlit/config.toml           Streamlit theme tokens (aligns with app CSS).
   agency.db           Local SQLite file (gitignored). Cloud gets its own ephemeral DB.
   .env.example        Documents env vars; real secrets go in .env (local) or
-                      Streamlit Cloud Secrets (deployed).
+                      Streamlit Cloud Secrets (deployed). PDF export uses ReportLab only — no extra env vars.
   scripts/            upsert_* / add_client_* — programmatic client profile updates into agency.db
 
 ================================================================================
@@ -44,16 +54,21 @@ The left sidebar is the primary navigation. Structure:
   Content studio          (caption — muted)
 
   [ Dashboard ]           Primary nav — generation + post library for selected client
-  [ New client ]          Onboarding form — add/edit client DNA (no generation chrome)
-  [ Overlay studio ]      Full-width embed of Titan-style HTML ad exporter
+  [ Analytics ]           Metrics + AI learning insights (role-gated)
+  [ Content Calendar ]    Scheduled posts + placeholders (role-gated)
+  [ New client ]          Onboarding form — add/edit client DNA (admin only)
+  [ Overlay studio ]      Full-width embed of Titan-style HTML ad exporter (admin + designer)
+
+  Role preview (admin only): dropdown + **Switch role** — writes `?role=` and session `em_role`.
 
   CLIENTS                 (section heading — uppercase, letter-spaced, muted)
   [ Client name ]         One button per client; active client highlighted (navy).
                           Clicking a client switches active client and returns to Dashboard.
 
 Session state:
-  - current_view: Dashboard | New client | Overlay studio
+  - current_view: Dashboard | Analytics | Content Calendar | New client | Overlay studio
   - em_active_client_id: which client is selected for Dashboard generation/library
+  - em_role: admin | copywriter | designer | publisher (also driven by `?role=` in the URL)
 
 SPECIAL URL (NO SIDEBAR FLOW)
 --------------------------------------------------------------------------------
@@ -89,6 +104,12 @@ When "Dashboard" is selected and at least one client exists:
      - Batch count, mixed-format options, battery product line (battery vertical only)
      - Plan summary panel (em-panel): explains what will run for this client
      - Buttons: "Run generation" (primary navy), "Auto-Pilot (random settings)"
+
+   Scheduling (advanced — admin & copywriter, inside Generation Hub)
+   The **Advanced: Generate & Auto-Schedule Batch** expander runs CrewAI for 7–30 posts (optional mixed
+   formats and balance-driven pillars), then assigns **scheduled_for** across the chosen date window via
+   `content_calendar.auto_schedule_posts`. After a run, use **Go to Content Calendar** or **Stay here**
+   to continue in the hub.
 
 5) POST LIBRARY (below generation)
    - Section header styled as audit block (em-audit-header-*):
@@ -342,31 +363,115 @@ How it "thinks":
 --------------------------------------------------------------------------------
 SHARED JSON & QUALITY RULES (tasks.yaml — content_creation_task)
 --------------------------------------------------------------------------------
-  - Every run outputs valid JSON only (no markdown fences): Caption + two prompts + overlay.
+  - Every run outputs valid JSON only (no markdown fences): Caption + two prompts + overlay;
+    for **Short Video (9:16)** format, also **Video_Prompt** (9:16 motion brief for external video tools).
   - Captions end with contact block from brand_context (phones, WhatsApp, site, address rules
     per client), plus one line of 3–8 hashtags.
   - Dual prompts must match aspect (1:1 square vs 9:16 vertical) and usually share the same
     creative idea with recomposed framing.
 
 ================================================================================
-LATEST UPDATE (DOCUMENT) — 2026-03-24+
+LATEST UPDATE — 2026-03-28 (Phase 4 — item 4: Simple team roles / views)
 ================================================================================
 
-- Absolute Offroad onboarded; offroad vertical; exact product naming; attachment fidelity;
-  Overlay Studio preset; pushed to origin/master.
-- Alberton Battery Mart rules refined: diagnostic vs showcase semantics; Eco Plus / Power Plus
-  positioning; non-store studio/magazine ads allowed.
-- Offroad prompt strictness pushed: commit history on master includes fix: enforce exact
-  offroad product naming and battery creative refinements.
+- **`src/roles.py`:** Lightweight roles — **admin** (full), **copywriter** (Crew + captions + calendar + analytics;
+  no Imagen/overlay bake), **designer** (prompts + Imagen + overlay + uploads + Overlay studio; no Crew/caption edits),
+  **publisher** (external queue only). `?role=` syncs with `st.session_state["em_role"]`; **`?view=publisher&key=...`**
+  forces publisher role.
+- **Sidebar:** Nav buttons filtered per role; **admin** sees **Role preview** + **Switch role** (updates URL).
+- **Dashboard:** “Working as …” line under active client; hub/packs/gap-fill/critic/engagement toggle respect permissions;
+  post cards gate caption, Generate assets (Imagen vs prompts-only), QC, uploads, Tools, delivery status.
+- **Publisher queue:** Caption notes role; existing shared-key gate unchanged.
+
+Prior: Phase 4 items 1–3 (calendar, video prompts, engagement learner), Phase 3, vertical rules.
+
+================================================================================
+LATEST UPDATE — 2026-03-27 (Phase 4 — item 3: Deeper AI learning from engagement)
+================================================================================
+
+- **`engagement_learner.build_performance_summary`:** From **Posted** posts with recorded likes/reach,
+  derives pillar reach totals, hook like-rates, 3–6 **winning_patterns** bullets, and recent high
+  performers (caption snippets + metrics). Graceful copy when data is thin.
+- **Crew loop:** `crew.inject_engagement_insights` adds `{engagement_insights}` to the market researcher
+  task (`tasks.yaml`) when the hub toggle is on and at least three qualifying posts exist; otherwise
+  injects an explicit “None” instruction.
+- **Generation Hub:** Checkbox **Use past performance insights** (per client; default ON when enough
+  metrics exist) applies to mixed pack, pillar pack, manual batch, gap-fill, Auto-Pilot, and Ctrl+G.
+- **Analytics:** **AI Learning Insights** card (live snapshot + “Last learned on” timestamp) and optional
+  standouts table.
+- **Post card → Tools:** **Refresh AI Insights for this pillar/hook** stores a scoped snapshot in an expander
+  (falls back to account-wide when the slice is small).
+
+Prior: Phase 4 items 1–2 (calendar, video prompts), Phase 3, vertical rules.
+
+================================================================================
+LATEST UPDATE — 2026-03-26 (Phase 4 — item 2: Video prompt generation)
+================================================================================
+
+- **Short Video (9:16)** is a third post format in the Generation Hub and post library filter (alongside
+  Standard Feed and Story). Crew outputs **Video_Prompt** in JSON when that format is selected; the
+  creative critic refines it like image prompts. Stored in SQLite `posts.video_prompt`.
+- **Dashboard post cards:** Read-only **Video prompt** block with copy; **🎥 Video** badge when a brief
+  exists. **Generate assets** expander: optional **Generate Video Prompt** toggle, editable motion
+  brief, **Save video prompt**, **Regenerate Video Prompt Only** (`VideoPromptOnlyCrew` — no Imagen rerun).
+- **Analytics:** **Posts by format (last 90 days)** table; engagement scatter hover includes format.
+- **Content Calendar:** Day list shows **🎥 Video** for Short Video rows or when `video_prompt` is set.
+  **Export Month as CSV / PDF** (pick any of the three visible months): CSV via pandas; branded PDF via
+  **ReportLab** (warm paper, navy header, balance box, scheduled-post table).
+
+Prior: Phase 4 item 1 (Content Calendar grids, balance, placeholders), Phase 3, client review, assets,
+vertical rules.
+
+================================================================================
+LATEST UPDATE — 2026-03-29 (Phase 5 complete — Production-ready v1.0)
+================================================================================
+
+**Status: Production-ready v1.0** — polish (Item 1), month export (Item 2), and batch generate +
+auto-schedule (Item 3) are shipped.
+
+- **Content Calendar exports:** **Month for export** + **Export Month as CSV** / **PDF** (ReportLab +
+  pandas); disabled when the chosen month has no scheduled posts.
+- **Generation Hub — Advanced: Generate & Auto-Schedule Batch** (admin + copywriter): choose **7 / 14 /
+  21 / 30** posts, **Next 30 days** / **This calendar month** / **Next calendar month**, pillar mix
+  **even** or **follow monthly balance** (`pillar_sequence_balance` — same deficit idea as Balance
+  this month), optional **past performance insights** and **mixed formats** (Feed, Story, Short Video).
+  **Run Batch & Schedule** calls `_execute_generation_pipeline` with `fixed_pillars`, then
+  `content_calendar.auto_schedule_posts` + `update_post_scheduled_for` (noon UTC). Success banner with
+  **Go to Content Calendar** / **Stay here**.
+- **`_execute_generation_pipeline`** now supports `fixed_pillars` and `finalize_ui=False` for callers
+  that finish UX after scheduling.
+
+Prior: Phase 4 calendar/video, Phase 3 bulk/publisher, CrewAI + roles.
+
+================================================================================
+LATEST UPDATE — 2026-03-25 (Phase 4 — item 1: Content Calendar)
+================================================================================
+
+- **Content Calendar (sidebar):** New **Content Calendar** view for the active client — three-column
+  monthly grids (**current month + next two**). Each cell is a button (`day` + post count); a second
+  row shows **pillar-colored dots** (palette aligned to editorial accents in `content_calendar.PILLAR_HEX`).
+  **Balance this month** compares **scheduled_for** posts in that month to scaled weekly targets
+  (`DEFAULT_WEEKLY_TARGETS`: service 1, educational 2, promo 2, authority 1 per week).
+- **Day expander:** Selecting a day lists scheduled posts; **Set scheduled date on draft** calls
+  `database.update_post_scheduled_for` (noon UTC ISO); **Create placeholder post** uses
+  `create_scheduled_placeholder_post` (draft + caption stub + prompts stub). Clears selection with
+  **Clear day selection**. Gap cache bumps after schedule changes.
+
+Prior batches (still true): Phase 3 (bulk actions, analytics, publisher ZIP), Feature 4/5, client
+review, Generate assets, vertical rules.
 
 ================================================================================
 FUTURE DIRECTION (NOT YET IMPLEMENTED)
 ================================================================================
 
-One-click pipeline discussed: generate → produce two images → apply overlays in
-Python → write to final_posts → optional Approve button → Ready for publisher.
-That would extend the Generation Hub / post-save flow; current Phase 1 uses
-manual image creation + Titan export + upload.
+Possible next releases (prioritize with stakeholders):
+
+  1. **Video generation APIs** — Runway / Kling / Luma hooks from saved motion briefs (cost + QC gates).
+  2. **Client review notifications** — WhatsApp or email deep links when approval stage changes.
+  3. **Multi-client / agency views** — cross-client pipeline, shared calendars, workload by copywriter.
+  4. **Usage & cost analytics** — Imagen/CrewAI runs per client, token estimates, export for finance.
+  5. **Scheduling intelligence** — respect blackout days, platform-specific best-time hints, Meta API later.
+  6. **Auth beyond `?role=`** — optional login, audit log, per-user activity.
 
 ================================================================================
 END OF DOCUMENT

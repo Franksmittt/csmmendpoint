@@ -14,6 +14,7 @@ research_task:
     Selected post format for this run: {post_format}
     Selected content pillar: {content_pillar}
     Creative hook / angle for this run: {creative_angle}
+    Past performance signals (optional — if "None", ignore): {engagement_insights}
     If vertical_mode is firewood: do NOT prioritize tyre manufacturer psychology, tread patterns,
     or fitment-bay proof. Instead surface angles for dry hardwood, braai heat, coals, Gauteng
     delivery zones, estate access, WhatsApp/COD trust (copy angle only—do NOT propose phone-in-hand
@@ -45,6 +46,15 @@ content_creation_task:
     {content_pillar}. Do not blend pillars.
     VERTICAL MODE: {vertical_mode}
     {vertical_creative_rules}
+
+    === OUTPUT JSON SCHEMA (MANDATORY — ALL FORMATS) ===
+    Output exactly five top-level keys: "Caption", "Image_Generation_Prompt_1_1",
+    "Image_Generation_Prompt_9_16", "Suggested_Text_Overlay" (object with string keys Heading and Footer),
+    and "Video_Prompt" (string).
+    If post_format is exactly "Short Video (9:16)": "Video_Prompt" MUST be non-empty — a detailed 9:16 vertical VIDEO brief
+    (shot design, camera motion, lighting, pacing, subject beats) suitable for Runway, Kling, Luma, or Gemini Video;
+    still output the full dual still-image prompts (for overlays/thumbnails and brand consistency).
+    If post_format is NOT "Short Video (9:16)": set "Video_Prompt" to exactly "" (empty string).
 
     === DUAL IMAGE PROMPTS (NON-NEGOTIABLE — ALL VERTICAL MODES) ===
     Output TWO complete image prompts for the SAME post — same story, subject, and brand truth, recomposed per canvas:
@@ -254,8 +264,67 @@ content_creation_task:
 
     Suggested_Text_Overlay: JSON object with string keys "Heading" and "Footer" for manual design.
   expected_output: >
-    A single valid JSON object with exactly four top-level keys: "Caption",
-    "Image_Generation_Prompt_1_1", "Image_Generation_Prompt_9_16", and "Suggested_Text_Overlay".
+    A single valid JSON object with exactly five top-level keys: "Caption",
+    "Image_Generation_Prompt_1_1", "Image_Generation_Prompt_9_16", "Suggested_Text_Overlay", and "Video_Prompt".
     Suggested_Text_Overlay must be a JSON object with "Heading" and "Footer" string values.
+    "Video_Prompt" must be "" unless post_format is "Short Video (9:16)".
     No markdown code fences, no extra keys, no trailing text.
+  agent: content_creator
+
+caption_only_task:
+  description: >
+    Regenerate ONLY the "Caption" for {company_name}. Keep the same visual story implied by the
+    existing image prompts — do not contradict Image_Generation_Prompt_1_1 or Image_Generation_Prompt_9_16.
+    VERTICAL MODE: {vertical_mode} — {vertical_creative_rules}
+    Post format: {post_format}. Content pillar: {content_pillar}. Featured brand string: {featured_brand}
+    Brand vault (when co-brand applies): {brand_guidelines}
+    Authorized tire models (automotive co-brand): {brand_models}
+    Battery line preference: {battery_featured_line}
+    Existing caption (tone reference): {existing_caption}
+    Existing 1:1 prompt: {existing_image_prompt_square}
+    Existing 9:16 prompt: {existing_image_prompt_vertical}
+    Brand context: {brand_context}. Tone: {tone}. Services: {services_list}. Markets: {target_markets}
+    Few-shot captions from this client (style only; do not copy verbatim): {few_shot_captions}
+    Footer must keep real phones/WhatsApp/website/address rules from the full pipeline. End with one line of 3–8 hashtags.
+  expected_output: >
+    A single JSON object with exactly one key "Caption" (string). No markdown fences.
+  agent: content_creator
+
+critic_refine_task:
+  description: >
+    Polish this draft JSON for {company_name}. VERTICAL MODE: {vertical_mode}
+    Vertical rules: {vertical_creative_rules}
+    Content pillar: {content_pillar}. Featured brand: {featured_brand}
+    Few-shot style references (do not copy): {few_shot_captions}
+    Draft JSON (improve in place; same schema): {draft_json}
+    Improve voice, clarity, CTA, overlay heading/footer brevity, image prompt precision, and — when
+    "Video_Prompt" is non-empty — refine the video brief for vertical/brand compliance (same guardrails as
+    image prompts: no forbidden devices for firewood, product lock for offroad, tyre realism for automotive).
+    Do not invent facts, SKUs, prices, or contact lines not implied by the draft and brand truth.
+  expected_output: >
+    One JSON object with exactly five keys: "Caption", "Image_Generation_Prompt_1_1",
+    "Image_Generation_Prompt_9_16", "Suggested_Text_Overlay" (object with Heading and Footer), and "Video_Prompt".
+    If the draft had Video_Prompt as "", keep it as "". Otherwise improve the video brief in place.
+    No markdown fences.
+  agent: creative_critic
+
+video_prompt_only_task:
+  description: >
+    Regenerate ONLY the "Video_Prompt" for {company_name} as a **Short Video (9:16)** motion brief.
+    VERTICAL MODE: {vertical_mode} — {vertical_creative_rules}
+    Content pillar: {content_pillar}. Featured brand string: {featured_brand}
+    Brand vault (when co-brand applies): {brand_guidelines}
+    Authorized tire models (automotive co-brand): {brand_models}
+    Battery line preference: {battery_featured_line}
+    Existing caption (context): {existing_caption}
+    Existing 1:1 still prompt: {existing_image_prompt_square}
+    Existing 9:16 still prompt: {existing_image_prompt_vertical}
+    Existing video prompt (revise/improve; keep non-empty): {existing_video_prompt}
+    Brand context: {brand_context}. Tone: {tone}. Services: {services_list}. Markets: {target_markets}
+    Few-shot captions from this client (style only): {few_shot_captions}
+    Output a single detailed 9:16 VIDEO generation prompt: camera language, motion, lighting, pacing,
+    beats, and negative constraints (e.g. no phone screens for firewood vertical). Suitable for Runway,
+    Kling, Luma, or Gemini Video.
+  expected_output: >
+    A single JSON object with exactly one key "Video_Prompt" (string). No markdown fences.
   agent: content_creator
