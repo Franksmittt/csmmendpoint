@@ -1,7 +1,26 @@
+from functools import lru_cache
+from pathlib import Path
+
+import yaml
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 
 import engagement_learner
+
+_CONFIG_DIR = Path(__file__).resolve().parent / "config"
+
+
+@lru_cache(maxsize=1)
+def _load_agents_yaml() -> dict:
+    """Full ``agents.yaml`` — path anchored to this package (reliable on Streamlit Cloud / any cwd)."""
+    with (_CONFIG_DIR / "agents.yaml").open(encoding="utf-8") as f:
+        return yaml.safe_load(f) or {}
+
+
+@lru_cache(maxsize=1)
+def _load_tasks_yaml() -> dict:
+    with (_CONFIG_DIR / "tasks.yaml").open(encoding="utf-8") as f:
+        return yaml.safe_load(f) or {}
 
 
 def inject_engagement_insights(
@@ -142,16 +161,28 @@ class VideoPromptOnlyCrew:
 class CriticRefinementCrew:
     """Post-pass QA on a full creative JSON bundle."""
 
+    # Paths for CrewBase metadata only; agent/task configs are loaded explicitly so
+    # ``creative_critic`` is always resolved (some CrewAI versions scope agents_config oddly).
     agents_config = "config/agents.yaml"
     tasks_config = "config/tasks.yaml"
 
     @agent
     def creative_critic(self) -> Agent:
-        return Agent(config=self.agents_config["creative_critic"])
+        cfg = _load_agents_yaml().get("creative_critic")
+        if not cfg:
+            raise KeyError(
+                "creative_critic missing from agents.yaml — check src/config/agents.yaml"
+            )
+        return Agent(config=cfg)
 
     @task
     def critic_refine_task(self) -> Task:
-        return Task(config=self.tasks_config["critic_refine_task"])
+        tcfg = _load_tasks_yaml().get("critic_refine_task")
+        if not tcfg:
+            raise KeyError(
+                "critic_refine_task missing from tasks.yaml — check src/config/tasks.yaml"
+            )
+        return Task(config=tcfg)
 
     @crew
     def crew(self) -> Crew:
