@@ -152,6 +152,9 @@ EM_USE_CRITIC = "em_use_critic_pass"
 EM_USE_ENGAGEMENT_INSIGHTS_PREFIX = "em_use_engagement_insights"
 EM_DARK_MODE = "em_dark_mode"
 EM_GAP_BUST = "em_gap_cache_bust"
+# Slim sidebar client filter (separate from top-bar popover filter).
+EM_SIDEBAR_CLIENT_FILTER = "em_sidebar_client_filter"
+EM_TOPBAR_CLIENT_FILTER = "em_topbar_client_filter"
 
 # One-click variety pack: each post randomizes format, pillar, brand & hook.
 MIXED_PACK_POST_COUNT = 3
@@ -313,10 +316,66 @@ def _inject_classical_theme() -> None:
           section[data-testid="stSidebar"] {{
             background: linear-gradient(180deg, #fafafa 0%, {C_SURFACE} 100%) !important;
             border-right: 1px solid rgba(0,0,0,0.06) !important;
+            width: 268px !important;
+            min-width: 268px !important;
           }}
           section[data-testid="stSidebar"] .block-container {{
             padding-top: 0.75rem !important;
             width: 100% !important;
+          }}
+          /* App chrome: sticky top bar (main column) */
+          .main [class*="-em_app_topbar"] {{
+            position: sticky !important;
+            top: 0 !important;
+            z-index: 100010 !important;
+            margin-bottom: 0.25rem !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+          }}
+          .main [class*="-em_app_topbar"] > div {{
+            background: linear-gradient(180deg, #fffcf7 0%, #faf8f5 100%) !important;
+            border-bottom: 1px solid rgba(0,0,0,0.07) !important;
+            border-radius: 0 !important;
+            padding: 12px 0 14px 0 !important;
+            margin: 0 -4rem 0 -4rem !important;
+            padding-left: 4rem !important;
+            padding-right: 4rem !important;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.04) !important;
+          }}
+          .em-topbar-brand {{
+            font-family: 'Crimson Pro', Georgia, serif !important;
+            font-size: 1.42rem !important;
+            font-weight: 600 !important;
+            color: {C_HEADING} !important;
+            margin: 0 !important;
+            line-height: 1.1 !important;
+            letter-spacing: -0.04em !important;
+          }}
+          .em-topbar-sub {{
+            font-family: 'Source Sans 3', sans-serif !important;
+            font-size: 0.82rem !important;
+            color: {C_MUTED} !important;
+            margin: 2px 0 0 0 !important;
+            letter-spacing: 0.06em !important;
+            text-transform: uppercase !important;
+          }}
+          .em-role-badge {{
+            font-family: 'Source Sans 3', sans-serif !important;
+            font-size: 0.8rem !important;
+            color: {C_TEXT_BODY} !important;
+            margin: 0 !important;
+            line-height: 1.35 !important;
+            letter-spacing: 0.02em !important;
+          }}
+          .em-role-badge strong {{
+            color: {C_PRIMARY} !important;
+            font-weight: 600 !important;
+          }}
+          /* Sidebar primary (active nav or active client): bronze left rail */
+          section[data-testid="stSidebar"] .stButton > button[kind="primary"] {{
+            border-left: 4px solid {C_ACCENT} !important;
+            padding-left: 10px !important;
           }}
           .ui-sidebar-title {{
             font-family: 'Crimson Pro', Georgia, serif !important;
@@ -615,7 +674,18 @@ def _inject_classical_theme() -> None:
               section[data-testid="stSidebar"] {
                 background: linear-gradient(180deg, #2c2c2e 0%, #1c1c1e 100%) !important;
                 border-right: 1px solid rgba(255,255,255,0.08) !important;
+                width: 268px !important;
+                min-width: 268px !important;
               }
+              .main [class*="-em_app_topbar"] > div {
+                background: linear-gradient(180deg, #2c2c2e 0%, #252528 100%) !important;
+                border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+                box-shadow: 0 1px 0 rgba(0,0,0,0.2) !important;
+              }
+              .em-topbar-brand { color: #f5f5f7 !important; }
+              .em-topbar-sub { color: #8e8e93 !important; }
+              .em-role-badge { color: #d1d1d6 !important; }
+              .em-role-badge strong { color: #e8c088 !important; }
               .em-card, .em-panel, .em-squircle, [data-testid="stExpander"], div[data-testid="stAlert"],
               .main [data-testid="stDataFrame"], .main [data-testid="stDataFrame"] > div {
                 background: #2c2c2e !important;
@@ -1222,22 +1292,169 @@ def _client_by_id(clients: list[dict], client_id: int) -> dict | None:
     return None
 
 
+def _render_main_top_bar(clients: list[dict]) -> None:
+    """Sticky main-column chrome: brand, searchable client switcher, role badge, dark mode, admin role preview."""
+    with st.container(border=False, key="em_app_topbar"):
+        t_left, t_mid, t_right = st.columns([2.15, 3.9, 3.15], gap="small")
+        with t_left:
+            st.markdown(
+                '<p class="em-topbar-brand">Endpoint Media</p>'
+                '<p class="em-topbar-sub">Content Studio</p>',
+                unsafe_allow_html=True,
+            )
+        with t_mid:
+            if not clients:
+                st.caption("No clients yet — use **New Client** in the sidebar.")
+            else:
+                active = int(st.session_state.get(EM_ACTIVE_CLIENT_ID, -1))
+                ac = _client_by_id(clients, active)
+                if ac:
+                    _nm = str(ac.get("company_name", "Client"))
+                    _pill = f"{_nm} · profile #{active}"
+                    if len(_pill) > 52:
+                        _pill = _pill[:49] + "…"
+                else:
+                    _pill = "Pick a client"
+                with st.popover(_pill, use_container_width=True):
+                    st.caption("Search and switch active client")
+                    st.text_input(
+                        "Filter",
+                        key=EM_TOPBAR_CLIENT_FILTER,
+                        placeholder="Type to filter…",
+                        label_visibility="collapsed",
+                    )
+                    _q = (st.session_state.get(EM_TOPBAR_CLIENT_FILTER) or "").strip().lower()
+                    sorted_cs = sorted(
+                        clients,
+                        key=lambda x: str(x.get("company_name", "")).lower(),
+                    )
+                    shown = [
+                        c
+                        for c in sorted_cs
+                        if not _q or _q in str(c.get("company_name", "")).lower()
+                    ][:45]
+                    for c in shown:
+                        cid = int(c["id"])
+                        nm = str(c.get("company_name", "Unknown"))
+                        if st.button(
+                            nm,
+                            key=f"tb_pick_{cid}",
+                            use_container_width=True,
+                            type="primary" if cid == active else "secondary",
+                        ):
+                            st.session_state[EM_ACTIVE_CLIENT_ID] = cid
+                            st.session_state.current_view = VIEW_DASHBOARD
+                            st.rerun()
+        with t_right:
+            _rl = role_ctx.ROLE_LABEL_PRETTY.get(
+                role_ctx.get_current_role(),
+                role_ctx.get_current_role(),
+            )
+            r_a, r_b, r_c = st.columns([2.45, 0.62, 2.45], gap="small")
+            with r_a:
+                st.markdown(
+                    '<p class="em-role-badge" title="Your role controls which views and actions are available in the console.">'
+                    f"Working as <strong>{html.escape(_rl)}</strong></p>",
+                    unsafe_allow_html=True,
+                )
+            with r_b:
+                st.toggle(
+                    "🌙",
+                    key=EM_DARK_MODE,
+                    help="Dark mode",
+                )
+            with r_c:
+                if role_ctx.get_current_role() == role_ctx.ROLE_ADMIN:
+                    _ar1, _ar2 = st.columns([1.35, 0.82], gap="small")
+                    with _ar1:
+                        _r_opts = list(role_ctx.VALID_ROLES)
+                        _cur_r = role_ctx.get_current_role()
+                        _ix_r = _r_opts.index(_cur_r) if _cur_r in _r_opts else 0
+                        st.selectbox(
+                            "Act as role",
+                            options=_r_opts,
+                            index=_ix_r,
+                            key="em_admin_role_preview",
+                            label_visibility="collapsed",
+                            help="Choose which role to simulate. Use **Switch** to apply (?role=).",
+                        )
+                    with _ar2:
+                        if st.button(
+                            "Switch",
+                            key="em_admin_role_switch",
+                            use_container_width=True,
+                            help="Updates the URL (?role=) and session. Clears pending Auto-Pilot / hotkey state.",
+                        ):
+                            _pick = str(
+                                st.session_state.get(
+                                    "em_admin_role_preview", role_ctx.ROLE_ADMIN
+                                )
+                            )
+                            st.session_state[role_ctx.EM_ROLE_SESSION_KEY] = (
+                                role_ctx.normalize_role(_pick)
+                            )
+                            st.query_params["role"] = _pick
+                            role_ctx.clear_volatile_session_after_role_change()
+                            st.rerun()
+
+
 def _render_sidebar_nav(clients: list[dict]) -> None:
-    """Sidebar: views + one button per client (scales for many accounts)."""
+    """Slim sidebar: searchable clients (top), navigation (bottom)."""
     with st.sidebar:
         st.markdown(
-            '<p class="ui-sidebar-title">Endpoint Media</p>',
+            '<p class="ui-sidebar-heading">Clients</p>',
             unsafe_allow_html=True,
         )
-        st.caption("Content studio")
-        st.toggle("Dark mode", key=EM_DARK_MODE)
+        st.text_input(
+            "Filter clients",
+            key=EM_SIDEBAR_CLIENT_FILTER,
+            placeholder="Search by name…",
+            label_visibility="collapsed",
+        )
+        _qf = (st.session_state.get(EM_SIDEBAR_CLIENT_FILTER) or "").strip().lower()
+        if clients:
+            active = int(st.session_state.get(EM_ACTIVE_CLIENT_ID, -1))
+            sorted_clients = sorted(
+                clients,
+                key=lambda x: str(x.get("company_name", "")).lower(),
+            )
+            shown = [
+                c
+                for c in sorted_clients
+                if not _qf or _qf in str(c.get("company_name", "")).lower()
+            ]
+            if not shown:
+                st.caption("No matching clients.")
+            else:
+                for c in shown:
+                    cid = int(c["id"])
+                    name = str(c.get("company_name", "Unknown"))
+                    if len(name) > 40:
+                        name = name[:37] + "…"
+                    if st.button(
+                        name,
+                        key=f"sb_client_{cid}",
+                        use_container_width=True,
+                        type="primary" if cid == active else "secondary",
+                    ):
+                        st.session_state[EM_ACTIVE_CLIENT_ID] = cid
+                        st.session_state.current_view = VIEW_DASHBOARD
+                        st.rerun()
+        else:
+            st.caption("No clients yet.")
+
         st.divider()
+        st.markdown(
+            '<p class="ui-sidebar-heading">Navigate</p>',
+            unsafe_allow_html=True,
+        )
         _av = role_ctx.allowed_sidebar_views()
         dash_primary = st.session_state.current_view == VIEW_DASHBOARD
         analytics_primary = st.session_state.current_view == VIEW_ANALYTICS
         cal_primary = st.session_state.current_view == VIEW_CONTENT_CALENDAR
         onboard_primary = st.session_state.current_view == VIEW_ONBOARD
         overlay_primary = st.session_state.current_view == VIEW_OVERLAY
+
         if role_ctx.VIEW_DASHBOARD in _av:
             if st.button(
                 "Dashboard",
@@ -1246,15 +1463,6 @@ def _render_sidebar_nav(clients: list[dict]) -> None:
                 type="primary" if dash_primary else "secondary",
             ):
                 st.session_state.current_view = VIEW_DASHBOARD
-                st.rerun()
-        if role_ctx.VIEW_ANALYTICS in _av:
-            if st.button(
-                "Analytics",
-                use_container_width=True,
-                key="nav_analytics",
-                type="primary" if analytics_primary else "secondary",
-            ):
-                st.session_state.current_view = VIEW_ANALYTICS
                 st.rerun()
         if role_ctx.VIEW_CONTENT_CALENDAR in _av:
             if st.button(
@@ -1265,9 +1473,18 @@ def _render_sidebar_nav(clients: list[dict]) -> None:
             ):
                 st.session_state.current_view = VIEW_CONTENT_CALENDAR
                 st.rerun()
+        if role_ctx.VIEW_ANALYTICS in _av:
+            if st.button(
+                "Analytics",
+                use_container_width=True,
+                key="nav_analytics",
+                type="primary" if analytics_primary else "secondary",
+            ):
+                st.session_state.current_view = VIEW_ANALYTICS
+                st.rerun()
         if role_ctx.VIEW_ONBOARD in _av:
             if st.button(
-                "New client",
+                "New Client",
                 use_container_width=True,
                 key="nav_onboard_client",
                 type="primary" if onboard_primary else "secondary",
@@ -1276,74 +1493,13 @@ def _render_sidebar_nav(clients: list[dict]) -> None:
                 st.rerun()
         if role_ctx.VIEW_OVERLAY in _av:
             if st.button(
-                "Overlay studio",
+                "Overlay Studio",
                 use_container_width=True,
                 key="nav_overlay_studio",
                 type="primary" if overlay_primary else "secondary",
             ):
                 st.session_state.current_view = VIEW_OVERLAY
                 st.rerun()
-
-        if role_ctx.get_current_role() == role_ctx.ROLE_ADMIN:
-            st.divider()
-            st.markdown(
-                f'<p style="color:{C_GRAY};font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;margin:0 0 6px 0;">'
-                f"Role preview</p>",
-                unsafe_allow_html=True,
-            )
-            _r_opts = list(role_ctx.VALID_ROLES)
-            _cur_r = role_ctx.get_current_role()
-            _ix_r = _r_opts.index(_cur_r) if _cur_r in _r_opts else 0
-            st.selectbox(
-                "Act as role",
-                options=_r_opts,
-                index=_ix_r,
-                key="em_admin_role_preview",
-                label_visibility="collapsed",
-                help="Choose which role’s permissions to simulate (sidebar views, hub, captions vs assets, "
-                "calendar, bulk actions). Does not change data — use **Switch role** to apply. "
-                "External publishers should use the dedicated queue URL.",
-            )
-            if st.button(
-                "Switch role",
-                key="em_admin_role_switch",
-                use_container_width=True,
-                help="Updates the URL (?role=) and session. Clears pending Auto-Pilot / hotkey "
-                "generation state; active client and dark mode are kept.",
-            ):
-                _pick = str(st.session_state.get("em_admin_role_preview", role_ctx.ROLE_ADMIN))
-                st.session_state[role_ctx.EM_ROLE_SESSION_KEY] = role_ctx.normalize_role(
-                    _pick
-                )
-                st.query_params["role"] = _pick
-                role_ctx.clear_volatile_session_after_role_change()
-                st.rerun()
-
-        if clients:
-            st.markdown(
-                '<p class="ui-sidebar-heading">Clients</p>',
-                unsafe_allow_html=True,
-            )
-            active = int(st.session_state.get(EM_ACTIVE_CLIENT_ID, -1))
-            sorted_clients = sorted(
-                clients,
-                key=lambda x: str(x.get("company_name", "")).lower(),
-            )
-            for c in sorted_clients:
-                cid = int(c["id"])
-                name = str(c.get("company_name", "Unknown"))
-                if len(name) > 36:
-                    name = name[:33] + "..."
-                label = name
-                if st.button(
-                    label,
-                    key=f"sb_client_{cid}",
-                    use_container_width=True,
-                    type="primary" if cid == active else "secondary",
-                ):
-                    st.session_state[EM_ACTIVE_CLIENT_ID] = cid
-                    st.session_state.current_view = VIEW_DASHBOARD
-                    st.rerun()
 
 
 def _render_onboarding() -> None:
@@ -1511,9 +1667,9 @@ def _hub_plan_summary_html(client: dict, brand_choices: list[str]) -> str:
 
 def _render_dashboard_hero() -> None:
     st.markdown(
-        '<p class="ui-hero">Endpoint Media — Content console</p>'
-        '<p class="ui-hero-sub">Select a client in the sidebar, generate posts, copy captions & prompts, '
-        "and track delivery.</p>",
+        '<p class="ui-hero">Dashboard</p>'
+        '<p class="ui-hero-sub">Choose the active client from the top bar or sidebar, then generate posts, '
+        "copy captions & prompts, and track delivery.</p>",
         unsafe_allow_html=True,
     )
 
@@ -2534,6 +2690,7 @@ def main() -> None:
     if clients:
         _ensure_active_client_id(clients)
     _render_sidebar_nav(clients)
+    _render_main_top_bar(clients)
 
     if st.session_state.current_view == VIEW_ONBOARD:
         _render_onboarding()
@@ -2585,8 +2742,8 @@ def main() -> None:
     if not clients:
         st.markdown(
             f'<div class="em-card em-squircle"><p style="color:{C_ATHENS};margin:0;">'
-            f"No clients yet. In the sidebar, click "
-            f'<strong style="color:{C_TEXT};">{VIEW_ONBOARD}</strong> to add one.</p></div>',
+            f"No clients yet. Under <strong>Navigate</strong>, click "
+            f'<strong style="color:{C_TEXT};">New Client</strong> to add one.</p></div>',
             unsafe_allow_html=True,
         )
         st.markdown("</div>", unsafe_allow_html=True)
@@ -2606,20 +2763,6 @@ def main() -> None:
         st.error("Could not resolve active client. Pick one in the sidebar.")
         st.stop()
 
-    _cn_disp = html.escape(str(client["company_name"]))
-    _rl = role_ctx.ROLE_LABEL_PRETTY.get(
-        role_ctx.get_current_role(),
-        role_ctx.get_current_role(),
-    )
-    st.markdown(
-        f'<p class="ui-active-client">Active client: '
-        f'<span class="ui-accent">{_cn_disp}</span> &nbsp;&middot;&nbsp; profile #{_cid}</p>'
-        f'<p style="color:{C_GRAY};font-size:0.88rem;margin:6px 0 0 0;">'
-        f"Working as <strong style=\"color:{C_TEXT};\">{html.escape(_rl)}</strong>"
-        f" &nbsp;&middot;&nbsp; "
-        f'<span style="opacity:0.92;">Role controls sidebar and actions</span></p>',
-        unsafe_allow_html=True,
-    )
     _ensure_hub_widget_state(
         _crew_brands_for_client(client, brand_choices),
         client=client,
